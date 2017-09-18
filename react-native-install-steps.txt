@@ -1,0 +1,158 @@
+How to install genymotion in ubuntu 14.04
+===================================================
+-> Install virtual box if not already installed:
+sudo apt-get install virtualbox
+Apparently on their website they say only 5.0.4+ works with genymotions, but locally I have 4.3.36_Ubuntur105129
+
+-> Register or login to genymotion website
+https://cloud.genymotion.com/page/customer/login/
+-> download correct version for your sistem
+-> Change directory to where you downloaded the bin file and run following commands. Accept the default install path
+chmod +x genymotion-2.2.2_x64.bin
+./genymotion-2.2.2_x64.bin
+-> Change directory to where genymotion was installed. The default is ‘/home/[username]/genymotion/’
+cd /home/[username]/genymotion/
+./genymotion
+
+====
+all steps here: http://sysads.co.uk/2014/06/install-genymotion-in-ubuntu-14-04/
+
+-> fix the following errors:
+/usr/share/toptracker/bin/TopTracker: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version 'CXXABI_1.3.8' not found (required by /usr/share/toptracker/bin/TopTracker) /usr/share/toptracker/bin/TopTracker: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version 'GLIBCXX_3.4.21' not found (required by /usr/share/toptracker/bin/TopTracker) /usr/share/toptracker/bin/TopTracker: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version 'CXXABI_1.3.9' not found (required by /usr/share/toptracker/bin/TopTracker)
+
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt-get update
+sudo apt-get install gcc-4.9 g++-4.9
+===============================================================
+
+
+Install Android Studio (Java JSK 1.8 is needed)
+https://developer.android.com/studio/install.html
+
+===============================================================
+
+Install react native for android on ubuntu (video here: https://www.youtube.com/watch?v=0xKrHZNudEQ&app=desktop)
+
+Step 1: Install nvm, nodejs, npm
+
+Step 2: Installing Watchman - need install git
++ sudo apt-get install python-dev
++ sudo apt-get install automake
++ sudo apt-get install autoconf
++ git clone https://github.com/facebook/watchman.git
++ cd watchman
++ git checkout v4.5.0 # the latest stable release
++ ./autogen.sh
++ ./configure
++ sudo su --- enter pass switch to root
++ make
++ sudo make install
+
+Step 3: install react native - open terminal via root
++ npm install -g react-native-cli
+
+Step 4: install flow
++ sudo npm install -g flow-bin
+
+Test - -- init project
++ react-native init ProjectName - --pending finish
++open genymotion --- add sdk to genymotion --- start emulator
++ run project for android - -- react-native run-android *the first run, pendding download gradle* .......
+
+===============================================================
+
+fix error: SDK location not found. Define location with sdk.dir in the local.properties file or with an ANDROID_HOME environment variable.
+
+--- create file local.properties under android folder in project folder, and add 2 line:
+sdk.dir = --SDK path--
+ANDROID_HOME = --SDK path--
+save and run again!
+
+===============================================================
+
+fix error: /bin/sh: 1: adb: not found
+
+-> edit ~/.bashrc and add 2 lines:
+export PATH=${PATH}:~/Android/Sdk/tools
+export PATH=${PATH}:~/Android/Sdk/platform-tools
+
+===============================================================
+
+fix error: A problem occurred configuring project ':app'.
+> failed to find target with hash string 'android-23' in: /home/<username>/Android/Sdk
+
+-> maybe do this also
+export ANDROID_HOME="/home/andreicroitoru/Android/Sdk"
+
+-> open Android Studio -> Configure -> SDK Manager
+-> Select Android 6.0 (Marshmallow) Api Level (23) and install it
+
+===============================================================
+
+fix error: A problem occurred configuring project ':app'.
+> failed to find Build Tools revision 23.0.1
+
+android list sdk -a
+
+Packages available for installation or update: 166
+   1- Android SDK Tools, revision 25.1.7
+   2- Android SDK Tools, revision 25.2.2 rc1
+   3- Android SDK Platform-tools, revision 24.0.2
+   4- Android SDK Build-tools, revision 24.0.2
+   5- Android SDK Build-tools, revision 24.0.1
+   6- Android SDK Build-tools, revision 24
+   7- Android SDK Build-tools, revision 23.0.3
+   8- Android SDK Build-tools, revision 23.0.2
+   9- Android SDK Build-tools, revision 23.0.1
+  10- Android SDK Build-tools, revision 23 (Obsolete)
+  11- Android SDK Build-tools, revision 22.0.1
+
+android update sdk -a -u -t 9
+
+===============================================================
+
+-> go to project folder and start npm
+npm start
+
+
+===============================================================
+
+Running on device:
+
+connect device on usb.
+enable usb debugging
+  - enable developer options (go to settings and press 7 times on About phone)
+  - enter developer options and enable usb debuggins
+from developer options change USB configuration from MTP to PTP
+
+from terminal run:
+adb devices
+you should see your device in the list
+
+from project folder run:
+react-native run-android (to install app on phone)
+
+npm start (to start dev server)
+
+On phone to open dev menu: shake phone
+- enable hot reloading
+
+Keep in mind that from Redux 2.0 reducers will not be hot reloaded, so you have to reload the app manually if changing reducers or state of the app.
+Any other change will be hot reloaded.
+
+
+
+
+===================================================================
+
+Installing node_modules (app dependencies) can be done in two ways:
+
+1. npm install
+2. using pac:
+
+npm install -g pac
+pac install
+
+to pack a new node_module:
+
+pac ./node_modules

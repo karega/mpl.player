@@ -1,0 +1,81 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "plugins":[
+        "react"
+    ],
+
+    "globals": {
+        "__DEV__": true,
+        "super" : true
+    },
+
+    "ecmaFeatures": {
+        "jsx": true,
+        "arrowFunctions": true,
+        "classes" : true,
+        "superInFunctions" : true,
+        "blockBindings" : true,
+        "es6": true,
+        "modules": true,
+        "destructuring" : true,
+        "templateStrings" : true
+    },
+
+    "rules": {
+        "comma-dangle": [2, "never"],
+        "complexity": [2, 15],
+        "dot-notation": 2,
+        "no-else-return": 2,
+        "block-scoped-var": 2,
+        "consistent-return": 2,
+        "no-unused-expressions": 2,
+        "no-unused-vars": 2,
+        "indent": [2, 4, {"SwitchCase": 1}],
+        "brace-style": 2,
+        "max-nested-callbacks": [2, 4],
+        "space-before-blocks": 2,
+        "semi": [2, "always"],
+        "max-depth": [2, 4],
+        "max-len": [1, 200],
+        "max-params": [2, 5],
+        "max-statements": [2, 30],
+        "space-after-keywords": 2,
+        "key-spacing": 0,
+        "no-multi-spaces": 0,
+        "no-dupe-keys": 2,
+        "eol-last": 0,
+        "no-use-before-define": 0,
+        "react/display-name": 0,
+        "react/forbid-prop-types": 0,
+        "react/jsx-boolean-value": 0,
+        "react/jsx-closing-bracket-location": [1, {selfClosing: "after-props", nonEmpty: "after-props"}],
+        "react/no-did-mount-set-state": 0,
+        "react/no-did-update-set-state": 2,
+        "react/no-multi-comp": 2,
+        "react/no-unknown-property": 2,
+        "react/prop-types": 1,
+        "react/react-in-jsx-scope": 2,
+        "react/self-closing-comp": 1,
+        "react/wrap-multilines": 1,
+        "react/prefer-es6-class": 1,
+        "react/no-direct-mutation-state": 2,
+        "react/sort-comp": 0,
+        "react/no-danger": 0,
+        "react/no-set-state": 0,
+        "react/require-extension": 0,
+        "react/jsx-no-duplicate-props": 2,
+        "react/jsx-no-undef": 2,
+        "react/jsx-sort-props": 0,
+        "react/jsx-uses-react": 2,
+        "react/jsx-uses-vars": 2,
+        "react/jsx-sort-prop-types": 0,
+        "react/jsx-curly-spacing": 0,
+        "react/jsx-indent-props": 0,
+        "react/jsx-max-props-per-line": 0,
+        "react/jsx-no-literals": 0
+    }
+}
