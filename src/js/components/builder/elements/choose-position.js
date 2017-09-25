@@ -2,7 +2,14 @@
 
 /** External Module Dependencies **/
 import React, {PropTypes} from 'react';
-import {Dimensions, Image, StyleSheet, Text, TouchableNativeFeedback, View} from 'react-native';
+import {
+	Dimensions,
+	Image,
+	StyleSheet,
+	Text,
+	TouchableNativeFeedback,
+	View
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Carousel from 'react-native-carousel-view';
 
@@ -23,15 +30,15 @@ class ChoosePosition extends React.PureComponent<any, ChoosePositionPropTypes, C
 		super(props);
 
 		this.state = { };
+
+		this.cypSF = require('./../../../assets/cyp-sf.png');
+		this.cypPF = require('./../../../assets/cyp-pf.png');
+		this.cypC = require('./../../../assets/cyp-c.png');
+		this.cypPG = require('./../../../assets/cyp-pg.png');
+		this.cypSG = require('./../../../assets/cyp-sg.png');
 	}
 
 	render() {
-		var cypSF = require('./../../../assets/cyp-sf.png');
-		var cypPF = require('./../../../assets/cyp-pf.png');
-		var cypC = require('./../../../assets/cyp-c.png');
-		var cypPG = require('./../../../assets/cyp-pg.png');
-		var cypSG = require('./../../../assets/cyp-sg.png');
-
 		return (
 			<View style={[bStyles.container, { height: height - 48 }]}>
 				<TouchableNativeFeedback
@@ -66,7 +73,7 @@ class ChoosePosition extends React.PureComponent<any, ChoosePositionPropTypes, C
 										textShadowOffset={{ width: 6, height: 6 }}
 										textShadowRadius={4}
 										style={[bStyles.positionText, { width: width }]}>POINT GUARD</Text>
-									<Image source={cypPG} style={[bStyles.cypImage, { height: (height - 160) }]} />
+									<Image source={this.cypPG} style={[bStyles.cypImage, { height: (height - 160) }]} />
 								</View>
 							</TouchableNativeFeedback>
 						</View>
@@ -79,7 +86,7 @@ class ChoosePosition extends React.PureComponent<any, ChoosePositionPropTypes, C
 										textShadowOffset={{ width: 6, height: 6 }}
 										textShadowRadius={4}
 										style={[bStyles.positionText, { width: width }]}>SHOOTING GUARD</Text>
-									<Image source={cypSG} style={[bStyles.cypImage, { height: (height - 160) }]} />
+									<Image source={this.cypSG} style={[bStyles.cypImage, { height: (height - 160) }]} />
 								</View>
 							</TouchableNativeFeedback>
 						</View>
@@ -92,7 +99,7 @@ class ChoosePosition extends React.PureComponent<any, ChoosePositionPropTypes, C
 										textShadowOffset={{ width: 6, height: 6 }}
 										textShadowRadius={4}
 										style={[bStyles.positionText, { width: width }]}>SMALL FORWARD</Text>
-									<Image source={cypSF} style={[bStyles.cypImage, { height: (height - 160) }]} />
+									<Image source={this.cypSF} style={[bStyles.cypImage, { height: (height - 160) }]} />
 								</View>
 							</TouchableNativeFeedback>
 						</View>
@@ -105,7 +112,7 @@ class ChoosePosition extends React.PureComponent<any, ChoosePositionPropTypes, C
 										textShadowOffset={{ width: 6, height: 6 }}
 										textShadowRadius={4}
 										style={[bStyles.positionText, { width: width }]}>POWER FORWARD</Text>
-									<Image source={cypPF} style={[bStyles.cypImage, { height: (height - 160) }]} />
+									<Image source={this.cypPF} style={[bStyles.cypImage, { height: (height - 160) }]} />
 								</View>
 							</TouchableNativeFeedback>
 						</View>
@@ -118,7 +125,7 @@ class ChoosePosition extends React.PureComponent<any, ChoosePositionPropTypes, C
 										textShadowOffset={{ width: 6, height: 6 }}
 										textShadowRadius={4}
 										style={[bStyles.positionText, { width: width }]}>CENTER</Text>
-									<Image source={cypC} style={[bStyles.cypImage, { height: (height - 160) }]} />
+									<Image source={this.cypC} style={[bStyles.cypImage, { height: (height - 160) }]} />
 								</View>
 							</TouchableNativeFeedback>
 						</View>

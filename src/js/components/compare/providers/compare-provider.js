@@ -6,6 +6,9 @@ import {pathOr} from 'ramda';
 
 /** Internal Module Dependencies **/
 import Compare from './../elements/compare';
+import {
+	compareAddBuild,
+} from './../actions/compare-actions';
 
 const mapStateToProps = (state) => {
 	let builds = state.compare.get('builds');
@@ -14,7 +17,6 @@ const mapStateToProps = (state) => {
 	return {
 		builds: builds,
 		current: current,
-		attributes: pathOr(null, ['attributes'])(current),
 
 		profile: state.session.get('profile'),
 	};
@@ -22,8 +24,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		startCompare: () => {
-			dispatch(startCompare());
+		compareAddBuild: (build) => {
+			dispatch(compareAddBuild(build));
 		},
 	};
 };

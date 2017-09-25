@@ -7,8 +7,11 @@ import {pathOr} from 'ramda';
 /** Internal Module Dependencies **/
 import Browser from './../elements/browser';
 import {
-	chooseBuild
+	chooseBuild,
 } from './../../summary/actions/summary-actions'
+import {
+	compareAddBuild,
+} from './../../compare/actions/compare-actions'
 
 const mapStateToProps = (state) => {
 	let builds = state.summary.get('builds');
@@ -27,6 +30,9 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		chooseBuild: (build) => {
 			dispatch(chooseBuild(build));
+		},
+		compareAddBuild: (build) => {
+			dispatch(compareAddBuild(build));
 		},
 	};
 };

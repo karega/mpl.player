@@ -24,9 +24,9 @@ import {
 } from 'react-native-custom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Actions} from 'react-native-router-flux';
-import Carousel from 'react-native-carousel-view';
 
 /** Internal Module Dependencies **/
+import Overview from './../../summary/elements/overview';
 import cStyles from './../styles/compare-styles';
 import {Avatar} from './../../../lib/react-native-material-design';
 
@@ -48,18 +48,16 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 	constructor(props: ComparePropTypes): void {
 		super(props);
 
+		this.animating = false;
+
 		this.state = {
 			step: 1,
 			drawer: !(props.builds) && !(props.builds && props.builds.length > 0)
 		}
 
 		this.browseTo = this.browseTo.bind(this);
-		this.checkBuilds = this.checkBuilds.bind(this);
+		this.getComparator = this.getComparator.bind(this);
 		this.toggleMenu = this.toggleMenu.bind(this);
-	}
-
-	componentDidMount() {
-		this.checkBuilds();
 	}
 
 	browseTo(url) {
@@ -73,14 +71,118 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 
 		CustomTabs.openURL(url, option).then((launched: boolean) => {
 			console.log(`Launched custom tabs: ${launched}`);
-		}).catch(err => {
-			console.error(err)
+		}).catch(error => {
+			console.error(error);
 		});
 	}
 
-	checkBuilds() {
-		if (this.props.builds.size === 0) {
-			this.toggleMenu(!this.state.drawer)
+	getComparator(ff) {
+		const mplIcon = require('./../../../assets/mplplayer.png');
+
+		switch (ff) {
+			case 'large':
+				var compareSplash = require('./../../../assets/compare-splash.png');
+
+				return (
+					<View style={{ flex: 1, flexDirection: 'column' }}>
+						<View style={cStyles.compareSplashContainer}>
+							<Image source={compareSplash} style={cStyles.compareSplash} />
+						</View>
+						<View style={cStyles.contentContainer}>
+							<TouchableNativeFeedback
+								onPress={() => {
+									Actions.browser({ comparator: true });
+								}}>
+								<View style={cStyles.addArchetype}>
+									<Image source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36 }]}/>
+									<Text
+										style={cStyles.addArchetypeText}>
+										{'ADD ARCHETYPE'}
+									</Text>
+								</View>
+							</TouchableNativeFeedback>
+						</View>
+					</View>
+				);
+			case 'medium':
+				var compareSplash = require('./../../../assets/compare-splash-medium.png');
+
+				return (
+					<View style={cStyles.comparatorTable}>
+						{
+							this.props.builds.map((build, index) => {
+								return (
+									<View
+										key={'compare_build_' + index}
+										style={{ flex: (this.props.builds.size * 0.5) }}>
+										<Overview
+											comparator={true}
+											{...this.props} />
+									</View>
+								)
+							})
+						}
+							<View
+								key={'compare_add_build'}
+								style={{ flex: (this.props.builds.size * 0.5), flexDirection: 'column' }}>
+								<View style={cStyles.compareSplashContainer}>
+									<Image source={compareSplash} style={cStyles.compareSplash} />
+								</View>
+								<View style={cStyles.contentContainer}>
+									<TouchableNativeFeedback
+										onPress={() => {
+											Actions.browser({ comparator: true });
+										}}>
+										<View style={cStyles.addArchetype}>
+											<Image source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36 }]}/>
+											<Text
+												style={cStyles.addArchetypeText}>
+												{'ADD'}
+											</Text>
+										</View>
+									</TouchableNativeFeedback>
+								</View>
+							</View>
+					</View>
+				);
+			case 'small':
+				return (
+					<View style={cStyles.comparatorTable}>
+						{
+							this.props.builds.map((build, index) => {
+								return (
+									<View
+										key={'compare_build_' + index}
+										style={{ flex: (this.props.builds.size * 0.5) }}>
+										<Overview
+											comparator={true}
+											{...this.props} />
+									</View>
+								)
+							})
+						}
+						{
+							this.props.builds.size < 4 && (
+								<View
+									key={'compare_add_build'}
+									style={{ flex: (this.props.builds.size * ((100 / this.props.builds.size) / 100)), flexDirection: 'column' }}>
+									<View style={cStyles.contentContainer}>
+										<TouchableNativeFeedback
+											onPress={() => {
+												Actions.browser({ comparator: true });
+											}}>
+											<View style={cStyles.addArchetype}>
+												<Image source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36 }]}/>
+											</View>
+										</TouchableNativeFeedback>
+									</View>
+								</View>
+							)
+						}
+					</View>
+				);
+			default:
+				return null;
 		}
 	}
 
@@ -150,7 +252,17 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 			)
 		);
 
-		const mplIcon = require('./../../../assets/mplplayer.png');
+		var refreshControl = (
+			<RefreshControl
+				enabled={false}
+				refreshing={this.animating}
+				onRefresh={() => { }}
+				tintColor='#000000'
+				title='Loading...'
+				titleColor='#000000'
+				colors={['#000000', '#000000', '#000000']}
+				progressBackgroundColor='#000000'/>
+		);
 
 		return (
 			<SideMenu
@@ -177,30 +289,17 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 							)}
 						</View>
 					</TouchableNativeFeedback>
-					{
-						(this.props.builds.size > 0) && (
-							<View style={cStyles.headerContainer}>
-								<Text style={cStyles.primaryText}>{'COMPARE'}</Text>
-								<Text style={cStyles.secondaryText}>{'BUILDS'}</Text>
-							</View>
-						)
-					}
-					{
-						(this.props.builds.size > 0) && (
-							<View style={cStyles.contentContainer}>
-								<TouchableNativeFeedback
-									onPress={() => { }}>
-									<View style={cStyles.addArchetype}>
-										<Image source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36 }]}/>
-										<Text
-											style={cStyles.addArchetypeText}>
-											{'ADD ARCHETYPE'}
-										</Text>
-									</View>
-								</TouchableNativeFeedback>
-							</View>
-						)
-					}
+					<View style={cStyles.headerContainer}>
+						<Text style={cStyles.primaryText}>{'COMPARE'}</Text>
+						<Text style={cStyles.secondaryText}>{'BUILDS'}</Text>
+					</View>
+					<ScrollView contentContainerStyle={cStyles.scrollContainer} refreshControl={refreshControl}>
+						<View style={{ flexDirection: 'column', height: height, width: width - 40 }}>
+							{ (this.props.builds.size == 0) && this.getComparator('large') }
+							{ (this.props.builds.size == 1) && this.getComparator('medium') }
+							{ (this.props.builds.size > 1) && this.getComparator('small') }
+						</View>
+					</ScrollView>
 				</View>
 			</SideMenu>
 		);

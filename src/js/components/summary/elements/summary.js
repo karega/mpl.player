@@ -60,6 +60,10 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 		this.toggleMenu = this.toggleMenu.bind(this);
 	}
 
+	componentWillMount() {
+
+	}
+
 	componentDidMount() {
 		this.checkBuilds();
 	}
@@ -93,16 +97,19 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 	}
 
 	render(): React.Element {
-		const SKILLS = this.props.current ? this.props.current.archetype : null;
+		const SKILLS = (this.props.current && this.props.current.archetype) ? this.props.current.archetype : null;
 
 		var navigationView = (
 			this.props.profile && (
 				<View style={[sStyles.sidebar]}>
 					<View style={sStyles.sbProfileName}>
-						<Avatar size={48} image={
-							<Image
-								style={sStyles.sbProfileImage}
-								source={{ uri: this.props.profile.picture.data.url }}/> }/>
+						<Avatar
+							size={48}
+							image={
+								<Image
+									style={sStyles.sbProfileImage}
+									source={{ uri: this.props.profile.picture.data.url }}/>
+							}/>
 						<Text style={sStyles.sbProfileText}>{this.props.profile.name}</Text>
 					</View>
 					<View style={sStyles.menuItems}>
@@ -178,7 +185,7 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 						</View>
 					</TouchableNativeFeedback>
 					{
-						(this.props.builds.size > 0) && (
+						(this.props.builds.size > 0 && SKILLS) && (
 							<View style={sStyles.headerContainer}>
 								<Text style={sStyles.secondaryText}>{SKILLS['Archetype'][0]}</Text>
 								<Text style={sStyles.primaryText}>{SKILLS['Archetype'][1]}</Text>

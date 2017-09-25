@@ -2,7 +2,7 @@
 
 /** External Module Dependencies **/
 import React from 'react';
-import { Dimensions, Text, TouchableHighlight, View } from 'react-native';
+import { Text, TouchableHighlight, View } from 'react-native';
 import { Router } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
@@ -44,11 +44,7 @@ class App extends React.Component {
 		// check what properties changed in state
 		// and decide if a save action is needed
 		if (( cState !== undefined ) && ( nState !== undefined )) {
-			if (( cState.pictures !== nState.pictures )
-				|| ( cState.session !== nState.session )
-				|| ( cState.signature !== nState.signature )
-				|| ( cState.stops !== nState.stops )
-			) {
+			if (( cState.session !== nState.session )) {
 				return true;
 			}
 		}

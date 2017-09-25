@@ -1,6 +1,6 @@
 /* compare-styles.js */
 
-import {Image, StyleSheet} from 'react-native';
+import {Dimensions, Image, StyleSheet} from 'react-native';
 
 const compareStyles = StyleSheet.create({
 	container: {
@@ -9,41 +9,24 @@ const compareStyles = StyleSheet.create({
 		justifyContent: 'center',
 		flex: 1,
 		flexDirection: 'column',
-		padding: 10,
-		paddingBottom: 25,
-	},
-	homeToolbar: {
-		alignSelf: 'stretch',
-		backgroundColor: '#3e355c',
-		height: 56,
+		padding: 20,
+		paddingBottom: 0,
 	},
 	scrollContainer: {
-		flexDirection: 'row',
-		flexWrap: 'wrap',
+		flexDirection: 'column',
 	},
-	compareHeader: {
-		fontSize: 24,
-		fontWeight: '700',
-		marginBottom: 16,
-		textAlign: 'center',
+	compareSplashContainer: {
+		flexDirection: 'column',
+		flexWrap: 'nowrap',
+		alignSelf: 'center',
 	},
-	compareButton: {
-		width: 130,
-		backgroundColor: '#c4b301',
-		elevation: 1.5,
-		height: 50,
-		alignItems: 'center',
-		alignSelf: 'flex-end',
-		justifyContent: 'center',
-	},
-	compareButtonText: {
-		color: '#fff',
-		fontSize: 22,
-		textAlign: 'center',
-		textAlignVertical: 'center',
-	},
-	boldLabel: {
-		fontWeight: '700',
+	compareSplash: {
+		alignItems: 'flex-start',
+		resizeMode: Image.resizeMode.contain,
+		justifyContent: 'flex-start',
+		alignSelf: 'center',
+		height: 340,
+		opacity: 0.5,
 	},
 	sidebar: {
 		alignItems: 'flex-start',
@@ -51,12 +34,6 @@ const compareStyles = StyleSheet.create({
 		justifyContent: 'flex-start',
 		flex: 1,
 		flexDirection: 'column',
-	},
-	closeButton: {
-		margin: 8,
-		position: 'absolute',
-		top: 0,
-		right: 8,
 	},
 	sbProfileName: {
 		alignItems: 'flex-start',
@@ -71,31 +48,6 @@ const compareStyles = StyleSheet.create({
 	sbProfileText: {
 		color: '#dbd8da',
 		fontSize: 18,
-		fontWeight: '100',
-		marginLeft: 8,
-	},
-	sbFeaturedContent: {
-		alignItems: 'flex-start',
-		alignSelf: 'stretch',
-		backgroundColor: '#3e355c',
-		borderTopWidth: 1,
-		borderTopColor: '#96afd1',
-		borderBottomWidth: 1,
-		borderBottomColor: '#444',
-		flexDirection: 'column',
-		justifyContent: 'flex-start',
-		padding: 8,
-		paddingBottom: 16,
-	},
-	sbHeader: {
-		color: '#fff',
-		fontSize: 16,
-		fontWeight: '100',
-		marginLeft: 8,
-	},
-	sbSubHeader: {
-		color: '#fff',
-		fontSize: 14,
 		fontWeight: '100',
 		marginLeft: 8,
 	},
@@ -197,104 +149,11 @@ const compareStyles = StyleSheet.create({
 		flexDirection: 'row',
 		backgroundColor: '#000',
 	},
-	playerBuildContainer: {
-		flex: 1,
-		flexDirection: 'row',
-		justifyContent: 'center',
-		alignItems: 'stretch',
-	},
-	itemHeader: {
-		fontSize: 14,
-		color: '#fff',
-		textAlign: 'center',
-		alignSelf: 'center',
-		borderBottomWidth: 1,
-		borderBottomColor: '#fff',
-		paddingBottom: 4,
-
-	},
-	skillContainer: {
-		flex: 1.5,
-	},
-	skillItem: {
-		marginBottom: 10,
-		paddingLeft: 5,
-		paddingRight: 5,
-	},
-	skillText: {
-		color: '#fff',
-		fontSize: 12,
-		textAlign: 'center',
-		alignSelf: 'center',
-	},
-	playerContainer: {
-		flex: 3,
-	},
-	buildAvatar: {
+	comparatorTable: {
 		alignItems: 'flex-start',
-		resizeMode: Image.resizeMode.contain,
+		flexDirection: 'row',
 		justifyContent: 'flex-start',
-		alignSelf: 'center',
-		flex: 1,
-		opacity: 0.25,
-	},
-	badgeContainer: {
-		flex: 1.5,
-		justifyContent: 'flex-end'
-	},
-	badgePanel: {
-
-	},
-	badgeItem: {
-		position: 'relative',
-	},
-	badgeText: {
-		fontSize: 32,
-		fontWeight: '900',
-		color: '#fff',
-		textAlign: 'center',
-		alignSelf: 'center',
-	},
-	badgeImage: {
-
-	},
-	compareContainer: {
-		flex: 1,
-		flexDirection: 'row',
-		alignItems: 'stretch',
-		justifyContent: 'center',
-		position: 'relative',
-	},
-	playerAttributeContainer: {
-		flex: 1,
-		flexDirection: 'row',
-		alignItems: 'stretch',
-		justifyContent: 'center',
-		flexWrap: 'wrap',
-		paddingLeft: 10,
-		paddingRight: 10,
-	},
-	attributeItem: {
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'center',
-		borderBottomWidth: 1,
-		borderBottomColor: '#fff',
-	},
-	attributeText: {
-		fontSize: 32,
-		fontWeight: '900',
-		color: '#fff',
-		textAlign: 'center',
-		alignSelf: 'center',
-	},
-	attributeName: {
-		fontSize: 14,
-		color: '#fff',
-		textAlign: 'center',
-		alignSelf: 'center',
-		paddingBottom: 0,
-		marginBottom: 4,
+		flexWrap: 'nowrap',
 	},
 });
 

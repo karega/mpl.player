@@ -5,7 +5,7 @@ import {Actions} from 'react-native-router-flux';
 import {pathOr} from 'ramda';
 
 /** Internal Module Dependencies **/
-import { SET_POSITION, SET_PRIMARY, SET_SECONDARY, SET_PRO_FLOW, SET_BUILD } from './../../../actions/actions';
+import { SET_POSITION, SET_PRIMARY, SET_SECONDARY, SET_PRO_FLOW, SET_STEP, SET_BUILD } from './../../../actions/actions';
 
 export function startBuilder(index): Object {
 	return function (dispatch) {
@@ -13,6 +13,12 @@ export function startBuilder(index): Object {
 
 		dispatch(setBuilderStatus('registration_started'));
 	};
+}
+
+export function choosePage(page): Object {
+	return function (dispatch) {
+		dispatch(setStep(page))
+	}
 }
 
 export function choosePosition(position): Object {
@@ -37,25 +43,26 @@ export function saveCurrentBuild(): Object {
 	Actions.summary();
 
 	return function (dispatch, getState) {
-		var	build = (getState()).builder.getIn(['builds', 'current']);
+		var	_build = (getState()).builder.get('current');
 
 		const attributes = (state) => {
-			let _attributes = null;
+			let _attributes = [];
 
-			if (pathOr(false, ['skills', 'primary'])(build)) {
-				pathOr([], [build.skills.primary])(state.attributes).map((archetype, index) => {
-					if (archetype['Secondary'] === build.skills.secondary) {
+			if (pathOr(false, ['skills', 'primary'])(_build)) {
+				pathOr([], [_build.skills.primary])(state.attributes).map((archetype, index) => {
+					if (archetype['Secondary'] === _build.skills.secondary) {
 						_attributes = archetype;
+
 					}
 				})
 			}
 
-			return _attributes;
+			return _attributes ? _attributes : [];
 		}
+		
+		_build.attributes = attributes(getState());
 
-		build.attributes = attributes(getState());
-
-		dispatch(setBuild(build))
+		dispatch(setBuild(_build))
 	}
 }
 
@@ -63,6 +70,13 @@ export function setBuilderStatus(status): Object {
 	return {
 		type: SET_PRO_FLOW,
 		status,
+	};
+}
+
+export function setStep(step): Object {
+	return {
+		type: SET_STEP,
+		step,
 	};
 }
 

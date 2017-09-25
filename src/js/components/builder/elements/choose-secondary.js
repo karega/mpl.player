@@ -2,8 +2,17 @@
 
 /** External Module Dependencies **/
 import React, {PropTypes} from 'react';
-import {Dimensions, Image, RefreshControl, ScrollView, StyleSheet, Text, TouchableNativeFeedback, View} from 'react-native';
-
+import {
+	Dimensions,
+	Image,
+	RefreshControl,
+	ScrollView,
+	StyleSheet,
+	Text,
+	TouchableNativeFeedback,
+	View
+} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 /** Global Module Dependencies **/
 import { skillMap } from './../../../config/constants';
 
@@ -42,6 +51,17 @@ class ChooseSecondary extends React.PureComponent<any, ChooseSecondaryPropTypes,
 
 		return (
 			<View style={[bStyles.container, { height: height - 48 }]}>
+				<TouchableNativeFeedback
+					onPress={() => {
+						this.props.choosePage(2);
+					}}>
+					<View style={bStyles.menuButton}>
+						<Icon
+							color={'#fff'}
+							name={'arrow-back'}
+							size={32}/>
+					</View>
+				</TouchableNativeFeedback>
 				<View style={bStyles.headerContainer}>
 					<Text style={bStyles.primaryText}>CHOOSE</Text>
 					<Text style={bStyles.secondaryText}>SECONDARY</Text>
@@ -58,7 +78,7 @@ class ChooseSecondary extends React.PureComponent<any, ChooseSecondaryPropTypes,
 										onPress={() => {
 											this.props.chooseSecondary(key)
 										}}>
-										<View style={[bStyles.skillPanel, { width: (width / 2), height: ((height - 160) / 3) }]}>
+										<View style={[bStyles.skillPanel, { maxWidth: (width / 2), width: (width / 2), height: ((height - 160) / 3) }]}>
 											<Image source={skillMap[key['Secondary Skill']]} style={[bStyles.cypImage, { width: (width / 4), height: ((height - 160) / 4) }]}/>
 											<Text style={bStyles.skillText}>
 												{key['Secondary Skill']}

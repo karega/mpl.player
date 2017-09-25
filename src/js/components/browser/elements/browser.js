@@ -142,13 +142,20 @@ class Browser extends React.PureComponent <any, BrowserPropTypes, BrowserStateTy
 		var builds = [];
 
 		this.props.builds.map((build, index) => {
+			let buildItemWidth = ((index % 2 === 0) ? ((width / 2) - 1) : (width / 2));
+
 			builds.push(
 				<TouchableNativeFeedback
 					key={'build_' + index}
 					onPress={() => {
-						this.props.chooseBuild(build)
+						if (this.props.comparator) {
+							this.props.compareAddBuild(build)
+						}
+						else {
+							this.props.chooseBuild(build);
+						}
 					}}>
-					<View style={[bStyles.buildItem, { width: width }]}>
+					<View style={[bStyles.buildItem, { width: buildItemWidth, maxWidth: buildItemWidth, height: 190 }]}>
 							<View style={bStyles.buildPanel}>
 								<View style={bStyles.buildType}>
 									<Image source={badgeImages.primarySkillMap[build.skills['primary']]} style={[bStyles.buildAvatar, { width: 48, height: 78, position: 'absolute', left: 0, top: 0, opacity: 1 }]}/>
@@ -156,7 +163,7 @@ class Browser extends React.PureComponent <any, BrowserPropTypes, BrowserStateTy
 								</View>
 								<View style={bStyles.buildInfo}>
 									<Text style={bStyles.buildText}>
-										{build.archetype['Archetype'][0]} {build.archetype['Archetype'][1]}
+										{build.archetype['Archetype'][0]}{'\n'}{build.archetype['Archetype'][1]}
 									</Text>
 									<View style={bStyles.buildBadges}>
 										<View style={bStyles.badgeItem}>
@@ -178,10 +185,14 @@ class Browser extends React.PureComponent <any, BrowserPropTypes, BrowserStateTy
 									</View>
 								</View>
 							</View>
-							<View style={[bStyles.buildRule, { width: (width * 0.8) }]} />
+						{/*	<View style={[bStyles.buildRule, { width: (width * 0.8) }]} />*/}
 					</View>
 				</TouchableNativeFeedback>
 			)
+
+			if (index % 2 === 0) {
+				builds.push(<View key={'build_sep_' + index} style={[bStyles.buildSeparator, { height: 140 }]}/>)
+			}
 		})
 
 		return (
@@ -213,8 +224,11 @@ class Browser extends React.PureComponent <any, BrowserPropTypes, BrowserStateTy
 						<Text style={bStyles.primaryText}>SEARCH</Text>
 						<Text style={bStyles.secondaryText}>BUILDS</Text>
 					</View>
-					{builds.length > 0 && (
-						<Text style={bStyles.browserLocalResults}>{builds.length} builds found on device.</Text>
+					{this.props.builds.size > 0 && (
+						<Text style={bStyles.browserLocalResults}>{this.props.builds.size} {this.props.builds.size > 1 ? 'builds' : 'build' } found on device.</Text>
+					)}
+					{this.props.builds.size < 1 && (
+						<Text style={bStyles.browserLocalResults}>No builds found on device.</Text>
 					)}
 					<ScrollView
 						contentContainerStyle={bStyles.scrollContainer}>

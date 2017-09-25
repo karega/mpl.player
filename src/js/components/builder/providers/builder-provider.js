@@ -5,19 +5,26 @@ import {connect} from 'react-redux';
 import {pathOr} from 'ramda';
 
 /** Internal Module Dependencies **/
-import { choosePosition, choosePrimary, chooseSecondary, saveCurrentBuild, startBuilder } from './../actions/builder-actions';
+import {
+	choosePosition,
+	choosePrimary,
+	chooseSecondary,
+	saveCurrentBuild,
+	startBuilder,
+	choosePage,
+} from './../actions/builder-actions';
 import Builder from './../elements/builder';
 
 const mapStateToProps = (state) => {
 	const getPosition = (state) => {
-		var	build = state.builder.getIn(['builds', 'current']);
+		var	build = state.builder.get('current');
 		var position = pathOr(null, ['bio', 'position'])(build);
 
 		return position ? state.archetypes[position] : null
 	}
 
 	const getPrimarySkill = (state) => {
-		var	build = state.builder.getIn(['builds', 'current']);
+		var	build = state.builder.get('current');
 		var position = pathOr(null, ['bio', 'position'])(build);
 
 		if (position) {
@@ -56,6 +63,9 @@ const mapDispatchToProps = (dispatch) => {
 		},
 		startBuilder: () => {
 			dispatch(startBuilder());
+		},
+		choosePage: (page) => {
+			dispatch(choosePage(page));
 		},
 	};
 };

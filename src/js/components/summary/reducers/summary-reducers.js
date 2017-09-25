@@ -11,16 +11,25 @@ const summary = function (summary: Immutable.Map<string, any>, action: Object): 
 		case SET_BUILD:
 			var	_summary = summary;
 			var _builds = _summary.get('builds');
+			var	_current = null;
 
-			if (_builds) {
+			_builds.toJS().map((_build, index) => {
+				if (JSON.stringify(_build) === JSON.stringify(action.build)) {
+					_current = action.build;
+				}
+			})
+
+			if (_builds && !(_current)) {
 				_builds = _builds.push(action.build);
 			}
-			else {
+			else if (!(_builds) && !(_current)) {
 				_builds = Immutable.fromJS([action.build]);
 			}
 
+			_current = (_current == null) ? _builds.last() : _current;
+
 			_summary = _summary.set('builds', _builds);
-			_summary = _summary.set('current', _builds.last());
+			_summary = _summary.set('current', _current);
 
 			return _summary;
 

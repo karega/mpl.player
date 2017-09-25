@@ -38,8 +38,6 @@ class Builder extends React.PureComponent <any, BuilderPropTypes, BuilderStateTy
 
 	constructor(props: BuilderPropTypes): void {
 		super(props);
-
-		this.onPress = this.onPress.bind(this);
 	}
 
 	componentDidMount() {
@@ -51,8 +49,6 @@ class Builder extends React.PureComponent <any, BuilderPropTypes, BuilderStateTy
 			this.props.saveCurrentBuild();
 		}
 	}
-
-	onPress() { }
 
 	render(): React.Element {
 		return (

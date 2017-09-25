@@ -21,12 +21,6 @@ const browserStyles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'column',
 	},
-	closeButton: {
-		margin: 8,
-		position: 'absolute',
-		top: 0,
-		right: 8,
-	},
 	sbProfileName: {
 		alignItems: 'flex-start',
 		alignSelf: 'stretch',
@@ -40,31 +34,6 @@ const browserStyles = StyleSheet.create({
 	sbProfileText: {
 		color: '#dbd8da',
 		fontSize: 18,
-		fontWeight: '100',
-		marginLeft: 8,
-	},
-	sbFeaturedContent: {
-		alignItems: 'flex-start',
-		alignSelf: 'stretch',
-		backgroundColor: '#3e355c',
-		borderTopWidth: 1,
-		borderTopColor: '#96afd1',
-		borderBottomWidth: 1,
-		borderBottomColor: '#444',
-		flexDirection: 'column',
-		justifyContent: 'flex-start',
-		padding: 8,
-		paddingBottom: 16,
-	},
-	sbHeader: {
-		color: '#fff',
-		fontSize: 16,
-		fontWeight: '100',
-		marginLeft: 8,
-	},
-	sbSubHeader: {
-		color: '#fff',
-		fontSize: 14,
 		fontWeight: '100',
 		marginLeft: 8,
 	},
@@ -135,16 +104,12 @@ const browserStyles = StyleSheet.create({
 		alignItems: 'center',
 		marginTop: 25,
 	},
-	contentContainer: {
-		flex: 2,
-		flexDirection: 'column',
-		backgroundColor: '#000',
-	},
 	browserContainer: {
 		flex: 1,
-		flexDirection: 'column',
-		alignItems: 'flex-start',
-		justifyContent: 'center',
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		alignItems: 'center',
+		justifyContent: 'flex-start',
 	},
 	browserLocalResults: {
 		color: '#fff',
@@ -160,27 +125,29 @@ const browserStyles = StyleSheet.create({
 		justifyContent: 'flex-start',
 		padding: 10,
 	},
+	buildSeparator: {
+		backgroundColor: '#fff',
+		width: 1,
+	},
 	buildPanel: {
 		flex: 1,
 		flexDirection: 'row',
-		alignItems: 'flex-start',
-		justifyContent: 'flex-start',
+		alignItems: 'center',
+		justifyContent: 'center',
 	},
 	buildType: {
 		position: 'relative',
 		width: 48,
 		height: 78,
 		marginRight: 15,
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	buildInfo: {
 		flex: 1,
 		flexDirection: 'column',
-		alignItems: 'flex-start',
-		justifyContent: 'flex-start',
-	},
-	buildDescription: {
-		flex: 1,
-		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
 	},
 	buildText: {
 		color: '#fff',
@@ -191,6 +158,7 @@ const browserStyles = StyleSheet.create({
 	buildBadges: {
 		flex: 1,
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
@@ -216,21 +184,6 @@ const browserStyles = StyleSheet.create({
 		textShadowOffset: {width: 0.5, height: 0.5},
 		textShadowRadius: 1,
 	},
-	buildIcon: {
-		alignItems: 'center',
-		resizeMode: Image.resizeMode.contain,
-		justifyContent: 'flex-start',
-		alignSelf: 'center',
-		marginRight: 5,
-	},
-	buildRule: {
-		alignItems: 'center',
-		alignSelf: 'center',
-		borderBottomWidth: 1,
-		borderBottomColor: '#fff',
-		marginTop: 10,
-		marginBottom: 10,
-	}
 });
 
 export default browserStyles;

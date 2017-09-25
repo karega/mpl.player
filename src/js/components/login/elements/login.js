@@ -15,9 +15,6 @@ import {RECONNECT_ENABLED, SESSION_KEY} from './../../../config/constants';
 import lStyles from './../styles/login-styles';
 import FBLoginView from './login-button';
 
-/** Sibling Module Dependencies **/
-import NotificationProvider from './../../notification/providers/notification-provider';
-
 type LoginPropTypes = {
 	session: Immutable.Map<string, any>;
 	login: (id: string) => void;
@@ -36,6 +33,8 @@ class Login extends React.PureComponent<any, LoginPropTypes, LoginStateTypes> {
 	constructor(props: LoginPropTypes): void {
 		super(props);
 
+		this.mplplayerLogo = require('./../../../assets/mplplayer.png');
+
 		this.state = {
 			idCorrect: false,
 			id: '',
@@ -50,12 +49,6 @@ class Login extends React.PureComponent<any, LoginPropTypes, LoginStateTypes> {
 
 	verify(): void {
 		this.setState({verified: true});
-	}
-
-	getNotification(): React.Element {
-		return (
-			<NotificationProvider />
-		);
 	}
 
 	register(profile: Object): void {
@@ -73,14 +66,11 @@ class Login extends React.PureComponent<any, LoginPropTypes, LoginStateTypes> {
 	}
 
 	render(): React.Element {
-		// var loginSplashBackground = require('./../../../assets/login-splash.png');
-		var mplplayerLogo = require('./../../../assets/mplplayer.png');
-
 		return (
 			<View style={ lStyles.container }>
 				<View style={ lStyles.loginSplashBackground }>
 					<View style={ lStyles.loginLogo }>
-						<Image source={mplplayerLogo} style={lStyles.mplplayerLogo} />
+						<Image source={this.mplplayerLogo} style={lStyles.mplplayerLogo} />
 						<Text style={ lStyles.logoText }>Player Builder</Text>
 					</View>
 					{ this.props.session.get('authorized') && this.state.verified &&

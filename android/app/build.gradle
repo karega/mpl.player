@@ -135,6 +135,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-admob')
     compile project(':react-native-speech-to-text')
     compile project(':react-native-vector-icons')
     compile project(':react-native-send-intent')

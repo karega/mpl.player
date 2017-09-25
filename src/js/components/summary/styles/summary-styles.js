@@ -194,6 +194,13 @@ const summaryStyles = StyleSheet.create({
 		paddingLeft: 5,
 		paddingRight: 5,
 	},
+	skillImage: {
+		alignItems: 'center',
+		resizeMode: Image.resizeMode.contain,
+		justifyContent: 'center',
+		alignSelf: 'center',
+		flex: 1,
+	},
 	skillText: {
 		color: '#fff',
 		fontSize: 12,
@@ -217,7 +224,7 @@ const summaryStyles = StyleSheet.create({
 		justifyContent: 'flex-end'
 	},
 	badgePanel: {
-
+		position: 'relative',
 	},
 	badgeItem: {
 		position: 'relative',
@@ -232,9 +239,18 @@ const summaryStyles = StyleSheet.create({
 		color: '#fff',
 		textAlign: 'center',
 		alignSelf: 'center',
+		flex: 1,
+		paddingTop: 5,
+		textShadowColor: '#222',
+		textShadowOffset: {width: 0.5, height: 0.5},
+		textShadowRadius: 1,
 	},
 	badgeImage: {
+		alignItems: 'center',
+		resizeMode: Image.resizeMode.contain,
+		justifyContent: 'center',
 		alignSelf: 'center',
+		flex: 1,
 	},
 	summaryContainer: {
 		flex: 1,
