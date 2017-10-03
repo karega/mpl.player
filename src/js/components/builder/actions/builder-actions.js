@@ -40,7 +40,8 @@ export function chooseSecondary(secondary): Object {
 }
 
 export function saveCurrentBuild(): Object {
-	Actions.summary();
+	// Actions.summary();
+	Actions.admob();
 
 	return function (dispatch, getState) {
 		var	_build = (getState()).builder.get('current');

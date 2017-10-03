@@ -33,7 +33,9 @@ const AppInitialState = {
 		modalProps: { },
 	}),
 	scene: null,
-	session: Immutable.fromJS({ }),
+	session: Immutable.fromJS({
+		legendary: 0,
+	}),
 	summary: Immutable.fromJS({
 		builds: [],
 		current: { },

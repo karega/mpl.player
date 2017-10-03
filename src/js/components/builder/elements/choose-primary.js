@@ -37,14 +37,6 @@ class ChoosePrimary extends React.PureComponent<any, ChoosePrimaryPropTypes, Cho
 		this.state = { };
 	}
 
-	componentWillMount() {
-		console.log('Hello!', Object.keys(skillMap));
-	}
-
-	componentWillUnmount() {
-		console.log('Damnit hate to see you leave!');
-	}
-
 	render() {
 		var refreshControl = (
 			<RefreshControl
@@ -81,8 +73,6 @@ class ChoosePrimary extends React.PureComponent<any, ChoosePrimaryPropTypes, Cho
 					<View style={[bStyles.contentContainer, bStyles.skillContainer, { width: width, paddingBottom: 20 }]}>
 						{this.props.position && (
 							Object.keys(this.props.position).map((key, index) => {
-								console.log('[Object]', { maxWidth: (width / 2), width: (width / 2), height: ((height - 160) / 3) })
-
 								const position = (
 									<TouchableNativeFeedback
 										key={'mpl_pos_' + index}

@@ -40,7 +40,7 @@ const builder = function (builder: Immutable.Map<string, any>, action: Object): 
 
 		case SET_POSITION:
 			var	_builder = builder;
-			var _playerTemplate = {...playerTemplate}
+			var _playerTemplate = JSON.parse(JSON.stringify(playerTemplate));
 
 			_playerTemplate.bio.position = action.position;
 			_builder = _builder.set('current', _playerTemplate);

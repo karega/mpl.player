@@ -5,8 +5,7 @@ import Immutable from 'immutable';
 import {REHYDRATE} from 'redux-persist/constants';
 
 /** Internal Module Dependencies **/
-import { REQUEST_LOGIN, REQUEST_LOGOUT, REGISTER_LOGIN } from './../../../actions/actions';
-import { CURRENT_STOP_KEY, SESSION_KEY } from './../../../config/constants';
+import { REQUEST_LOGIN, REQUEST_LOGOUT, REGISTER_LOGIN, SET_REWARDS } from './../../../actions/actions';
 
 const session = function (session: Immutable.Map<string, any>, action: Object): Immutable.Map<string, any> {
 	switch (action.type) {
@@ -32,6 +31,19 @@ const session = function (session: Immutable.Map<string, any>, action: Object): 
 			var _session = Immutable.fromJS({ });
 
 			return _session;
+
+		case SET_REWARDS:
+			var _session = session;
+
+			if (action.amount) {
+				_amount = _session.get('legendary');
+				_session = _session.set('legendary', action.amount + _amount);
+			}
+			else {
+				console.log('error', 'Bad data.');
+			}
+
+			return _session
 		default:
 			return session;
 	}
