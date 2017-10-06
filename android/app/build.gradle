@@ -80,7 +80,7 @@ def enableSeparateBuildPerCPUArchitecture = false
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
  */
-def enableProguardInReleaseBuilds = true
+def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion 25
@@ -90,8 +90,8 @@ android {
         applicationId "com.mplplayer"
         minSdkVersion 19
         targetSdkVersion 22
-        versionCode 2
-        versionName "0.1.0.2017-charlie"
+        versionCode 1
+        versionName "1.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -135,13 +135,13 @@ android {
 }
 
 dependencies {
+    compile fileTree( dir: "libs" , include: ["*.jar"] )
+    compile "com.android.support:appcompat-v7:25.0.1"
+    compile "com.facebook.react:react-native:0.38.0"
     compile project(':react-native-admob')
     compile project(':react-native-vector-icons')
     compile project(':react-native-send-intent')
     compile project(':react-native-custom-tabs')
-    compile fileTree( dir: "libs" , include: ["*.jar"] )
-    compile "com.android.support:appcompat-v7:25.0.1"
-    compile "com.facebook.react:react-native:0.38.0"  // From node_modules
     compile project(':react-native-facebook-login')
 }
 
@@ -153,6 +153,8 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 // needed to re-compile react-native...
-//configurations.all {
-//    exclude group: 'com.facebook.react', module: 'react-native'
-//}
+/*
+configurations.all {
+    exclude group: 'com.facebook.react', module: 'react-native'
+}
+*/

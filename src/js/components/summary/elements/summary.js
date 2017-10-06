@@ -100,63 +100,65 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 		const SKILLS = (this.props.current && this.props.current.archetype) ? this.props.current.archetype : null;
 
 		var navigationView = (
-			this.props.profile && (
-				<View style={[sStyles.sidebar]}>
-					<View style={sStyles.sbProfileName}>
-						<Avatar
-							size={48}
-							image={
-								<Image
-									style={sStyles.sbProfileImage}
-									source={{ uri: this.props.profile.picture.data.url }}/>
-							}/>
-						<Text style={sStyles.sbProfileText}>{this.props.profile.name}</Text>
-					</View>
-					<View style={sStyles.menuItems}>
-						{[{
-							title: 'START',
-							subtitle: 'NEW BUILD',
-							action: (event) => {
-								Actions.builder();
-							}
-						},{
-							title: 'SEARCH',
-							subtitle: 'BUILDS',
-							action: (event) => {
-								Actions.browser();
-							}
-						},{
-							title: 'COMPARE',
-							subtitle: 'BUILDS',
-							action: (event) => {
-								Actions.compare();
-							}
-						},{
-							title: 'TERMS',
-							subtitle: 'AND CONDITIONS',
-							action: (event) => {
-								this.browseTo('https://app.termly.io/document/terms-of-use-for-website/63873dbc-c8fa-4b79-957e-8322e72c60a8')
-							}
-						}].map((menu, index) => {
-							return (
-								<View
-									key={'menu_' + index}
-									style={sStyles.menuItem}>
-									<TouchableNativeFeedback onPress={menu.action}>
-										<View>
-											<Text style={sStyles.menuHeader}>{menu.title}</Text>
-											<Text style={sStyles.menuLabel}>{menu.subtitle}</Text>
-										</View>
-									</TouchableNativeFeedback>
-								</View>
-							);
-						})}
-					</View>
-					<View style={sStyles.sbFooter}>
-						<Text style={sStyles.versionText}>v0.0.1-alpha</Text>
-					</View>
+			<View style={[sStyles.sidebar]}>
+				{
+					this.props.profile && (
+						<View style={sStyles.sbProfileName}>
+							<Avatar
+								size={48}
+								image={
+									<Image
+										style={sStyles.sbProfileImage}
+										source={{ uri: this.props.profile.picture.data.url }}/>
+								}/>
+							<Text style={sStyles.sbProfileText}>{this.props.profile.name}</Text>
+						</View>
+					)
+				}
+				<View style={sStyles.menuItems}>
+					{[{
+						title: 'START',
+						subtitle: 'NEW BUILD',
+						action: (event) => {
+							Actions.builder();
+						}
+					},{
+						title: 'SEARCH',
+						subtitle: 'BUILDS',
+						action: (event) => {
+							Actions.browser();
+						}
+					},{
+						title: 'COMPARE',
+						subtitle: 'BUILDS',
+						action: (event) => {
+							Actions.compare();
+						}
+					},{
+						title: 'TERMS',
+						subtitle: 'AND CONDITIONS',
+						action: (event) => {
+							this.browseTo('https://app.termly.io/document/terms-of-use-for-website/63873dbc-c8fa-4b79-957e-8322e72c60a8')
+						}
+					}].map((menu, index) => {
+						return (
+							<View
+								key={'menu_' + index}
+								style={sStyles.menuItem}>
+								<TouchableNativeFeedback onPress={menu.action}>
+									<View>
+										<Text style={sStyles.menuHeader}>{menu.title}</Text>
+										<Text style={sStyles.menuLabel}>{menu.subtitle}</Text>
+									</View>
+								</TouchableNativeFeedback>
+							</View>
+						);
+					})}
 				</View>
-			)
+				<View style={sStyles.sbFooter}>
+					<Text style={sStyles.versionText}>v0.0.1-alpha</Text>
+				</View>
+			</View>
 		);
 
 		return (

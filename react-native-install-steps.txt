@@ -73,8 +73,8 @@ save and run again!
 fix error: /bin/sh: 1: adb: not found
 
 -> edit ~/.bashrc and add 2 lines:
-export PATH=${PATH}:~/Android/Sdk/tools
-export PATH=${PATH}:~/Android/Sdk/platform-tools
+export PATH=${PATH}:~/Library/Android/sdk/tools
+export PATH=${PATH}:~/Library/Android/sdk/platform-tools
 
 ===============================================================
 
@@ -92,7 +92,7 @@ export ANDROID_HOME="/home/andreicroitoru/Android/Sdk"
 fix error: A problem occurred configuring project ':app'.
 > failed to find Build Tools revision 23.0.1
 
-android list sdk -a
+android list sdk -ah
 
 Packages available for installation or update: 166
    1- Android SDK Tools, revision 25.1.7

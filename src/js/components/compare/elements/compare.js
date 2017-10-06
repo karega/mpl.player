@@ -196,60 +196,62 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 		const SKILLS = this.props.current ? this.props.current.archetype : null;
 
 		var navigationView = (
-			this.props.profile && (
-				<View style={[cStyles.sidebar]}>
-					<View style={cStyles.sbProfileName}>
-						<Avatar size={48} image={
-							<Image
-								style={cStyles.sbProfileImage}
-								source={{ uri: this.props.profile.picture.data.url }}/> }/>
-						<Text style={cStyles.sbProfileText}>{this.props.profile.name}</Text>
-					</View>
-					<View style={cStyles.menuItems}>
-						{[{
-							title: 'START',
-							subtitle: 'NEW BUILD',
-							action: (event) => {
-								Actions.builder();
-							}
-						},{
-							title: 'SEARCH',
-							subtitle: 'BUILDS',
-							action: (event) => {
-								Actions.browser();
-							}
-						},{
-							title: 'COMPARE',
-							subtitle: 'BUILDS',
-							action: (event) => {
-								Actions.compare();
-							}
-						},{
-							title: 'TERMS',
-							subtitle: 'AND CONDITIONS',
-							action: (event) => {
-								this.browseTo('https://app.termly.io/document/terms-of-use-for-website/63873dbc-c8fa-4b79-957e-8322e72c60a8')
-							}
-						}].map((menu, index) => {
-							return (
-								<View
-									key={'menu_' + index}
-									style={cStyles.menuItem}>
-									<TouchableNativeFeedback onPress={menu.action}>
-										<View>
-											<Text style={cStyles.menuHeader}>{menu.title}</Text>
-											<Text style={cStyles.menuLabel}>{menu.subtitle}</Text>
-										</View>
-									</TouchableNativeFeedback>
-								</View>
-							);
-						})}
-					</View>
-					<View style={cStyles.sbFooter}>
-						<Text style={cStyles.versionText}>v0.0.1-alpha</Text>
-					</View>
+			<View style={[cStyles.sidebar]}>
+				{
+					this.props.profile && (
+						<View style={cStyles.sbProfileName}>
+							<Avatar size={48} image={
+								<Image
+									style={cStyles.sbProfileImage}
+									source={{ uri: this.props.profile.picture.data.url }}/> }/>
+							<Text style={cStyles.sbProfileText}>{this.props.profile.name}</Text>
+						</View>
+					)
+				}
+				<View style={cStyles.menuItems}>
+					{[{
+						title: 'START',
+						subtitle: 'NEW BUILD',
+						action: (event) => {
+							Actions.builder();
+						}
+					},{
+						title: 'SEARCH',
+						subtitle: 'BUILDS',
+						action: (event) => {
+							Actions.browser();
+						}
+					},{
+						title: 'COMPARE',
+						subtitle: 'BUILDS',
+						action: (event) => {
+							Actions.compare();
+						}
+					},{
+						title: 'TERMS',
+						subtitle: 'AND CONDITIONS',
+						action: (event) => {
+							this.browseTo('https://app.termly.io/document/terms-of-use-for-website/63873dbc-c8fa-4b79-957e-8322e72c60a8')
+						}
+					}].map((menu, index) => {
+						return (
+							<View
+								key={'menu_' + index}
+								style={cStyles.menuItem}>
+								<TouchableNativeFeedback onPress={menu.action}>
+									<View>
+										<Text style={cStyles.menuHeader}>{menu.title}</Text>
+										<Text style={cStyles.menuLabel}>{menu.subtitle}</Text>
+									</View>
+								</TouchableNativeFeedback>
+							</View>
+						);
+					})}
 				</View>
-			)
+				<View style={cStyles.sbFooter}>
+					<Text style={cStyles.versionText}>v0.0.1-alpha</Text>
+				</View>
+			</View>
 		);
 
 		var refreshControl = (
