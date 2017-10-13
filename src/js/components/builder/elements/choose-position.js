@@ -67,65 +67,60 @@ class ChoosePosition extends React.PureComponent<any, ChoosePositionPropTypes, C
 						<View style={bStyles.cypContainer}>
 							<TouchableNativeFeedback
 								onPress={() => { this.props.choosePosition('pg') }}>
-								<View>
+								<View style={[{ width: width, height: (height - 160) }]}>
 									<Text
 										textShadowColor={'#000'}
 										textShadowOffset={{ width: 6, height: 6 }}
 										textShadowRadius={4}
 										style={[bStyles.positionText, { width: width }]}>POINT GUARD</Text>
-									<Image source={this.cypPG} style={[bStyles.cypImage, { height: (height - 160) }]} />
 								</View>
 							</TouchableNativeFeedback>
 						</View>
 						<View style={bStyles.cypContainer}>
 							<TouchableNativeFeedback
 								onPress={() => { this.props.choosePosition('sg') }}>
-								<View>
+								<View style={[{ width: width, height: (height - 160) }]}>
 									<Text
 										textShadowColor={'#000'}
 										textShadowOffset={{ width: 6, height: 6 }}
 										textShadowRadius={4}
 										style={[bStyles.positionText, { width: width }]}>SHOOTING GUARD</Text>
-									<Image source={this.cypSG} style={[bStyles.cypImage, { height: (height - 160) }]} />
 								</View>
 							</TouchableNativeFeedback>
 						</View>
 						<View style={bStyles.cypContainer}>
 							<TouchableNativeFeedback
 								onPress={() => { this.props.choosePosition('sf') }}>
-								<View>
+								<View style={[{ width: width, height: (height - 160) }]}>
 									<Text
 										textShadowColor={'#000'}
 										textShadowOffset={{ width: 6, height: 6 }}
 										textShadowRadius={4}
 										style={[bStyles.positionText, { width: width }]}>SMALL FORWARD</Text>
-									<Image source={this.cypSF} style={[bStyles.cypImage, { height: (height - 160) }]} />
 								</View>
 							</TouchableNativeFeedback>
 						</View>
 						<View style={bStyles.cypContainer}>
 							<TouchableNativeFeedback
 								onPress={() => { this.props.choosePosition('pf') }}>
-								<View>
+								<View style={[{ width: width, height: (height - 160) }]}>
 									<Text
 										textShadowColor={'#000'}
 										textShadowOffset={{ width: 6, height: 6 }}
 										textShadowRadius={4}
 										style={[bStyles.positionText, { width: width }]}>POWER FORWARD</Text>
-									<Image source={this.cypPF} style={[bStyles.cypImage, { height: (height - 160) }]} />
 								</View>
 							</TouchableNativeFeedback>
 						</View>
 						<View style={bStyles.cypContainer}>
 							<TouchableNativeFeedback
 								onPress={() => { this.props.choosePosition('c') }}>
-								<View>
+								<View style={[{ width: width, height: (height - 160) }]}>
 									<Text
 										textShadowColor={'#000'}
 										textShadowOffset={{ width: 6, height: 6 }}
 										textShadowRadius={4}
 										style={[bStyles.positionText, { width: width }]}>CENTER</Text>
-									<Image source={this.cypC} style={[bStyles.cypImage, { height: (height - 160) }]} />
 								</View>
 							</TouchableNativeFeedback>
 						</View>
