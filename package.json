@@ -9,6 +9,7 @@
     "crypto-js": "3.1.9-1",
     "immutable": "3.8.1",
     "ramda": "^0.24.1",
+    "ramda-maybe": "^0.18.0",
     "react": "15.4.2",
     "react-addons-shallow-compare": "15.3.2",
     "react-native": "0.38.0",

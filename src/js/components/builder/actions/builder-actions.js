@@ -4,6 +4,9 @@
 import {Actions} from 'react-native-router-flux';
 import {pathOr} from 'ramda';
 
+/** Global Module Dependencies **/
+import attributes from './../../../app-state/attributes';
+
 /** Internal Module Dependencies **/
 import { SET_POSITION, SET_PRIMARY, SET_SECONDARY, SET_PRO_FLOW, SET_STEP, SET_BUILD } from './../../../actions/actions';
 
@@ -50,10 +53,9 @@ export function saveCurrentBuild(): Object {
 			let _attributes = [];
 
 			if (pathOr(false, ['skills', 'primary'])(_build)) {
-				pathOr([], [_build.skills.primary])(state.attributes).map((archetype, index) => {
+				pathOr([], [_build.skills.primary])(attributes).map((archetype, index) => {
 					if (archetype['Secondary'] === _build.skills.secondary) {
 						_attributes = archetype;
-
 					}
 				})
 			}

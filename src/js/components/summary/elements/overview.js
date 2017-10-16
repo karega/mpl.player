@@ -36,7 +36,7 @@ class Overview extends React.PureComponent<any, OverviewPropTypes, OverviewState
 
 	render() {
 		const BIO = (this.props.current && this.props.current.skills) ? this.props.current.skills : null;
-		const SKILLS = (this.props.current && this.props.current.archetype) ? this.props.current.archetype : null;
+		const SKILLS = (this.props.current && this.props.badges[0]) ? this.props.badges[0] : null;
 		const COMPARE = !this.props.comparator;
 
 		const buildAvatar = require('./../../../assets/mplb-avatar.png');
@@ -72,7 +72,7 @@ class Overview extends React.PureComponent<any, OverviewPropTypes, OverviewState
 							{ COMPARE && (
 								<View style={[sStyles.badgeItem, { marginBottom: 10, height: 80 }]}>
 									<Text style={sStyles.itemHeader}>TOTAL{'\n'}BADGES</Text>
-									<Text style={sStyles.badgeText}>{SKILLS['T']}</Text>
+									<Text style={sStyles.badgeText}>{((+SKILLS['H']) + (+SKILLS['G']) + (+SKILLS['S']) + (+SKILLS['B']))}</Text>
 								</View>
 							)}
 							{ COMPARE && (

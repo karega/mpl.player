@@ -193,7 +193,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 	}
 
 	render(): React.Element {
-		const SKILLS = this.props.current ? this.props.current.archetype : null;
+		const SKILLS = this.props.current ? this.props.archetype : null;
 
 		var navigationView = (
 			<View style={[cStyles.sidebar]}>

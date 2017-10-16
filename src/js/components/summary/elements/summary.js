@@ -28,6 +28,8 @@ import Carousel from 'react-native-carousel-view';
 
 /** Internal Module Dependencies **/
 import Overview from './overview';
+import Badges from './badges';
+import Caps from './caps';
 import Attributes from './attributes';
 import sStyles from './../styles/summary-styles';
 import {Avatar} from './../../../lib/react-native-material-design';
@@ -97,7 +99,7 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 	}
 
 	render(): React.Element {
-		const SKILLS = (this.props.current && this.props.current.archetype) ? this.props.current.archetype : null;
+		const ARCHETYPE = (this.props.current && this.props.current.archetype) ? this.props.current.archetype : null;
 
 		var navigationView = (
 			<View style={[sStyles.sidebar]}>
@@ -187,10 +189,10 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 						</View>
 					</TouchableNativeFeedback>
 					{
-						(this.props.builds.size > 0 && SKILLS) && (
+						(this.props.builds.size > 0 && ARCHETYPE) && (
 							<View style={sStyles.headerContainer}>
-								<Text style={sStyles.secondaryText}>{SKILLS['Archetype'][0]}</Text>
-								<Text style={sStyles.primaryText}>{SKILLS['Archetype'][1]}</Text>
+								<Text style={sStyles.secondaryText}>{ARCHETYPE[0]}</Text>
+								<Text style={sStyles.primaryText}>{ARCHETYPE[1]}</Text>
 							</View>
 						)
 					}
@@ -209,8 +211,14 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 									<Overview {...this.props} />
 								</View>
 								<View style={[sStyles.summaryContainer, { height: height }]}>
-									<Attributes {...this.props} />
+									<Badges {...this.props} />
 								</View>
+								{/*<View style={[sStyles.summaryContainer, { height: height }]}>
+									<Caps {...this.props} />
+								</View>*/}
+								{/*<View style={[sStyles.summaryContainer, { height: height }]}>
+									<Attributes {...this.props} />
+								</View>*/}
 							</Carousel>
 						)
 					}

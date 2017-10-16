@@ -207,6 +207,13 @@ const summaryStyles = StyleSheet.create({
 		textAlign: 'center',
 		alignSelf: 'center',
 	},
+	badgeName: {
+		height: 32,
+		marginTop: 5,
+		marginBottom: 5,
+		paddingRight: 5,
+		paddingLeft: 5,
+	},
 	playerContainer: {
 		flex: 3,
 		position: 'relative',
@@ -267,6 +274,14 @@ const summaryStyles = StyleSheet.create({
 		flexWrap: 'wrap',
 		paddingLeft: 10,
 		paddingRight: 10,
+	},
+	badgesContainer: {
+		flex: 1,
+		flexDirection: 'row',
+		alignItems: 'stretch',
+		justifyContent: 'center',
+		flexWrap: 'wrap',
+		paddingTop: 10,
 	},
 	attributeItem: {
 		flexDirection: 'column',

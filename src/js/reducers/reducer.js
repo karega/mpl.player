@@ -12,8 +12,6 @@ import builder from './../components/builder/reducers/builder-reducers';
 
 export default function reducer(state: Object = appInitialState, action: Object): Object {
 	return {
-		archetypes: state.archetypes,
-		attributes: state.attributes,
 		summary: summary(state.summary, action),
 		compare: compare(state.compare, action),
 		browser: browser(state.browser, action),

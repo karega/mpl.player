@@ -4,6 +4,13 @@
 import {connect} from 'react-redux';
 import {pathOr} from 'ramda';
 
+/** Global Module Dependencies **/
+import pg from './../../../app-state/pg';
+import sg from './../../../app-state/sg';
+import sf from './../../../app-state/sf';
+import pf from './../../../app-state/pf';
+import c from './../../../app-state/c';
+
 /** Internal Module Dependencies **/
 import {
 	choosePosition,
@@ -15,12 +22,14 @@ import {
 } from './../actions/builder-actions';
 import Builder from './../elements/builder';
 
+const archetypes = { pg, sg, sf, pf, c, }
+
 const mapStateToProps = (state) => {
 	const getPosition = (state) => {
 		var	build = state.builder.get('current');
 		var position = pathOr(null, ['bio', 'position'])(build);
 
-		return position ? state.archetypes[position] : null
+		return position ? archetypes[position] : null
 	}
 
 	const getPrimarySkill = (state) => {
@@ -30,7 +39,7 @@ const mapStateToProps = (state) => {
 		if (position) {
 			var primary = pathOr(null, ['skills', 'primary'])(build);
 
-			return state.archetypes[position][primary] ? state.archetypes[position][primary] : null
+			return archetypes[position][primary] ? archetypes[position][primary] : null
 		}
 
 		return null;

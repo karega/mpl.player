@@ -22,7 +22,7 @@ const builder = function (builder: Immutable.Map<string, any>, action: Object): 
 			var _player = _builder.get('current');
 
 			_player.skills.secondary = action.secondary['Secondary Skill'];
-			_player.archetype = {...action.secondary};
+			_player.archetype = action.secondary['Archetype'];
 			_builder = _builder.set('current', _player);
 			_builder = _builder.set('step', 4);
 
