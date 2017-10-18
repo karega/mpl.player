@@ -18,6 +18,7 @@ export const SET_CURRENT = "set_current";
 
 /** Compare Actions **/
 export const ADD_BUILD = "add_build";
+export const REMOVE_BUILD = "remove_build";
 
 /** Admob Actions **/
 export const SET_REWARDS = "set_rewards";

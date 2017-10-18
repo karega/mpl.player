@@ -6,7 +6,6 @@ const compareStyles = StyleSheet.create({
 	container: {
 		alignItems: 'center',
 		backgroundColor: '#000',
-		justifyContent: 'center',
 		flex: 1,
 		flexDirection: 'column',
 		padding: 20,
@@ -107,14 +106,12 @@ const compareStyles = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: '#262426',
 		backgroundColor: '#BF1725',
-		paddingRight: 10,
 	},
 	addArchetypeIcon: {
 		alignItems: 'flex-start',
 		resizeMode: Image.resizeMode.contain,
 		justifyContent: 'flex-start',
 		alignSelf: 'center',
-		marginRight: 10,
 	},
 	addArchetypeText: {
 		color: '#fff',
@@ -142,7 +139,6 @@ const compareStyles = StyleSheet.create({
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
-		marginTop: 25,
 	},
 	contentContainer: {
 		flex: 2,
@@ -154,6 +150,16 @@ const compareStyles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'flex-start',
 		flexWrap: 'nowrap',
+	},
+	skillItem: {
+		marginBottom: 10,
+	},
+	positionText: {
+		fontSize: 32,
+		fontWeight: '900',
+		color: '#fff',
+		textAlign: 'center',
+		alignSelf: 'center',
 	},
 });
 

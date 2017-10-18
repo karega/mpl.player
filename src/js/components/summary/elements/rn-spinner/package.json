@@ -1,0 +1,53 @@
+{
+  "_args": [
+    [
+      "rn-spinner@0.3.2",
+      "/Users/kamccoy/Desktop/mpl.player"
+    ]
+  ],
+  "_from": "rn-spinner@0.3.2",
+  "_id": "rn-spinner@0.3.2",
+  "_inBundle": false,
+  "_integrity": "sha1-eS+tOVvh6NE9LmyQ9eQWaCHEan8=",
+  "_location": "/rn-spinner",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "rn-spinner@0.3.2",
+    "name": "rn-spinner",
+    "escapedName": "rn-spinner",
+    "rawSpec": "0.3.2",
+    "saveSpec": null,
+    "fetchSpec": "0.3.2"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/rn-spinner/-/rn-spinner-0.3.2.tgz",
+  "_spec": "0.3.2",
+  "_where": "/Users/kamccoy/Desktop/mpl.player",
+  "author": {
+    "name": "Fantasy Shao",
+    "email": "fantasyshao@icloud.com",
+    "url": "http://fantasy.codes"
+  },
+  "bugs": {
+    "url": "https://github.com/RNComponents/rn-spinner/issues"
+  },
+  "description": "Number spinner for react-native",
+  "homepage": "https://github.com/RNComponents/rn-spinner#readme",
+  "keywords": [
+    "react-native",
+    "spinner",
+    "react-component",
+    "ios"
+  ],
+  "license": "MIT",
+  "name": "rn-spinner",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RNComponents/rn-spinner.git"
+  },
+  "version": "0.3.2"
+}

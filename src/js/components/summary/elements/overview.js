@@ -35,24 +35,29 @@ class Overview extends React.PureComponent<any, OverviewPropTypes, OverviewState
 	}
 
 	render() {
-		const BIO = (this.props.current && this.props.current.skills) ? this.props.current.skills : null;
+		const BIO = Object.assign({ }, (this.props.current && this.props.current.skills) ? this.props.current.skills : null, (this.props.current && this.props.current.bio) ? this.props.current.bio : null)
 		const SKILLS = (this.props.current && this.props.badges[0]) ? this.props.badges[0] : null;
 		const COMPARE = !this.props.comparator;
 
 		const buildAvatar = require('./../../../assets/mplb-avatar.png');
-
-		const pbcHeight = this.props.comparator ? height - 160 : height - 160;
+		const adjHeight = height - 160;
+		const pbcHeight = COMPARE ? adjHeight : this.props.height;
+		const badgeWidth = { width: this.props.width, height: 64 };
 
 		return (
 			<View style={[sStyles.playerBuildContainer, { height: pbcHeight , flexDirection: !COMPARE ? 'column' : 'row' }]}>
 				{ BIO && (
-					<View style={sStyles.skillContainer}>
-						<View style={sStyles.skillItem}>
+					<View style={[sStyles.skillContainer]}>
+						<View style={[sStyles.skillItem]}>
+							{ COMPARE && <Text style={sStyles.itemHeader}>POSITION</Text> }
+							<Text style={sStyles.positionText}>{BIO['position'].toUpperCase()}</Text>
+						</View>
+						<View style={[sStyles.skillItem]}>
 							{ COMPARE && <Text style={sStyles.itemHeader}>PRIMARY</Text> }
 							<Image source={badgeImages.skillMap[BIO['primary']]} style={[sStyles.skillImage, { width: 39, height: 64, opacity: 1 }]}/>
 							<Text style={sStyles.skillText}>{BIO['primary']}</Text>
 						</View>
-						<View style={sStyles.skillItem}>
+						<View style={[sStyles.skillItem]}>
 							{ COMPARE && <Text style={sStyles.itemHeader}>SECONDARY</Text> }
 							<Image source={badgeImages.skillMap[BIO['secondary']]} style={[sStyles.skillImage, { width: 39, height: 64, opacity: 1 }]}/>
 							<Text style={sStyles.skillText}>{BIO['secondary']}</Text>
@@ -67,12 +72,12 @@ class Overview extends React.PureComponent<any, OverviewPropTypes, OverviewState
 					</View>
 				)}
 				{ SKILLS && (
-					<View style={sStyles.badgeContainer}>
-						<View style={sStyles.badgePanel}>
+					<View style={[sStyles.badgeContainer]}>
+						<View style={[sStyles.badgePanel, {height: adjHeight}]}>
 							{ COMPARE && (
 								<View style={[sStyles.badgeItem, { marginBottom: 10, height: 80 }]}>
 									<Text style={sStyles.itemHeader}>TOTAL{'\n'}BADGES</Text>
-									<Text style={sStyles.badgeText}>{((+SKILLS['H']) + (+SKILLS['G']) + (+SKILLS['S']) + (+SKILLS['B']))}</Text>
+									<Text style={[sStyles.badgeText, { paddingTop: 0 }]}>{((+SKILLS['H']) + (+SKILLS['G']) + (+SKILLS['S']) + (SKILLS['B']))}</Text>
 								</View>
 							)}
 							{ COMPARE && (
@@ -81,20 +86,28 @@ class Overview extends React.PureComponent<any, OverviewPropTypes, OverviewState
 								</View>
 							)}
 							<View style={sStyles.badgeItem}>
-								<Image source={badgeImages.badgeMap['hof']} style={[sStyles.badgeImage, { position: 'absolute', left: COMPARE ? 0 : -5, width: (width * 0.25), height: 64}]} />
-								<Text style={sStyles.badgeText}>{SKILLS['H']}</Text>
+								<View style={sStyles.badgeImageContainer}>
+									<Image source={badgeImages.badgeMap['hof']} style={[sStyles.badgeImage, badgeWidth]} />
+								</View>
+								<Text style={[sStyles.badgeText, badgeWidth]}>{SKILLS['H']}</Text>
 							</View>
 							<View style={sStyles.badgeItem}>
-								<Image source={badgeImages.badgeMap['gold']} style={[sStyles.badgeImage, { position: 'absolute', left: COMPARE ? 0 : -5, width: (width * 0.25), height: 64}]} />
-								<Text style={sStyles.badgeText}>{SKILLS['G']}</Text>
+								<View style={sStyles.badgeImageContainer}>
+									<Image source={badgeImages.badgeMap['gold']} style={[sStyles.badgeImage, badgeWidth]} />
+								</View>
+								<Text style={[sStyles.badgeText, badgeWidth]}>{SKILLS['G']}</Text>
 							</View>
 							<View style={sStyles.badgeItem}>
-								<Image source={badgeImages.badgeMap['silver']} style={[sStyles.badgeImage, { position: 'absolute', left: COMPARE ? 0 : -5, width: (width * 0.25), height: 64}]} />
-								<Text style={sStyles.badgeText}>{SKILLS['S']}</Text>
+								<View style={sStyles.badgeImageContainer}>
+									<Image source={badgeImages.badgeMap['silver']} style={[sStyles.badgeImage, badgeWidth]} />
+								</View>
+								<Text style={[sStyles.badgeText, badgeWidth]}>{SKILLS['S']}</Text>
 							</View>
 							<View style={sStyles.badgeItem}>
-								<Image source={badgeImages.badgeMap['bronze']} style={[sStyles.badgeImage, { position: 'absolute', left: COMPARE ? 0 : -5, width: (width * 0.25), height: 64}]} />
-								<Text style={sStyles.badgeText}>{SKILLS['B']}</Text>
+								<View style={sStyles.badgeImageContainer}>
+									<Image source={badgeImages.badgeMap['bronze']} style={[sStyles.badgeImage, badgeWidth]} />
+								</View>
+								<Text style={[sStyles.badgeText, badgeWidth]}>{SKILLS['B']}</Text>
 							</View>
 						</View>
 					</View>

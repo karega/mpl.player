@@ -24,9 +24,11 @@ import {
 } from 'react-native-custom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Actions} from 'react-native-router-flux';
+import Carousel from 'react-native-carousel-view';
 
 /** Internal Module Dependencies **/
 import Overview from './../../summary/elements/overview';
+import Caps from './../../summary/elements/caps';
 import cStyles from './../styles/compare-styles';
 import {Avatar} from './../../../lib/react-native-material-design';
 
@@ -40,6 +42,8 @@ type CompareStateTypes = {
 };
 
 const { width, height } = Dimensions.get('window');
+const adjWidth = width - 40;
+const adjHeight = height - 160;
 
 class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTypes> {
 	props: ComparePropTypes;
@@ -78,6 +82,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 
 	getComparator(ff) {
 		const mplIcon = require('./../../../assets/mplplayer.png');
+		const _fac = ((100 / (this.props.builds.size === 4 ? 4 : (this.props.builds.size * 2))) / 100);
 
 		switch (ff) {
 			case 'large':
@@ -108,25 +113,46 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 				var compareSplash = require('./../../../assets/compare-splash-medium.png');
 
 				return (
-					<View style={cStyles.comparatorTable}>
-						{
-							this.props.builds.map((build, index) => {
-								return (
-									<View
-										key={'compare_build_' + index}
-										style={{ flex: (this.props.builds.size * 0.5) }}>
-										<Overview
-											comparator={true}
-											{...this.props} />
-									</View>
-								)
-							})
-						}
+					<Carousel
+						initialPage={0}
+						animate={false}
+						width={adjWidth}
+						height={adjHeight}
+						delay={2000}
+						indicatorAtBottom={true}
+						indicatorSize={20}
+						indicatorColor='#BF1725'>
+						<View style={cStyles.comparatorTable}>
+							<ScrollView contentContainerStyle={[cStyles.scrollContainer, {flexDirection: 'row'}]} refreshControl={null}>
+								{
+									this.props.builds.map((build, index) => {
+										return (
+											<View
+												key={'compare_build_' + index}
+												style={[cStyles.removeBuildButton]}>
+												<TouchableNativeFeedback
+													onLongPress={() => this.props.compareRemoveBuild(index)}>
+													<View
+														style={{flex: 1}}>
+														<Overview
+															comparator={true}
+															{...this.props}
+															height={(adjHeight * 1.5)}
+															width={adjWidth * _fac}
+															badges={[build.badges]}
+															current={build} />
+													</View>
+												</TouchableNativeFeedback>
+											</View>
+										)
+									})
+								}
+							</ScrollView>
 							<View
 								key={'compare_add_build'}
-								style={{ flex: (this.props.builds.size * 0.5), flexDirection: 'column' }}>
+								style={{ flex: 1, flexDirection: 'column', height: adjHeight, width: (adjWidth * _fac)  }}>
 								<View style={cStyles.compareSplashContainer}>
-									<Image source={compareSplash} style={cStyles.compareSplash} />
+									<Image source={compareSplash} style={[cStyles.compareSplash]} />
 								</View>
 								<View style={cStyles.contentContainer}>
 									<TouchableNativeFeedback
@@ -134,7 +160,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 											Actions.browser({ comparator: true });
 										}}>
 										<View style={cStyles.addArchetype}>
-											<Image source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36 }]}/>
+											<Image source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36, marginRight: 10 }]}/>
 											<Text
 												style={cStyles.addArchetypeText}>
 												{'ADD'}
@@ -143,43 +169,160 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 									</TouchableNativeFeedback>
 								</View>
 							</View>
-					</View>
+						</View>
+						<View style={cStyles.comparatorTable}>
+							<ScrollView contentContainerStyle={[cStyles.scrollContainer, { flexDirection: 'row', justifyContent: 'center' }]} refreshControl={null}>
+								{
+									this.props.builds.map((build, index) => {
+										return (
+											<View
+												key={'compare_build_' + index}
+												style={cStyles.removeBuildButton}>
+												<TouchableNativeFeedback
+													onLongPress={() => this.props.compareRemoveBuild(index)}>
+													<View
+														style={{ flex: 1, height: 3060, justifyContent: 'center' }}>
+														<View style={[cStyles.skillItem, { width: adjWidth * _fac }]}>
+															<Text style={cStyles.positionText}>{build.bio.position.toUpperCase()}</Text>
+														</View>
+														<Caps
+															comparator={true}
+															{...this.props}
+															height={3060}
+															width={adjWidth * _fac}
+															current={build} />
+													</View>
+												</TouchableNativeFeedback>
+											</View>
+										)
+									})
+								}
+							</ScrollView>
+							{
+								this.props.builds.size < 4 && (
+									<View
+										key={'compare_add_build'}
+										style={{ flex: 1, flexDirection: 'column', height: adjHeight }}>
+										<View style={cStyles.contentContainer}>
+											<TouchableNativeFeedback
+												onPress={() => {
+													Actions.browser({ comparator: true });
+												}}>
+												<View style={[cStyles.addArchetype, { paddingRight: 10 }]}>
+													<Image source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36, marginRight: 10 }]}/>
+												</View>
+											</TouchableNativeFeedback>
+										</View>
+									</View>
+								)
+							}
+						</View>
+					</Carousel>
 				);
 			case 'small':
 				return (
-					<View style={cStyles.comparatorTable}>
-						{
-							this.props.builds.map((build, index) => {
-								return (
+					<Carousel
+						initialPage={0}
+						animate={false}
+						width={adjWidth}
+						height={adjHeight}
+						delay={2000}
+						indicatorAtBottom={true}
+						indicatorSize={20}
+						indicatorColor='#BF1725'>
+						<View style={cStyles.comparatorTable}>
+							<ScrollView contentContainerStyle={[cStyles.scrollContainer, {flexDirection: 'row'}]} refreshControl={null}>
+								{
+									this.props.builds.map((build, index) => {
+										return (
+											<View
+												key={'compare_build_' + index}
+												style={cStyles.removeBuildButton}>
+												<TouchableNativeFeedback
+													onLongPress={() => this.props.compareRemoveBuild(index)}>
+													<View
+														style={{flex: (this.props.builds.size * 0.5)}}>
+														<Overview
+															comparator={true}
+															{...this.props}
+															height={(adjHeight * 1.5)}
+															width={adjWidth * _fac}
+															badges={[build.badges]}
+															current={build} />
+													</View>
+												</TouchableNativeFeedback>
+											</View>
+										)
+									})
+								}
+							</ScrollView>
+							{
+								this.props.builds.size < 4 && (
 									<View
-										key={'compare_build_' + index}
-										style={{ flex: (this.props.builds.size * 0.5) }}>
-										<Overview
-											comparator={true}
-											{...this.props} />
+										key={'compare_add_build'}
+										style={{ flex: this.props.builds.size === 3 ? 0.5 : 1, flexDirection: 'column', height: adjHeight, width: (adjWidth * _fac) }}>
+										<View style={cStyles.contentContainer}>
+											<TouchableNativeFeedback
+												onPress={() => {
+													Actions.browser({ comparator: true });
+												}}>
+												<View style={cStyles.addArchetype}>
+													<Image source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36 }]}/>
+												</View>
+											</TouchableNativeFeedback>
+										</View>
 									</View>
 								)
-							})
-						}
-						{
-							this.props.builds.size < 4 && (
-								<View
-									key={'compare_add_build'}
-									style={{ flex: (this.props.builds.size * ((100 / this.props.builds.size) / 100)), flexDirection: 'column' }}>
-									<View style={cStyles.contentContainer}>
-										<TouchableNativeFeedback
-											onPress={() => {
-												Actions.browser({ comparator: true });
-											}}>
-											<View style={cStyles.addArchetype}>
-												<Image source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36 }]}/>
+							}
+						</View>
+						<View style={cStyles.comparatorTable}>
+							<ScrollView contentContainerStyle={[cStyles.scrollContainer, {flexDirection: 'row'}]} refreshControl={null}>
+								{
+									this.props.builds.map((build, index) => {
+										return (
+											<View
+												key={'compare_build_' + index}
+												style={cStyles.removeBuildButton}>
+												<TouchableNativeFeedback
+													onLongPress={() => this.props.compareRemoveBuild(index)}>
+													<View
+														style={{ flex: (this.props.builds.size * 0.5), height: 3060, justifyContent: 'center' }}>
+														<View style={[cStyles.skillItem, { width: adjWidth * _fac }]}>
+															<Text style={cStyles.positionText}>{build.bio.position.toUpperCase()}</Text>
+														</View>
+														<Caps
+															comparator={true}
+															{...this.props}
+															height={3060}
+															width={adjWidth * _fac}
+															current={build} />
+													</View>
+												</TouchableNativeFeedback>
 											</View>
-										</TouchableNativeFeedback>
+										)
+									})
+								}
+							</ScrollView>
+							{
+								this.props.builds.size < 4 && (
+									<View
+										key={'compare_add_build'}
+										style={{ flex: this.props.builds.size === 3 ? 0.5 : 1, flexDirection: 'column', height: adjHeight }}>
+										<View style={cStyles.contentContainer}>
+											<TouchableNativeFeedback
+												onPress={() => {
+													Actions.browser({ comparator: true });
+												}}>
+												<View style={cStyles.addArchetype}>
+													<Image source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36 }]}/>
+												</View>
+											</TouchableNativeFeedback>
+										</View>
 									</View>
-								</View>
-							)
-						}
-					</View>
+								)
+							}
+						</View>
+					</Carousel>
 				);
 			default:
 				return null;
@@ -254,18 +397,6 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 			</View>
 		);
 
-		var refreshControl = (
-			<RefreshControl
-				enabled={false}
-				refreshing={this.animating}
-				onRefresh={() => { }}
-				tintColor='#000000'
-				title='Loading...'
-				titleColor='#000000'
-				colors={['#000000', '#000000', '#000000']}
-				progressBackgroundColor='#000000'/>
-		);
-
 		return (
 			<SideMenu
 				menu={navigationView}
@@ -274,7 +405,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 				openMenuOffset={width * 0.8}
 				disableGestures={true}
 				autoClosing={false}>
-				<View style={[cStyles.container, { height: height }]}>
+				<View style={[cStyles.container, { height: height, paddingBottom: 40 }]}>
 					<TouchableNativeFeedback
 						onPress={() => this.toggleMenu(!this.state.drawer)}>
 						<View style={cStyles.menuButton}>
@@ -295,13 +426,11 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 						<Text style={cStyles.primaryText}>{'COMPARE'}</Text>
 						<Text style={cStyles.secondaryText}>{'BUILDS'}</Text>
 					</View>
-					<ScrollView contentContainerStyle={cStyles.scrollContainer} refreshControl={refreshControl}>
-						<View style={{ flexDirection: 'column', height: height, width: width - 40 }}>
-							{ (this.props.builds.size == 0) && this.getComparator('large') }
-							{ (this.props.builds.size == 1) && this.getComparator('medium') }
-							{ (this.props.builds.size > 1) && this.getComparator('small') }
-						</View>
-					</ScrollView>
+					<View style={{ flexDirection: 'column', height: adjHeight }}>
+						{ (this.props.builds.size == 0) && this.getComparator('large') }
+						{ (this.props.builds.size == 1) && this.getComparator('medium') }
+						{ (this.props.builds.size > 1) && this.getComparator('small') }
+					</View>
 				</View>
 			</SideMenu>
 		);

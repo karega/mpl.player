@@ -23,6 +23,7 @@ const builder = function (builder: Immutable.Map<string, any>, action: Object): 
 
 			_player.skills.secondary = action.secondary['Secondary Skill'];
 			_player.archetype = action.secondary['Archetype'];
+			_player.badges = { H: action.secondary['H'], G: action.secondary['G'], S: action.secondary['S'], B: action.secondary['B']};
 			_builder = _builder.set('current', _player);
 			_builder = _builder.set('step', 4);
 

@@ -5,7 +5,7 @@ import React, {PropTypes} from 'react';
 import {Dimensions, Image, ScrollView, StyleSheet, Text, TouchableNativeFeedback, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-var Spinner = require('rn-spinner');
+var Spinner = require('./rn-spinner');
 
 /** Internal Module Dependencies **/
 import sStyles from './../styles/summary-styles';
@@ -51,6 +51,7 @@ class Attributes extends React.PureComponent<any, AttributesPropTypes, Attribute
 										default={min}
 										color="#000"
 										numColor="#000"
+										numLabel={'Level'}
 										numLabelStyle={{
 											fontSize: 14,
 											color: '#fff',

@@ -6,9 +6,9 @@ const browserStyles = StyleSheet.create({
 	container: {
 		alignItems: 'center',
 		backgroundColor: '#000',
-		justifyContent: 'center',
 		flex: 1,
 		flexDirection: 'column',
+		justifyContent: 'flex-start',
 		paddingBottom: 25,
 	},
 	scrollContainer: {
@@ -132,7 +132,7 @@ const browserStyles = StyleSheet.create({
 	buildPanel: {
 		flex: 1,
 		flexDirection: 'row',
-		alignItems: 'center',
+		alignItems: 'flex-start',
 		justifyContent: 'center',
 	},
 	buildType: {
@@ -141,7 +141,14 @@ const browserStyles = StyleSheet.create({
 		height: 78,
 		marginRight: 15,
 		justifyContent: 'center',
-		alignItems: 'center',
+		alignItems: 'flex-start',
+		flexDirection: 'column',
+	},
+	buildPosition: {
+		width: 48,
+	},
+	buildImage: {
+		width: 48,
 	},
 	buildInfo: {
 		flex: 1,

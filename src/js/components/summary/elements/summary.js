@@ -52,9 +52,11 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 	constructor(props: SummaryPropTypes): void {
 		super(props);
 
+		const isBuilds = !props.current || (!props.builds && !(props.builds && props.builds.size > 0));
+
 		this.state = {
 			step: 1,
-			drawer: !(props.builds) && !(props.builds && props.builds.length > 0)
+			drawer: isBuilds
 		}
 
 		this.browseTo = this.browseTo.bind(this);
@@ -62,11 +64,15 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 		this.toggleMenu = this.toggleMenu.bind(this);
 	}
 
-	componentWillMount() {
+	componentDidMount() {
+		const isBuilds = !this.props.current || (!(this.props.builds) && !(this.props.builds && this.props.builds.size > 0));
 
+		if (this.state.drawer !== isBuilds) {
+			this.setState({ drawer: isBuilds });
+		}
 	}
 
-	componentDidMount() {
+	componentDidUpdate(prevProps, prevState) {
 		this.checkBuilds();
 	}
 
@@ -88,7 +94,7 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 
 	checkBuilds() {
 		if (this.props.builds.size === 0) {
-			this.toggleMenu(!this.state.drawer)
+			this.toggleMenu(true)
 		}
 	}
 
@@ -171,7 +177,7 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 				openMenuOffset={width * 0.8}
 				disableGestures={true}
 				autoClosing={false}>
-				<View style={[sStyles.container, { height: height }]}>
+				<View style={[sStyles.container, { height: height, width: width }]}>
 					<TouchableNativeFeedback
 						onPress={() => this.toggleMenu(!this.state.drawer)}>
 						<View style={sStyles.menuButton}>
@@ -179,12 +185,12 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 								<Icon
 									color={'#fff'}
 									name={'close'}
-									size={32}/>
+									size={32} />
 							) : (
 								<Icon
 									color={'#fff'}
 									name={'menu'}
-									size={32}/>
+									size={32} />
 							)}
 						</View>
 					</TouchableNativeFeedback>
@@ -202,20 +208,20 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 								initialPage={0}
 								animate={false}
 								width={width}
-								height={(height - 128)}
+								height={(height - 140)}
 								delay={2000}
 								indicatorAtBottom={true}
 								indicatorSize={20}
 								indicatorColor='#BF1725'>
 								<View style={[sStyles.summaryContainer, { height: height }]}>
-									<Overview {...this.props} />
+									<Overview height={height - 160} width={width/4} {...this.props} />
 								</View>
 								<View style={[sStyles.summaryContainer, { height: height }]}>
 									<Badges {...this.props} />
 								</View>
-								{/*<View style={[sStyles.summaryContainer, { height: height }]}>
+								<View style={[sStyles.summaryContainer, { height: height }]}>
 									<Caps {...this.props} />
-								</View>*/}
+								</View>
 								{/*<View style={[sStyles.summaryContainer, { height: height }]}>
 									<Attributes {...this.props} />
 								</View>*/}

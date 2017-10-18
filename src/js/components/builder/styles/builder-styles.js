@@ -75,7 +75,7 @@ const builderStyles = StyleSheet.create({
 	},
 	menuButton: {
 		position: 'absolute',
-		top: 25,
+		top: 20,
 		left: 10,
 		zIndex: 100,
 	},

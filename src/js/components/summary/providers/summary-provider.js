@@ -20,7 +20,7 @@ const mapStateToProps = (state) => {
 			build['Primary Skill'].toLowerCase() === pathOr('', ['skills', 'primary'])(current).toLowerCase() &&
 			build['Secondary Skill'].toLowerCase() === pathOr('', ['skills', 'secondary'])(current).toLowerCase()
 		)
-	})
+	});
 
 	return {
 		builds: builds,

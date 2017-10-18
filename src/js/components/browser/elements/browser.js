@@ -160,29 +160,34 @@ class Browser extends React.PureComponent <any, BrowserPropTypes, BrowserStateTy
 					<View style={[bStyles.buildItem, { width: buildItemWidth, maxWidth: buildItemWidth, height: 190 }]}>
 							<View style={bStyles.buildPanel}>
 								<View style={bStyles.buildType}>
-									<Image source={badgeImages.primarySkillMap[build.skills['primary']]} style={[bStyles.buildAvatar, { width: 48, height: 78, position: 'absolute', left: 0, top: 0, opacity: 1 }]}/>
-									<Image source={badgeImages.secondarySkillMap[build.skills['secondary']]} style={[bStyles.buildAvatar, { width: 48, height: 78, position: 'absolute', left: 0, top: 0, opacity: 1 }]}/>
+									<View style={bStyles.buildPosition}>
+										<Text style={bStyles.badgeText}>{build.bio['position'].toUpperCase()}</Text>
+									</View>
+									<View style={bStyles.buildImage}>
+										<Image source={badgeImages.primarySkillMap[build.skills['primary']]} style={[bStyles.buildAvatar, { width: 48, height: 78, position: 'absolute', left: 0, top: 0, opacity: 1 }]}/>
+										<Image source={badgeImages.secondarySkillMap[build.skills['secondary']]} style={[bStyles.buildAvatar, { width: 48, height: 78, position: 'absolute', left: 0, top: 0, opacity: 1 }]}/>
+									</View>
 								</View>
 								<View style={bStyles.buildInfo}>
 									<Text style={bStyles.buildText}>
-										{build.archetype['Archetype'][0]}{'\n'}{build.archetype['Archetype'][1]}
+										{build.archetype[0]}{'\n'}{build.archetype[1]}
 									</Text>
 									<View style={bStyles.buildBadges}>
 										<View style={bStyles.badgeItem}>
 											<Image source={badgeImages.badgeMap['hof']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
-											<Text style={bStyles.badgeText}>{build.archetype['H']}</Text>
+											<Text style={bStyles.badgeText}>{build.badges['H']}</Text>
 										</View>
 										<View style={bStyles.badgeItem}>
 											<Image source={badgeImages.badgeMap['gold']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
-											<Text style={bStyles.badgeText}>{build.archetype['G']}</Text>
+											<Text style={bStyles.badgeText}>{build.badges['G']}</Text>
 										</View>
 										<View style={bStyles.badgeItem}>
 											<Image source={badgeImages.badgeMap['silver']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
-											<Text style={bStyles.badgeText}>{build.archetype['S']}</Text>
+											<Text style={bStyles.badgeText}>{build.badges['S']}</Text>
 										</View>
 										<View style={bStyles.badgeItem}>
 											<Image source={badgeImages.badgeMap['bronze']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
-											<Text style={bStyles.badgeText}>{build.archetype['B']}</Text>
+											<Text style={bStyles.badgeText}>{build.badges['B']}</Text>
 										</View>
 									</View>
 								</View>
@@ -207,9 +212,16 @@ class Browser extends React.PureComponent <any, BrowserPropTypes, BrowserStateTy
 				autoClosing={false}>
 				<View style={[bStyles.container, { height: height }]}>
 					<TouchableNativeFeedback
-						onPress={() => this.toggleMenu(!this.state.drawer)}>
+						onPress={() => {
+							if (this.props.comparator) {
+								Actions.compare();
+							}
+							else {
+								this.toggleMenu(!this.state.drawer);
+							}
+						}}>
 						<View style={bStyles.menuButton}>
-							{this.state.drawer ? (
+							{this.state.drawer || this.props.comparator ? (
 								<Icon
 									color={'#fff'}
 									name={'close'}

@@ -11,23 +11,25 @@ import maxed from './../../../app-state/builds-maxed';
 import Compare from './../elements/compare';
 import {
 	compareAddBuild,
+	compareRemoveBuild,
 } from './../actions/compare-actions';
 
 const mapStateToProps = (state) => {
 	let builds = state.compare.get('builds');
 	let current = state.compare.get('current') ? state.compare.get('current') : builds.last();
-	let archetype = maxed.filter((build, index) => {
+
+	let badges = maxed.filter((build, index) => {
 		return (
-			build['Position'].toLowerCase() === current.bio.position.toLowerCase() &&
-			build['Primary Skill'].toLowerCase() === current.skills.primary.toLowerCase() &&
-			build['Secondary Skill'].toLowerCase() === current.skills.secondary.toLowerCase()
+			build['Position'].toLowerCase() === pathOr('', ['bio', 'position'])(current).toLowerCase() &&
+			build['Primary Skill'].toLowerCase() === pathOr('', ['skills', 'primary'])(current).toLowerCase() &&
+			build['Secondary Skill'].toLowerCase() === pathOr('', ['skills', 'secondary'])(current).toLowerCase()
 		)
 	})
 
 	return {
 		builds: builds,
 		current: current,
-		archetype: archetype,
+		badges: badges,
 
 		profile: state.session.get('profile'),
 	};
@@ -37,6 +39,10 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		compareAddBuild: (build) => {
 			dispatch(compareAddBuild(build));
+		},
+		compareRemoveBuild: (index) => {
+			console.log('compareRemoveBuild')
+			dispatch(compareRemoveBuild(index));
 		},
 	};
 };
