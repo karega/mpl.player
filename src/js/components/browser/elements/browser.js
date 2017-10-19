@@ -89,6 +89,7 @@ class Browser extends React.PureComponent <any, BrowserPropTypes, BrowserStateTy
 						<View style={bStyles.sbProfileName}>
 							<Avatar size={48} image={
 								<Image
+									key={'browser_sbProfileImage'}
 									style={bStyles.sbProfileImage}
 									source={{ uri: this.props.profile.picture.data.url }}/> }/>
 							<Text style={bStyles.sbProfileText}>{this.props.profile.name}</Text>
@@ -164,8 +165,8 @@ class Browser extends React.PureComponent <any, BrowserPropTypes, BrowserStateTy
 										<Text style={bStyles.badgeText}>{build.bio['position'].toUpperCase()}</Text>
 									</View>
 									<View style={bStyles.buildImage}>
-										<Image source={badgeImages.primarySkillMap[build.skills['primary']]} style={[bStyles.buildAvatar, { width: 48, height: 78, position: 'absolute', left: 0, top: 0, opacity: 1 }]}/>
-										<Image source={badgeImages.secondarySkillMap[build.skills['secondary']]} style={[bStyles.buildAvatar, { width: 48, height: 78, position: 'absolute', left: 0, top: 0, opacity: 1 }]}/>
+									<Image key={'browser_skill_primary_' + index} source={badgeImages.primarySkillMap[build.skills['primary']]} style={[bStyles.buildAvatar, { width: 48, height: 78, position: 'absolute', left: 0, top: 0, opacity: 1 }]}/>
+									<Image key={'browser_skill_secondary_' + index} source={badgeImages.secondarySkillMap[build.skills['secondary']]} style={[bStyles.buildAvatar, { width: 48, height: 78, position: 'absolute', left: 0, top: 0, opacity: 1 }]}/>
 									</View>
 								</View>
 								<View style={bStyles.buildInfo}>
@@ -174,19 +175,19 @@ class Browser extends React.PureComponent <any, BrowserPropTypes, BrowserStateTy
 									</Text>
 									<View style={bStyles.buildBadges}>
 										<View style={bStyles.badgeItem}>
-											<Image source={badgeImages.badgeMap['hof']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
+										<Image key={'browser_badges_h_' + index} source={badgeImages.badgeMap['hof']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
 											<Text style={bStyles.badgeText}>{build.badges['H']}</Text>
 										</View>
 										<View style={bStyles.badgeItem}>
-											<Image source={badgeImages.badgeMap['gold']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
+										<Image key={'browser_badges_g_' + index} source={badgeImages.badgeMap['gold']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
 											<Text style={bStyles.badgeText}>{build.badges['G']}</Text>
 										</View>
 										<View style={bStyles.badgeItem}>
-											<Image source={badgeImages.badgeMap['silver']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
+										<Image key={'browser_badges_s_' + index} source={badgeImages.badgeMap['silver']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
 											<Text style={bStyles.badgeText}>{build.badges['S']}</Text>
 										</View>
 										<View style={bStyles.badgeItem}>
-											<Image source={badgeImages.badgeMap['bronze']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
+										<Image key={'browser_badges_b_' + index} source={badgeImages.badgeMap['bronze']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
 											<Text style={bStyles.badgeText}>{build.badges['B']}</Text>
 										</View>
 									</View>

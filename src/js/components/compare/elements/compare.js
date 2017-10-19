@@ -82,7 +82,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 
 	getComparator(ff) {
 		const mplIcon = require('./../../../assets/mplplayer.png');
-		const _fac = ((100 / (this.props.builds.size === 4 ? 4 : (this.props.builds.size * 2))) / 100);
+		const _fac = ((100 / (this.props.builds.size === 4 ? 4 : this.props.builds.size === 3 ? 4 : (this.props.builds.size * 2))) / 100);
 
 		switch (ff) {
 			case 'large':
@@ -91,7 +91,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 				return (
 					<View style={{ flex: 1, flexDirection: 'column' }}>
 						<View style={cStyles.compareSplashContainer}>
-							<Image source={compareSplash} style={cStyles.compareSplash} />
+							<Image key={'lrg_compareSplash'} source={compareSplash} style={cStyles.compareSplash} />
 						</View>
 						<View style={cStyles.contentContainer}>
 							<TouchableNativeFeedback
@@ -99,7 +99,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 									Actions.browser({ comparator: true });
 								}}>
 								<View style={cStyles.addArchetype}>
-									<Image source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36 }]}/>
+									<Image key={'lrg_mplIcon'} source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36 }]}/>
 									<Text
 										style={cStyles.addArchetypeText}>
 										{'ADD ARCHETYPE'}
@@ -130,7 +130,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 											<View
 												key={'compare_build_' + index}
 												style={[cStyles.removeBuildButton]}>
-												<TouchableNativeFeedback
+												<TouchableHighlight
 													onLongPress={() => this.props.compareRemoveBuild(index)}>
 													<View
 														style={{flex: 1}}>
@@ -142,7 +142,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 															badges={[build.badges]}
 															current={build} />
 													</View>
-												</TouchableNativeFeedback>
+												</TouchableHighlight>
 											</View>
 										)
 									})
@@ -152,7 +152,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 								key={'compare_add_build'}
 								style={{ flex: 1, flexDirection: 'column', height: adjHeight, width: (adjWidth * _fac)  }}>
 								<View style={cStyles.compareSplashContainer}>
-									<Image source={compareSplash} style={[cStyles.compareSplash]} />
+									<Image key={'med_ovr_compareSplash'} source={compareSplash} style={[cStyles.compareSplash]} />
 								</View>
 								<View style={cStyles.contentContainer}>
 									<TouchableNativeFeedback
@@ -160,7 +160,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 											Actions.browser({ comparator: true });
 										}}>
 										<View style={cStyles.addArchetype}>
-											<Image source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36, marginRight: 10 }]}/>
+											<Image key={'med_ovr_mplIcon'} source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36, marginRight: 10 }]}/>
 											<Text
 												style={cStyles.addArchetypeText}>
 												{'ADD'}
@@ -178,7 +178,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 											<View
 												key={'compare_build_' + index}
 												style={cStyles.removeBuildButton}>
-												<TouchableNativeFeedback
+												<TouchableHighlight
 													onLongPress={() => this.props.compareRemoveBuild(index)}>
 													<View
 														style={{ flex: 1, height: 3060, justifyContent: 'center' }}>
@@ -192,7 +192,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 															width={adjWidth * _fac}
 															current={build} />
 													</View>
-												</TouchableNativeFeedback>
+												</TouchableHighlight>
 											</View>
 										)
 									})
@@ -202,14 +202,21 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 								this.props.builds.size < 4 && (
 									<View
 										key={'compare_add_build'}
-										style={{ flex: 1, flexDirection: 'column', height: adjHeight }}>
+										style={{ flex: 1, flexDirection: 'column', height: adjHeight, width: (adjWidth * _fac) }}>
+										<View style={cStyles.compareSplashContainer}>
+											<Image key={'med_cap_compareSplash'} source={compareSplash} style={[cStyles.compareSplash, { width: (adjWidth * _fac) }]} />
+										</View>
 										<View style={cStyles.contentContainer}>
 											<TouchableNativeFeedback
 												onPress={() => {
 													Actions.browser({ comparator: true });
 												}}>
-												<View style={[cStyles.addArchetype, { paddingRight: 10 }]}>
-													<Image source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36, marginRight: 10 }]}/>
+												<View style={cStyles.addArchetype}>
+													<Image key={'med_cap_mplIcon'} source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36, marginRight: 10 }]}/>
+													<Text
+														style={cStyles.addArchetypeText}>
+														{'ADD'}
+													</Text>
 												</View>
 											</TouchableNativeFeedback>
 										</View>
@@ -220,6 +227,8 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 					</Carousel>
 				);
 			case 'small':
+				var compareSplash = require('./../../../assets/compare-splash-small.png');
+
 				return (
 					<Carousel
 						initialPage={0}
@@ -231,17 +240,17 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 						indicatorSize={20}
 						indicatorColor='#BF1725'>
 						<View style={cStyles.comparatorTable}>
-							<ScrollView contentContainerStyle={[cStyles.scrollContainer, {flexDirection: 'row'}]} refreshControl={null}>
+							<ScrollView contentContainerStyle={[cStyles.scrollContainer, {flexDirection: 'row', width: (adjWidth * (this.props.builds.size * _fac))}]} refreshControl={null}>
 								{
 									this.props.builds.map((build, index) => {
 										return (
 											<View
 												key={'compare_build_' + index}
 												style={cStyles.removeBuildButton}>
-												<TouchableNativeFeedback
+												<TouchableHighlight
 													onLongPress={() => this.props.compareRemoveBuild(index)}>
 													<View
-														style={{flex: (this.props.builds.size * 0.5)}}>
+														style={{flex: (this.props.builds.size * 0.5), width: adjWidth * _fac}}>
 														<Overview
 															comparator={true}
 															{...this.props}
@@ -250,7 +259,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 															badges={[build.badges]}
 															current={build} />
 													</View>
-												</TouchableNativeFeedback>
+												</TouchableHighlight>
 											</View>
 										)
 									})
@@ -260,14 +269,17 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 								this.props.builds.size < 4 && (
 									<View
 										key={'compare_add_build'}
-										style={{ flex: this.props.builds.size === 3 ? 0.5 : 1, flexDirection: 'column', height: adjHeight, width: (adjWidth * _fac) }}>
+										style={{ flex: this.props.builds.size === 3 ? 0.5 : 1, flexDirection: 'column', height: adjHeight, width: (adjWidth * _fac), backgroundColor: '#fff' }}>
+										<View style={cStyles.compareSplashContainer}>
+											<Image key={'sm_ovr_compareSplash'} source={compareSplash} style={[cStyles.compareSplash, { width: (adjWidth * _fac) }]} />
+										</View>
 										<View style={cStyles.contentContainer}>
 											<TouchableNativeFeedback
 												onPress={() => {
 													Actions.browser({ comparator: true });
 												}}>
 												<View style={cStyles.addArchetype}>
-													<Image source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36 }]}/>
+													<Image key={'sm_ovr_mplIcon'} source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36 }]}/>
 												</View>
 											</TouchableNativeFeedback>
 										</View>
@@ -276,14 +288,14 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 							}
 						</View>
 						<View style={cStyles.comparatorTable}>
-							<ScrollView contentContainerStyle={[cStyles.scrollContainer, {flexDirection: 'row'}]} refreshControl={null}>
+							<ScrollView contentContainerStyle={[cStyles.scrollContainer, { flexDirection: 'row' }]} refreshControl={null}>
 								{
 									this.props.builds.map((build, index) => {
 										return (
 											<View
 												key={'compare_build_' + index}
 												style={cStyles.removeBuildButton}>
-												<TouchableNativeFeedback
+												<TouchableHighlight
 													onLongPress={() => this.props.compareRemoveBuild(index)}>
 													<View
 														style={{ flex: (this.props.builds.size * 0.5), height: 3060, justifyContent: 'center' }}>
@@ -297,7 +309,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 															width={adjWidth * _fac}
 															current={build} />
 													</View>
-												</TouchableNativeFeedback>
+												</TouchableHighlight>
 											</View>
 										)
 									})
@@ -307,14 +319,17 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 								this.props.builds.size < 4 && (
 									<View
 										key={'compare_add_build'}
-										style={{ flex: this.props.builds.size === 3 ? 0.5 : 1, flexDirection: 'column', height: adjHeight }}>
+										style={{ flex: this.props.builds.size === 3 ? 0.5 : 1, flexDirection: 'column', height: adjHeight, width: (adjWidth * _fac) }}>
+										<View style={cStyles.compareSplashContainer}>
+											<Image key={'sm_ovr_compareSplash'} source={compareSplash} style={[cStyles.compareSplash, { width: (adjWidth * _fac) }]} />
+										</View>
 										<View style={cStyles.contentContainer}>
 											<TouchableNativeFeedback
 												onPress={() => {
 													Actions.browser({ comparator: true });
 												}}>
 												<View style={cStyles.addArchetype}>
-													<Image source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36 }]}/>
+													<Image key={'sm_cap_mplIcon'} source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36 }]}/>
 												</View>
 											</TouchableNativeFeedback>
 										</View>
@@ -345,6 +360,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 						<View style={cStyles.sbProfileName}>
 							<Avatar size={48} image={
 								<Image
+									key={'cmp_sbProfileImage'}
 									style={cStyles.sbProfileImage}
 									source={{ uri: this.props.profile.picture.data.url }}/> }/>
 							<Text style={cStyles.sbProfileText}>{this.props.profile.name}</Text>

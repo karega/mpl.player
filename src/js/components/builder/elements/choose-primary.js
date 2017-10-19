@@ -80,7 +80,7 @@ class ChoosePrimary extends React.PureComponent<any, ChoosePrimaryPropTypes, Cho
 											this.props.choosePrimary(key)
 										}}>
 										<View style={[bStyles.skillPanel, { maxWidth: (width / 2), width: (width / 2), height: ((height - 160) / 3) }]}>
-											<Image source={skillMap[key]} style={[bStyles.cypImage, { width: (width / 4), height: ((height - 160) / 4) }]}/>
+											<Image key={'cyp_' + index} source={skillMap[key]} style={[bStyles.cypImage, { width: (width / 4), height: ((height - 160) / 4) }]}/>
 											<Text style={bStyles.skillText}>
 												{key}
 											</Text>

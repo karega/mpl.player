@@ -161,6 +161,17 @@ const compareStyles = StyleSheet.create({
 		textAlign: 'center',
 		alignSelf: 'center',
 	},
+	removeBuildButton: {
+		/*position: 'absolute',
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0,
+		justifyContent: 'flex-start',
+		alignItems: 'center',
+		backgroundColor: '#fff',
+		zIndex: 100,*/
+	}
 });
 
 export default compareStyles;

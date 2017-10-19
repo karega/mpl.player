@@ -79,7 +79,7 @@ class ChooseSecondary extends React.PureComponent<any, ChooseSecondaryPropTypes,
 											this.props.chooseSecondary(key)
 										}}>
 										<View style={[bStyles.skillPanel, { maxWidth: (width / 2), width: (width / 2), height: ((height - 160) / 3) }]}>
-											<Image source={skillMap[key['Secondary Skill']]} style={[bStyles.cypImage, { width: (width / 4), height: ((height - 160) / 4) }]}/>
+											<Image key={'cs_secondary_' + index} source={skillMap[key['Secondary Skill']]} style={[bStyles.cypImage, { width: (width / 4), height: ((height - 160) / 4) }]}/>
 											<Text style={bStyles.skillText}>
 												{key['Secondary Skill']}
 											</Text>

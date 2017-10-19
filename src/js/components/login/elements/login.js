@@ -33,7 +33,7 @@ class Login extends React.PureComponent<any, LoginPropTypes, LoginStateTypes> {
 	constructor(props: LoginPropTypes): void {
 		super(props);
 
-		this.mplplayerLogo = require('./../../../assets/mplplayer.png');
+		this.mplPlayerLogo = require('./../../../assets/mplplayer.png');
 
 		this.state = {
 			idCorrect: false,
@@ -70,7 +70,7 @@ class Login extends React.PureComponent<any, LoginPropTypes, LoginStateTypes> {
 			<View style={ lStyles.container }>
 				<View style={ lStyles.loginSplashBackground }>
 					<View style={ lStyles.loginLogo }>
-						<Image source={this.mplplayerLogo} style={lStyles.mplplayerLogo} />
+						<Image key={'mplPlayerLogo'} source={this.mplPlayerLogo} style={lStyles.mplPlayerLogo} />
 						<Text style={ lStyles.logoText }>Player Builder</Text>
 					</View>
 					{ this.props.session.get('authorized') && this.state.verified &&

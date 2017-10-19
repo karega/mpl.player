@@ -116,6 +116,7 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 								size={48}
 								image={
 									<Image
+										key={'summary_sbProfileImage'}
 										style={sStyles.sbProfileImage}
 										source={{ uri: this.props.profile.picture.data.url }}/>
 								}/>
