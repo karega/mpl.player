@@ -228,6 +228,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 				);
 			case 'small':
 				var compareSplash = require('./../../../assets/compare-splash-small.png');
+				console.log('(adjWidth * _fac)', (adjWidth * _fac))
 
 				return (
 					<Carousel
@@ -269,9 +270,9 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 								this.props.builds.size < 4 && (
 									<View
 										key={'compare_add_build'}
-										style={{ flex: this.props.builds.size === 3 ? 0.5 : 1, flexDirection: 'column', height: adjHeight, width: (adjWidth * _fac), backgroundColor: '#fff' }}>
+										style={{ flex: this.props.builds.size === 3 ? 0.5 : 1, flexDirection: 'column', height: adjHeight, width: (adjWidth * _fac) }}>
 										<View style={cStyles.compareSplashContainer}>
-											<Image key={'sm_ovr_compareSplash'} source={compareSplash} style={[cStyles.compareSplash, { width: (adjWidth * _fac) }]} />
+											<Image key={'sm_ovr_compareSplash'} source={compareSplash} style={[cStyles.compareSplash]} />
 										</View>
 										<View style={cStyles.contentContainer}>
 											<TouchableNativeFeedback

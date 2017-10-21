@@ -70,7 +70,7 @@ class Login extends React.PureComponent<any, LoginPropTypes, LoginStateTypes> {
 			<View style={ lStyles.container }>
 				<View style={ lStyles.loginSplashBackground }>
 					<View style={ lStyles.loginLogo }>
-						<Image key={'mplPlayerLogo'} source={this.mplPlayerLogo} style={lStyles.mplPlayerLogo} />
+						<Image key={'mplPlayerLogo'} source={this.mplPlayerLogo} style={lStyles.mplPlayerLogo}  />
 						<Text style={ lStyles.logoText }>Player Builder</Text>
 					</View>
 					{ this.props.session.get('authorized') && this.state.verified &&
