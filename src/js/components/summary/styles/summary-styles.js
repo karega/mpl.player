@@ -103,7 +103,7 @@ const summaryStyles = StyleSheet.create({
 	},
 	menuButton: {
 		position: 'absolute',
-		marginTop: 30,
+		marginTop: 10,
 		marginLeft: 10,
 	},
 	menuItems: {
@@ -165,7 +165,6 @@ const summaryStyles = StyleSheet.create({
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
-		marginTop: 25,
 	},
 	contentContainer: {
 		flex: 2,
@@ -176,7 +175,6 @@ const summaryStyles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'center',
-		alignItems: 'stretch',
 	},
 	itemHeader: {
 		fontSize: 14,
@@ -188,7 +186,7 @@ const summaryStyles = StyleSheet.create({
 		paddingBottom: 4,
 	},
 	skillContainer: {
-		flex: 1.5,
+		flex: 0.25,
 		flexDirection: 'column',
 	},
 	skillItem: {
@@ -196,7 +194,6 @@ const summaryStyles = StyleSheet.create({
 	},
 	skillImage: {
 		alignItems: 'center',
-		resizeMode: Image.resizeMode.contain,
 		justifyContent: 'center',
 		alignSelf: 'center',
 		flex: 1,
@@ -224,19 +221,18 @@ const summaryStyles = StyleSheet.create({
 		textAlignVertical: 'center'
 	},
 	playerContainer: {
-		flex: 3,
+		flex: 0.,
 		position: 'relative',
 	},
 	buildAvatar: {
 		alignItems: 'flex-start',
-		resizeMode: Image.resizeMode.contain,
 		justifyContent: 'center',
 		alignSelf: 'center',
-		flex: 1,
+		flex: 0.5,
 		opacity: 0.25,
 	},
 	badgeContainer: {
-		flex: 1.5,
+		flex: 0.25,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
@@ -269,12 +265,11 @@ const summaryStyles = StyleSheet.create({
 		flex: 1,
 		paddingTop: -7.5,
 		textShadowColor: '#222',
-		textShadowOffset: {width: 0.5, height: 0.5},
+		textShadowOffset: { width: 0.5, height: 0.5 },
 		textShadowRadius: 1,
 	},
 	badgeImage: {
 		alignItems: 'center',
-		resizeMode: Image.resizeMode.contain,
 		justifyContent: 'center',
 		alignSelf: 'center',
 		flex: 1,

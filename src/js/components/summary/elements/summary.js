@@ -215,7 +215,7 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 								indicatorSize={20}
 								indicatorColor='#BF1725'>
 								<View style={[sStyles.summaryContainer, { height: height }]}>
-									<Overview height={height - 160} width={width/4} {...this.props} />
+									<Overview height={height - 160} width={width} {...this.props} />
 								</View>
 								<View style={[sStyles.summaryContainer, { height: height }]}>
 									<Badges {...this.props} />

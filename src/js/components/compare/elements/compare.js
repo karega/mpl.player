@@ -43,7 +43,7 @@ type CompareStateTypes = {
 
 const { width, height } = Dimensions.get('window');
 const adjWidth = width - 40;
-const adjHeight = height - 160;
+const adjHeight = height - 91;
 
 class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTypes> {
 	props: ComparePropTypes;
@@ -228,7 +228,6 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 				);
 			case 'small':
 				var compareSplash = require('./../../../assets/compare-splash-small.png');
-				console.log('(adjWidth * _fac)', (adjWidth * _fac))
 
 				return (
 					<Carousel
@@ -422,7 +421,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 				openMenuOffset={width * 0.8}
 				disableGestures={true}
 				autoClosing={false}>
-				<View style={[cStyles.container, { height: height, paddingBottom: 40 }]}>
+				<View style={[cStyles.container, { height: height }]}>
 					<TouchableNativeFeedback
 						onPress={() => this.toggleMenu(!this.state.drawer)}>
 						<View style={cStyles.menuButton}>

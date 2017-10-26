@@ -175,19 +175,19 @@ class Browser extends React.PureComponent <any, BrowserPropTypes, BrowserStateTy
 									</Text>
 									<View style={bStyles.buildBadges}>
 										<View style={bStyles.badgeItem}>
-										<Image key={'browser_badges_h_' + index} source={badgeImages.badgeMap['hof']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
+											<Image key={'browser_badges_h_' + index} source={badgeImages.badgeMap['hof']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
 											<Text style={bStyles.badgeText}>{build.badges['H']}</Text>
 										</View>
 										<View style={bStyles.badgeItem}>
-										<Image key={'browser_badges_g_' + index} source={badgeImages.badgeMap['gold']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
+											<Image key={'browser_badges_g_' + index} source={badgeImages.badgeMap['gold']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
 											<Text style={bStyles.badgeText}>{build.badges['G']}</Text>
 										</View>
 										<View style={bStyles.badgeItem}>
-										<Image key={'browser_badges_s_' + index} source={badgeImages.badgeMap['silver']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
+											<Image key={'browser_badges_s_' + index} source={badgeImages.badgeMap['silver']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
 											<Text style={bStyles.badgeText}>{build.badges['S']}</Text>
 										</View>
 										<View style={bStyles.badgeItem}>
-										<Image key={'browser_badges_b_' + index} source={badgeImages.badgeMap['bronze']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
+											<Image key={'browser_badges_b_' + index} source={badgeImages.badgeMap['bronze']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
 											<Text style={bStyles.badgeText}>{build.badges['B']}</Text>
 										</View>
 									</View>
