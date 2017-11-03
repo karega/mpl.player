@@ -1,4 +1,22 @@
 /* constants.js */
+import React, {PropTypes} from 'react';
+import {
+	Image,
+	Share,
+	Text,
+	TouchableNativeFeedback,
+	View
+} from 'react-native';
+import {
+	CustomTabs,
+	ANIMATIONS_FADE,
+	ANIMATIONS_SLIDE
+} from 'react-native-custom-tabs';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import {Actions} from 'react-native-router-flux';
+import {Avatar} from './../lib/react-native-material-design';
+
+var FontAwesome = require('react-native-vector-icons/FontAwesome');
 
 const badgeBronze = require('./../assets/badge-bronze.png');
 const badgeSilver = require('./../assets/badge-silver.png');
@@ -70,4 +88,224 @@ export const secondarySkillMap = {
 	'Driving & Finishing': skillDnfS,
 	'Defending': skillDefS,
 	'Post Scoring': skillPsS,
+}
+
+const sStyles = {
+	sidebar: {
+		alignItems: 'flex-start',
+		backgroundColor: '#dbd8da',
+		justifyContent: 'flex-start',
+		flex: 1,
+		flexDirection: 'column',
+	},
+	sbProfileName: {
+		alignItems: 'flex-start',
+		alignSelf: 'stretch',
+		backgroundColor: '#262426',
+		flexDirection: 'row',
+		justifyContent: 'flex-start',
+		padding: 8,
+		paddingTop: 16,
+		paddingBottom: 16,
+	},
+	sbProfileText: {
+		color: '#dbd8da',
+		fontSize: 18,
+		fontWeight: '100',
+		marginLeft: 8,
+	},
+	menuItems: {
+		flex: 6,
+		flexDirection: 'column',
+	},
+	menuItem: {
+		width: 284,
+		alignSelf: 'stretch',
+		padding: 4,
+	},
+	menuButton: {
+		padding: 4,
+		paddingLeft: 12,
+	},
+	menuHeader: {
+		color: '#262426',
+		fontSize: 28,
+		fontWeight: '100',
+	},
+	menuLabel: {
+		color: '#262426',
+		fontSize: 18,
+		fontWeight: '100',
+	},
+	sbFooter: {
+		alignSelf: 'stretch',
+		alignItems: 'flex-end',
+		borderTopWidth: 1,
+		borderTopColor: '#262426',
+		flex: 1,
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		padding: 16,
+	},
+	loginIcon: {
+		padding: 8,
+	},
+	versionText: {
+		alignSelf: 'flex-end',
+		alignItems: 'flex-end',
+		justifyContent: 'flex-end',
+		bottom: 12,
+		right: 12,
+		color: '#262426',
+		position: 'absolute',
+		fontSize: 12,
+		opacity: 0.75,
+	},
+}
+
+const _shareText = () => {
+	Share.share({
+		message: 'To Be The Best Build The Best | http://lab.myparklegends.com',
+		url: 'http://lab.myparklegends.com',
+		title: 'MyPark Legends - Player Lab',
+	}, {
+		dialogTitle: 'Share',
+		tintColor: '#1673c0'
+	})
+	.then(_showResult)
+	.catch((error) => console.log('error', {result: 'error: ' + error.message}));
+}
+
+const _showResult = (result) => {
+	if (result.action === Share.sharedAction) {
+		if (result.activityType) {
+			console.log('info', {result: 'shared with an activityType: ' + result.activityType});
+		} else {
+			console.log('info', {result: 'shared'});
+		}
+	} else if (result.action === Share.dismissedAction) {
+		console.log('info', {result: 'dismissed'});
+	}
+}
+
+const browseTo = (url) => {
+	var option = {
+		toolbarColor: '#3e355c',
+		enableUrlBarHiding: true,
+		showPageTitle: false,
+		enableDefaultShare: true,
+		animations: ANIMATIONS_FADE
+	}
+
+	CustomTabs.openURL(url, option).then((launched: boolean) => {
+		console.log(`Launched custom tabs: ${launched}`);
+	}).catch(err => {
+		console.error(err)
+	});
+}
+
+export const navigationView = (profile) => {
+	return (
+		<View style={[sStyles.sidebar]}>
+			{
+				profile && (
+					<View style={sStyles.sbProfileName}>
+						<Avatar
+							size={48}
+							image={
+								<Image
+									key={'summary_sbProfileImage'}
+									style={sStyles.sbProfileImage}
+									source={{ uri: profile.picture.data.url }}/>
+							}/>
+						<Text style={sStyles.sbProfileText}>{profile.name}</Text>
+					</View>
+				)
+			}
+			<View style={sStyles.menuItems}>
+				{[{
+					title: 'START',
+					subtitle: 'NEW BUILD',
+					action: (event) => {
+						Actions.builder();
+					}
+				},{
+					title: 'SEARCH',
+					subtitle: 'BUILDS',
+					action: (event) => {
+						Actions.browser({ comparator: false });
+					}
+				},{
+					title: 'COMPARE',
+					subtitle: 'BUILDS',
+					action: (event) => {
+						Actions.compare();
+					}
+				},{
+					title: 'BUILD',
+					subtitle: 'ELITE CREW',
+					disabled: true,
+					action: (event) => { }
+				},{
+					title: 'TERMS',
+					subtitle: 'AND CONDITIONS',
+					action: (event) => {
+						browseTo('https://app.termly.io/document/terms-of-use-for-website/63873dbc-c8fa-4b79-957e-8322e72c60a8')
+					}
+				}].map((menu, index) => {
+					return (
+						<View
+							key={'menu_' + index}
+							style={sStyles.menuItem}>
+							<TouchableNativeFeedback
+								onPress={menu.action}
+								disabled={menu.disabled}>
+								<View style={sStyles.menuButton}>
+									<Text style={[sStyles.menuHeader, { color: menu.disabled ? '#9d9d9d' : '#262426' }]}>{menu.title}</Text>
+									<Text style={[sStyles.menuLabel, { color: menu.disabled ? '#9d9d9d' : '#262426' }]}>{menu.subtitle}</Text>
+								</View>
+							</TouchableNativeFeedback>
+						</View>
+					);
+				})}
+			</View>
+			<View style={sStyles.sbFooter}>
+				<TouchableNativeFeedback
+					onPress={() => _shareText()}>
+					<View style={{ alignSelf: 'flex-start' }}>
+						<Icon
+							color={'#262426'}
+							name={'share'}
+							size={32}
+							style={sStyles.loginIcon} />
+					</View>
+				</TouchableNativeFeedback>
+				<TouchableNativeFeedback
+					onPress={() => browseTo('https://www.facebook.com/MyParkLegends/')}>
+					<View style={{ alignSelf: 'flex-start' }}>
+						<FontAwesome
+							color={"#262426"}
+							backgroundColor={"#3B5998"}
+							borderRadius={0}
+							name={"facebook"}
+							size={32}
+							style={sStyles.loginIcon} />
+					</View>
+				</TouchableNativeFeedback>
+				<TouchableNativeFeedback
+					onPress={() => browseTo('https://twitter.com/myparklegends')}>
+					<View style={{ alignSelf: 'flex-start' }}>
+						<FontAwesome
+							color={"#262426"}
+							backgroundColor={"#3B5998"}
+							borderRadius={0}
+							name={"twitter"}
+							size={32}
+							style={sStyles.loginIcon} />
+					</View>
+				</TouchableNativeFeedback>
+				<Text style={sStyles.versionText}>v0.1-beta</Text>
+			</View>
+		</View>
+	);
 }

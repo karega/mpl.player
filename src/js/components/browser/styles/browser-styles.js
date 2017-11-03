@@ -1,6 +1,8 @@
 /* browser-styles.js */
 
-import {Image, StyleSheet} from 'react-native';
+import {Dimensions, Image, StyleSheet} from 'react-native';
+
+const { width, height } = Dimensions.get('window');
 
 const browserStyles = StyleSheet.create({
 	container: {
@@ -9,10 +11,13 @@ const browserStyles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'column',
 		justifyContent: 'flex-start',
-		paddingBottom: 25,
+		paddingBottom: 5,
 	},
 	scrollContainer: {
-		flexDirection: 'column',
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		alignItems: 'center',
+		justifyContent: 'flex-start',
 	},
 	sidebar: {
 		alignItems: 'flex-start',
@@ -96,20 +101,15 @@ const browserStyles = StyleSheet.create({
 	},
 	headerContainer: {
 		backgroundColor: '#000',
-		height: 91,
-		maxHeight: 91,
+		width: width,
+		height: 90,
+		maxHeight: 90,
 		flex: 1,
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
-		marginTop: 25,
-	},
-	browserContainer: {
-		flex: 1,
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		alignItems: 'center',
-		justifyContent: 'flex-start',
+		paddingTop: 10,
+		paddingBottom: 10,
 	},
 	browserLocalResults: {
 		color: '#fff',
@@ -119,7 +119,6 @@ const browserStyles = StyleSheet.create({
 		padding: 10,
 	},
 	buildItem: {
-		flex: 1,
 		flexDirection: 'column',
 		alignItems: 'flex-start',
 		justifyContent: 'flex-start',

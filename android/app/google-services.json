@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "256442131692",
+    "firebase_url": "https://mypark-legends-player-lab.firebaseio.com",
+    "project_id": "mypark-legends-player-lab",
+    "storage_bucket": "mypark-legends-player-lab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:256442131692:android:77e5c51c3ddffbf2",
+        "android_client_info": {
+          "package_name": "com.mplplayer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "256442131692-43c3sjqedk22dci8qfdpjgr8guv33csg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mplplayer",
+            "certificate_hash": "25b353cda6dec29e4fd6156fa0b586e2cdf81ddb"
+          }
+        },
+        {
+          "client_id": "256442131692-4d6omt0nvmg4lc6b1j9gj6didalkhcqn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_Tuone7o54KfdQg70L7W9DGNaIYjSwok"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "256442131692-4d6omt0nvmg4lc6b1j9gj6didalkhcqn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

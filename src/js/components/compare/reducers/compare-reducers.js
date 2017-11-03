@@ -29,11 +29,14 @@ const compare = function (compare: Immutable.Map<string, any>, action: Object): 
 		case REMOVE_BUILD:
 			var	_compare = compare;
 			var _builds = _compare.get('builds');
+			var _current = null;
 
 			_builds = _builds.delete(action.index);
-			console.log(_builds,_builds)
+
+			_current = (_current == null) ? _builds.last() : _current;
+
 			_compare = _compare.set('builds', _builds);
-			_compare = _compare.set('current', _builds.last());
+			_compare = _compare.set('current', _current);
 
 			return _compare;
 

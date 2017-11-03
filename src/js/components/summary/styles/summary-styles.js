@@ -11,8 +11,8 @@ const summaryStyles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'column',
 		backgroundColor: '#000',
-		paddingBottom: 25,
 		position: 'relative',
+		paddingBottom: 5,
 	},
 	homeToolbar: {
 		alignSelf: 'stretch',
@@ -22,6 +22,7 @@ const summaryStyles = StyleSheet.create({
 	scrollContainer: {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
+		width: width,
 	},
 	summaryHeader: {
 		fontSize: 24,
@@ -103,8 +104,8 @@ const summaryStyles = StyleSheet.create({
 	},
 	menuButton: {
 		position: 'absolute',
-		marginTop: 10,
-		marginLeft: 10,
+		top: 10,
+		left: 10,
 	},
 	menuItems: {
 		flex: 6,
@@ -159,12 +160,15 @@ const summaryStyles = StyleSheet.create({
 	},
 	headerContainer: {
 		backgroundColor: '#000',
-		height: 91,
-		maxHeight: 91,
+		width: width,
+		height: 90,
+		maxHeight: 90,
 		flex: 1,
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
+		paddingTop: 10,
+		paddingBottom: 10,
 	},
 	contentContainer: {
 		flex: 2,
@@ -174,7 +178,8 @@ const summaryStyles = StyleSheet.create({
 	playerBuildContainer: {
 		flex: 1,
 		flexDirection: 'row',
-		justifyContent: 'center',
+		justifyContent: 'flex-start',
+		alignItems: 'flex-start',
 	},
 	itemHeader: {
 		fontSize: 14,
@@ -186,17 +191,15 @@ const summaryStyles = StyleSheet.create({
 		paddingBottom: 4,
 	},
 	skillContainer: {
-		flex: 0.25,
 		flexDirection: 'column',
 	},
 	skillItem: {
-		marginBottom: 10,
+		marginBottom: 5,
 	},
 	skillImage: {
 		alignItems: 'center',
 		justifyContent: 'center',
 		alignSelf: 'center',
-		flex: 1,
 	},
 	skillText: {
 		color: '#fff',
@@ -221,18 +224,15 @@ const summaryStyles = StyleSheet.create({
 		textAlignVertical: 'center'
 	},
 	playerContainer: {
-		flex: 0.,
+		justifyContent: 'flex-start',
+		alignItems: 'flex-start',
 		position: 'relative',
 	},
 	buildAvatar: {
 		alignItems: 'flex-start',
-		justifyContent: 'center',
-		alignSelf: 'center',
-		flex: 0.5,
 		opacity: 0.25,
 	},
 	badgeContainer: {
-		flex: 0.25,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
@@ -241,8 +241,8 @@ const summaryStyles = StyleSheet.create({
 	},
 	badgeItem: {
 		position: 'relative',
-		height: 72,
-		marginBottom: 5,
+		height: 82,
+		marginBottom: 2.5,
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
@@ -294,7 +294,7 @@ const summaryStyles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'row',
 		alignItems: 'stretch',
-		justifyContent: 'center',
+		justifyContent: 'flex-start',
 		flexWrap: 'wrap',
 		paddingTop: 20,
 	},
@@ -303,12 +303,11 @@ const summaryStyles = StyleSheet.create({
 		flexDirection: 'column',
 		alignItems: 'flex-start',
 		justifyContent: 'flex-start',
-		paddingTop: 20,
 	},
 	filterContainer: {
 		flex: 1,
 		flexDirection: 'row',
-		alignItems: 'stretch',
+		alignItems: 'flex-start',
 		justifyContent: 'center',
 		flexWrap: 'nowrap',
 		alignSelf: 'flex-start',

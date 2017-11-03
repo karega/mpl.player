@@ -4,6 +4,7 @@
 import Immutable from 'immutable';
 import React, {PropTypes} from 'react';
 import {
+	Alert,
 	Dimensions,
 	Image,
 	RefreshControl,
@@ -17,14 +18,12 @@ import {
 	View
 } from 'react-native';
 import SideMenu from 'react-native-side-menu';
-import {
-	CustomTabs,
-	ANIMATIONS_FADE,
-	ANIMATIONS_SLIDE
-} from 'react-native-custom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Actions} from 'react-native-router-flux';
 import Carousel from 'react-native-carousel-view';
+
+/** Global Module Dependencies **/
+import {navigationView} from './../../../config/constants';
 
 /** Internal Module Dependencies **/
 import Overview from './../../summary/elements/overview';
@@ -43,7 +42,7 @@ type CompareStateTypes = {
 
 const { width, height } = Dimensions.get('window');
 const adjWidth = width - 40;
-const adjHeight = height - 91;
+const adjHeight = height - 115;
 
 class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTypes> {
 	props: ComparePropTypes;
@@ -59,39 +58,23 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 			drawer: !(props.builds) && !(props.builds && props.builds.length > 0)
 		}
 
-		this.browseTo = this.browseTo.bind(this);
 		this.getComparator = this.getComparator.bind(this);
 		this.toggleMenu = this.toggleMenu.bind(this);
-	}
-
-	browseTo(url) {
-		var option = {
-			toolbarColor: '#3e355c',
-			enableUrlBarHiding: true,
-			showPageTitle: false,
-			enableDefaultShare: true,
-			animations: ANIMATIONS_FADE
-		}
-
-		CustomTabs.openURL(url, option).then((launched: boolean) => {
-			console.log(`Launched custom tabs: ${launched}`);
-		}).catch(error => {
-			console.error(error);
-		});
 	}
 
 	getComparator(ff) {
 		const mplIcon = require('./../../../assets/mplplayer.png');
 		const _fac = ((100 / (this.props.builds.size === 4 ? 4 : this.props.builds.size === 3 ? 4 : (this.props.builds.size * 2))) / 100);
 
+		console.log('getCompare - builds', this.props.builds)
 		switch (ff) {
 			case 'large':
 				var compareSplash = require('./../../../assets/compare-splash.png');
 
 				return (
-					<View style={{ flex: 1, flexDirection: 'column' }}>
+					<View style={{ justifyContent: 'space-between', flexDirection: 'column', height: adjHeight, width: adjWidth }}>
 						<View style={cStyles.compareSplashContainer}>
-							<Image key={'lrg_compareSplash'} source={compareSplash} style={cStyles.compareSplash} />
+							<Image key={'lrg_compareSplash'} source={compareSplash} style={[cStyles.compareSplash, { marginTop: 25, width: adjWidth, height: adjWidth }]} />
 						</View>
 						<View style={cStyles.contentContainer}>
 							<TouchableNativeFeedback
@@ -123,7 +106,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 						indicatorSize={20}
 						indicatorColor='#BF1725'>
 						<View style={cStyles.comparatorTable}>
-							<ScrollView contentContainerStyle={[cStyles.scrollContainer, {flexDirection: 'row'}]} refreshControl={null}>
+							<ScrollView contentContainerStyle={[cStyles.scrollContainer, { flexDirection: 'row', width: adjWidth * 0.5 }]} refreshControl={null}>
 								{
 									this.props.builds.map((build, index) => {
 										return (
@@ -131,14 +114,26 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 												key={'compare_build_' + index}
 												style={[cStyles.removeBuildButton]}>
 												<TouchableHighlight
-													onLongPress={() => this.props.compareRemoveBuild(index)}>
+													onLongPress={() => {
+														Alert.alert(
+															'Remove Build',
+															'Are you sure?',
+															[
+																{text: 'Cancel', style: 'cancel'},
+																{text: 'Yes', onPress: () => {
+																	this.props.compareRemoveBuild(index);
+																}},
+															],
+															{ cancelable: true }
+														)
+													}}>
 													<View
-														style={{flex: 1}}>
+														style={{flex: 1, height: adjHeight * 1.5, alignItems: 'flex-end' }}>
 														<Overview
 															comparator={true}
 															{...this.props}
-															height={(adjHeight * 1.5)}
-															width={adjWidth * _fac}
+															height={(adjHeight)}
+															width={adjWidth * 0.5}
 															badges={[build.badges]}
 															current={build} />
 													</View>
@@ -150,9 +145,9 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 							</ScrollView>
 							<View
 								key={'compare_add_build'}
-								style={{ flex: 1, flexDirection: 'column', height: adjHeight, width: (adjWidth * _fac)  }}>
+								style={{ justifyContent: 'space-between', flexDirection: 'column', height: adjHeight, width: this.props.builds.size == 2 ? (adjWidth * 0.5) : (adjWidth * _fac) }}>
 								<View style={cStyles.compareSplashContainer}>
-									<Image key={'med_ovr_compareSplash'} source={compareSplash} style={[cStyles.compareSplash]} />
+									<Image key={'med_ovr_compareSplash'} source={compareSplash} style={[cStyles.compareSplash, { marginTop:50, width: 160, height: 284 }]} />
 								</View>
 								<View style={cStyles.contentContainer}>
 									<TouchableNativeFeedback
@@ -171,7 +166,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 							</View>
 						</View>
 						<View style={cStyles.comparatorTable}>
-							<ScrollView contentContainerStyle={[cStyles.scrollContainer, { flexDirection: 'row', justifyContent: 'center' }]} refreshControl={null}>
+							<ScrollView contentContainerStyle={[cStyles.scrollContainer, { flexDirection: 'row', width: adjWidth * 0.5 }]} refreshControl={null}>
 								{
 									this.props.builds.map((build, index) => {
 										return (
@@ -179,17 +174,29 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 												key={'compare_build_' + index}
 												style={cStyles.removeBuildButton}>
 												<TouchableHighlight
-													onLongPress={() => this.props.compareRemoveBuild(index)}>
+													onLongPress={() => {
+														Alert.alert(
+															'Remove Build',
+															'Are you sure?',
+															[
+																{text: 'Cancel', style: 'cancel'},
+																{text: 'Yes', onPress: () => {
+																	this.props.compareRemoveBuild(index);
+																}},
+															],
+															{ cancelable: false }
+														)
+													}}>
 													<View
-														style={{ flex: 1, height: 3060, justifyContent: 'center' }}>
-														<View style={[cStyles.skillItem, { width: adjWidth * _fac }]}>
+														style={{ height: 3160, justifyContent: 'center' }}>
+														<View style={[cStyles.skillItem, { width: adjWidth * 0.5 }]}>
 															<Text style={cStyles.positionText}>{build.bio.position.toUpperCase()}</Text>
 														</View>
 														<Caps
 															comparator={true}
 															{...this.props}
-															height={3060}
-															width={adjWidth * _fac}
+															height={3160}
+															width={adjWidth * 0.5}
 															current={build} />
 													</View>
 												</TouchableHighlight>
@@ -202,9 +209,9 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 								this.props.builds.size < 4 && (
 									<View
 										key={'compare_add_build'}
-										style={{ flex: 1, flexDirection: 'column', height: adjHeight, width: (adjWidth * _fac) }}>
+										style={{ justifyContent: 'space-between', flexDirection: 'column', height: adjHeight, width: (adjWidth * 0.5) }}>
 										<View style={cStyles.compareSplashContainer}>
-											<Image key={'med_cap_compareSplash'} source={compareSplash} style={[cStyles.compareSplash, { width: (adjWidth * _fac) }]} />
+											<Image key={'med_cap_compareSplash'} source={compareSplash} style={[cStyles.compareSplash, { marginTop:50, width: 160, height: 284 }]} />
 										</View>
 										<View style={cStyles.contentContainer}>
 											<TouchableNativeFeedback
@@ -228,6 +235,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 				);
 			case 'small':
 				var compareSplash = require('./../../../assets/compare-splash-small.png');
+				var compareBanner = require('./../../../assets/compare-banner.png');
 
 				return (
 					<Carousel
@@ -248,9 +256,22 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 												key={'compare_build_' + index}
 												style={cStyles.removeBuildButton}>
 												<TouchableHighlight
-													onLongPress={() => this.props.compareRemoveBuild(index)}>
+													onLongPress={() => {
+														Alert.alert(
+															'Remove Build',
+															'Are you sure?',
+															[
+																{text: 'Cancel', style: 'cancel'},
+																{text: 'Yes', onPress: () => {
+																	console.log('index', index)
+																	this.props.compareRemoveBuild(index);
+																}},
+															],
+															{ cancelable: false }
+														)
+													}}>
 													<View
-														style={{flex: (this.props.builds.size * 0.5), width: adjWidth * _fac}}>
+														style={{flex: (this.props.builds.size * 0.5), width: adjWidth * _fac, paddingTop: 20}}>
 														<Overview
 															comparator={true}
 															{...this.props}
@@ -269,9 +290,11 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 								this.props.builds.size < 4 && (
 									<View
 										key={'compare_add_build'}
-										style={{ flex: this.props.builds.size === 3 ? 0.5 : 1, flexDirection: 'column', height: adjHeight, width: (adjWidth * _fac) }}>
+										style={{ justifyContent: 'space-between', flexDirection: 'column', height: adjHeight, width: this.props.builds.size == 2 ? (adjWidth * 0.5) : (adjWidth * _fac) }}>
 										<View style={cStyles.compareSplashContainer}>
-											<Image key={'sm_ovr_compareSplash'} source={compareSplash} style={[cStyles.compareSplash]} />
+											{ this.props.builds.size == 2 && <Image key={'sm_ovr_compareSplash'} source={compareSplash} style={[cStyles.compareSplash, { marginTop: 50, height: (adjWidth * 0.5) * 1.77, width: (adjWidth * 0.5) }]} /> }
+											{ this.props.builds.size != 2 && <Image key={'sm_ovr_compareSplash-2'} source={compareBanner} style={[cStyles.compareSplash, { marginTop: 50, opacity: 1, alignSelf: 'flex-end', width: 80, height: 160 }]} /> }
+											{ this.props.builds.size != 2 && <Image key={'sm_ovr_compareSplash'} source={compareSplash} style={[cStyles.compareSplash, { height: (adjWidth * _fac) * 1.77, width: (adjWidth * _fac) }]} /> }
 										</View>
 										<View style={cStyles.contentContainer}>
 											<TouchableNativeFeedback
@@ -288,7 +311,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 							}
 						</View>
 						<View style={cStyles.comparatorTable}>
-							<ScrollView contentContainerStyle={[cStyles.scrollContainer, { flexDirection: 'row' }]} refreshControl={null}>
+							<ScrollView contentContainerStyle={[cStyles.scrollContainer, {flexDirection: 'row', width: (adjWidth * (this.props.builds.size * _fac))}]} refreshControl={null}>
 								{
 									this.props.builds.map((build, index) => {
 										return (
@@ -296,16 +319,29 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 												key={'compare_build_' + index}
 												style={cStyles.removeBuildButton}>
 												<TouchableHighlight
-													onLongPress={() => this.props.compareRemoveBuild(index)}>
+													onLongPress={() => {
+														Alert.alert(
+															'Remove Build',
+															'Are you sure?',
+															[
+																{text: 'Cancel', style: 'cancel'},
+																{text: 'Yes', onPress: () => {
+																	console.log('index', index)
+																	this.props.compareRemoveBuild(index);
+																}},
+															],
+															{ cancelable: false }
+														)
+													}}>
 													<View
-														style={{ flex: (this.props.builds.size * 0.5), height: 3060, justifyContent: 'center' }}>
+														style={{ width: adjWidth * _fac, height: 3160, justifyContent: 'center' }}>
 														<View style={[cStyles.skillItem, { width: adjWidth * _fac }]}>
 															<Text style={cStyles.positionText}>{build.bio.position.toUpperCase()}</Text>
 														</View>
 														<Caps
 															comparator={true}
 															{...this.props}
-															height={3060}
+															height={3160}
 															width={adjWidth * _fac}
 															current={build} />
 													</View>
@@ -319,9 +355,11 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 								this.props.builds.size < 4 && (
 									<View
 										key={'compare_add_build'}
-										style={{ flex: this.props.builds.size === 3 ? 0.5 : 1, flexDirection: 'column', height: adjHeight, width: (adjWidth * _fac) }}>
+										style={{ justifyContent: 'space-between', flexDirection: 'column', height: adjHeight, width: this.props.builds.size == 2 ? (adjWidth * 0.5) : (adjWidth * _fac) }}>
 										<View style={cStyles.compareSplashContainer}>
-											<Image key={'sm_ovr_compareSplash'} source={compareSplash} style={[cStyles.compareSplash, { width: (adjWidth * _fac) }]} />
+											{ this.props.builds.size == 2 && <Image key={'sm_ovr_compareSplash'} source={compareSplash} style={[cStyles.compareSplash, { marginTop: 50, height: (adjWidth * 0.5) * 1.77, width: (adjWidth * 0.5) }]} /> }
+											{ this.props.builds.size != 2 && <Image key={'sm_ovr_compareSplash-2'} source={compareBanner} style={[cStyles.compareSplash, { marginTop: 50, opacity: 1, alignSelf: 'flex-end', width: 80, height: 160 }]} /> }
+											{ this.props.builds.size != 2 && <Image key={'sm_ovr_compareSplash'} source={compareSplash} style={[cStyles.compareSplash, { height: (adjWidth * _fac) * 1.77, width: (adjWidth * _fac) }]} /> }
 										</View>
 										<View style={cStyles.contentContainer}>
 											<TouchableNativeFeedback
@@ -351,71 +389,9 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 	}
 
 	render(): React.Element {
-		const SKILLS = this.props.current ? this.props.archetype : null;
-
-		var navigationView = (
-			<View style={[cStyles.sidebar]}>
-				{
-					this.props.profile && (
-						<View style={cStyles.sbProfileName}>
-							<Avatar size={48} image={
-								<Image
-									key={'cmp_sbProfileImage'}
-									style={cStyles.sbProfileImage}
-									source={{ uri: this.props.profile.picture.data.url }}/> }/>
-							<Text style={cStyles.sbProfileText}>{this.props.profile.name}</Text>
-						</View>
-					)
-				}
-				<View style={cStyles.menuItems}>
-					{[{
-						title: 'START',
-						subtitle: 'NEW BUILD',
-						action: (event) => {
-							Actions.builder();
-						}
-					},{
-						title: 'SEARCH',
-						subtitle: 'BUILDS',
-						action: (event) => {
-							Actions.browser();
-						}
-					},{
-						title: 'COMPARE',
-						subtitle: 'BUILDS',
-						action: (event) => {
-							Actions.compare();
-						}
-					},{
-						title: 'TERMS',
-						subtitle: 'AND CONDITIONS',
-						action: (event) => {
-							this.browseTo('https://app.termly.io/document/terms-of-use-for-website/63873dbc-c8fa-4b79-957e-8322e72c60a8')
-						}
-					}].map((menu, index) => {
-						return (
-							<View
-								key={'menu_' + index}
-								style={cStyles.menuItem}>
-								<TouchableNativeFeedback onPress={menu.action}>
-									<View>
-										<Text style={cStyles.menuHeader}>{menu.title}</Text>
-										<Text style={cStyles.menuLabel}>{menu.subtitle}</Text>
-									</View>
-								</TouchableNativeFeedback>
-							</View>
-						);
-					})}
-				</View>
-				<View style={cStyles.sbFooter}>
-					<Text style={cStyles.versionText}>v0.0.1-alpha</Text>
-				</View>
-			</View>
-		);
-
 		return (
 			<SideMenu
-				menu={navigationView}
+				menu={navigationView(this.props.profile)}
 				isOpen={this.state.drawer}
 				onChange={this.toggleMenu}
 				openMenuOffset={width * 0.8}

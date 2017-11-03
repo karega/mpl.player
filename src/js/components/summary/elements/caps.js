@@ -44,10 +44,10 @@ class Caps extends React.PureComponent<any, CapsPropTypes, CapsStateTypes> {
 	}
 
 	render() {
-		const COMPARE = !this.props.comparator;
+		const COMPARE = this.props.comparator;
 
 		const getCaps = () => {
-			var pbcWidth = COMPARE ? width / 3.177 : this.props.width;
+			var pbcWidth = !COMPARE ? width / 3.177 : this.props.width;
 
 			return (
 				this.state.build && Object.keys(this.state.build).map((buildKey, index) => {
@@ -86,9 +86,9 @@ class Caps extends React.PureComponent<any, CapsPropTypes, CapsStateTypes> {
 		}
 
 		return (
-			<View style={[sStyles.capsContainer, { width: COMPARE ? width : this.props.width, height: height - 160, paddingTop: COMPARE ? 20 : 0 }]}>
-				{ COMPARE && (
-					<View style={[sStyles.filterContainer, { width: COMPARE ? width : width - 40, height: 100, alignSelf: 'center', marginTop: -40 }]}>
+			<View style={[sStyles.capsContainer, { width: !COMPARE ? width : this.props.width, height: height - 115, paddingTop: !COMPARE ? 20 : 0 }]}>
+				{ !COMPARE && (
+					<View style={[sStyles.filterContainer, { width: COMPARE ? width : width - 40, maxWidth: width - 40, height: 100, maxHeight: 100, alignSelf: 'center', marginTop: -40 }]}>
 						<View
 							key={'cap_Height'}
 							style={[
@@ -191,14 +191,14 @@ class Caps extends React.PureComponent<any, CapsPropTypes, CapsStateTypes> {
 					</View>
 				)}
 				{
-					COMPARE && (
+					!COMPARE && (
 						<ScrollView contentContainerStyle={sStyles.scrollContainer}>
 							{ getCaps() }
 						</ScrollView>
 					)
 				}
 				{
-					!COMPARE && (
+					COMPARE && (
 						<View style={[sStyles.scrollContainer, { flexDirection: 'column' }]}>
 							{ getCaps() }
 						</View>

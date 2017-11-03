@@ -1,6 +1,7 @@
 /* login-actions.js */
 
 /** External Module Dependencies **/
+import * as firebase from 'firebase';
 import {Actions} from 'react-native-router-flux';
 
 /** Global Module Dependencies **/
@@ -18,43 +19,19 @@ export function login(): Object {
 
 export function register(profile: Object): Object {
 	return function (dispatch) {
-		console.log('debug', 'Logged in! Attempting to register @ ' + config.getRegistrationURL());
+		console.log('debug', 'Logged in! Attempting to register');
 		console.log('info', 'Calling with params. ', JSON.stringify(profile));
 
-		fetch(config.getRegistrationURL(), {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(profile)
-		})
-		.then((registrationResponse) => {
-			return registrationResponse.json();
-		})
-		.then((registrationResponse) => {
-			console.log('info', registrationResponse);
+		const credential = firebase.auth.FacebookAuthProvider.credential(profile.credentials.token);
 
-			if (registrationResponse && registrationResponse.success) {
-				console.log('success', registrationResponse);
-
-				dispatch(registerLogin(profile));
-			}
-			else if (registrationResponse && !registrationResponse.success) {
-				console.log('failed', registrationResponse.status);
-
-				switch (registrationResponse.code) {
-					case ERROR_CODE_REGISTERED:
-						dispatch(registerLogin(profile));
-
-						break;
-					default:
-						break;
-				}
-			}
+		firebase.auth()
+		.signInWithCredential(credential)
+		.then((res) => {
+			dispatch(registerLogin(profile));
+			console.log('info', 'Account accepted');
 		})
 		.catch((error) => {
-			console.log('error exception', error);
+			console.log('error', error)
 		});
 	};
 }

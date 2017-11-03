@@ -2,6 +2,8 @@
 
 import {Dimensions, Image, StyleSheet} from 'react-native';
 
+const { width, height } = Dimensions.get('window');
+
 const compareStyles = StyleSheet.create({
 	container: {
 		alignItems: 'center',
@@ -21,10 +23,8 @@ const compareStyles = StyleSheet.create({
 	},
 	compareSplash: {
 		alignItems: 'flex-start',
-		resizeMode: Image.resizeMode.contain,
 		justifyContent: 'flex-start',
 		alignSelf: 'center',
-		height: 340,
 		opacity: 0.5,
 	},
 	sidebar: {
@@ -109,7 +109,6 @@ const compareStyles = StyleSheet.create({
 	},
 	addArchetypeIcon: {
 		alignItems: 'flex-start',
-		resizeMode: Image.resizeMode.contain,
 		justifyContent: 'flex-start',
 		alignSelf: 'center',
 	},
@@ -133,17 +132,23 @@ const compareStyles = StyleSheet.create({
 	},
 	headerContainer: {
 		backgroundColor: '#000',
-		height: 91,
-		maxHeight: 91,
+		width: width,
+		height: 90,
+		maxHeight: 90,
 		flex: 1,
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
+		paddingTop: 10,
+		paddingBottom: 10,
 	},
 	contentContainer: {
-		flex: 2,
 		flexDirection: 'row',
 		backgroundColor: '#000',
+		height: 72,
+		alignSelf: 'flex-end',
+		justifyContent: 'flex-end',
+		alignItems: 'flex-end'
 	},
 	comparatorTable: {
 		alignItems: 'flex-start',

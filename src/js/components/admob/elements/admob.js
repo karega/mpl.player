@@ -12,6 +12,7 @@ import aStyles from './../styles/admob-styles';
 
 type AdmobPropTypes = {
 	session: Immutable.Map<string, any>;
+	admob: Immutable.Map<string, any>;
 };
 
 type AdmobStateTypes = {
@@ -33,9 +34,8 @@ class Admob extends React.PureComponent<any, AdmobPropTypes, AdmobStateTypes> {
 	}
 
 	componentDidMount() {
-		AdMobRewarded.setTestDeviceID('EMULATOR');
-
-		AdMobRewarded.setAdUnitID('ca-app-pub-0366816116578381/2249963599');
+		// AdMobRewarded.setTestDeviceID('EMULATOR');
+		AdMobRewarded.setAdUnitID(this.props.admob.getIn([this.props.admob.get('current'), 'unit', 'builder']));
 
 		AdMobRewarded.addEventListener('rewardedVideoDidRewardUser', () => {
 			this.setState({ loaded: false });
@@ -45,7 +45,11 @@ class Admob extends React.PureComponent<any, AdmobPropTypes, AdmobStateTypes> {
 			this.setState({ loaded: true }, () => console.log('rewardedVideoDidLoad'));
 		});
 
-		AdMobRewarded.addEventListener('rewardedVideoDidFailToLoad', (error) => console.log('rewardedVideoDidFailToLoad', error));
+		AdMobRewarded.addEventListener('rewardedVideoDidFailToLoad', (error) => {
+			console.log('rewardedVideoDidFailToLoad', error);
+
+			Actions.summary();
+		});
 
 		AdMobRewarded.addEventListener('rewardedVideoDidOpen', () => console.log('rewardedVideoDidOpen'));
 

@@ -23,8 +23,10 @@ import {
 	ANIMATIONS_SLIDE
 } from 'react-native-custom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {Actions} from 'react-native-router-flux';
 import Carousel from 'react-native-carousel-view';
+
+/** Global Module Dependencies **/
+import {navigationView} from './../../../config/constants';
 
 /** Internal Module Dependencies **/
 import Overview from './overview';
@@ -32,7 +34,6 @@ import Badges from './badges';
 import Caps from './caps';
 import Attributes from './attributes';
 import sStyles from './../styles/summary-styles';
-import {Avatar} from './../../../lib/react-native-material-design';
 
 type SummaryPropTypes = {
 	summary: Immutable.Map<string, any>;
@@ -59,7 +60,6 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 			drawer: isBuilds
 		}
 
-		this.browseTo = this.browseTo.bind(this);
 		this.checkBuilds = this.checkBuilds.bind(this);
 		this.toggleMenu = this.toggleMenu.bind(this);
 	}
@@ -76,22 +76,6 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 		this.checkBuilds();
 	}
 
-	browseTo(url) {
-		var option = {
-			toolbarColor: '#3e355c',
-			enableUrlBarHiding: true,
-			showPageTitle: false,
-			enableDefaultShare: true,
-			animations: ANIMATIONS_FADE
-		}
-
-		CustomTabs.openURL(url, option).then((launched: boolean) => {
-			console.log(`Launched custom tabs: ${launched}`);
-		}).catch(err => {
-			console.error(err)
-		});
-	}
-
 	checkBuilds() {
 		if (this.props.builds.size === 0) {
 			this.toggleMenu(true)
@@ -106,95 +90,36 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 
 	render(): React.Element {
 		const ARCHETYPE = (this.props.current && this.props.current.archetype) ? this.props.current.archetype : null;
-
-		var navigationView = (
-			<View style={[sStyles.sidebar]}>
-				{
-					this.props.profile && (
-						<View style={sStyles.sbProfileName}>
-							<Avatar
-								size={48}
-								image={
-									<Image
-										key={'summary_sbProfileImage'}
-										style={sStyles.sbProfileImage}
-										source={{ uri: this.props.profile.picture.data.url }}/>
-								}/>
-							<Text style={sStyles.sbProfileText}>{this.props.profile.name}</Text>
-						</View>
-					)
-				}
-				<View style={sStyles.menuItems}>
-					{[{
-						title: 'START',
-						subtitle: 'NEW BUILD',
-						action: (event) => {
-							Actions.builder();
-						}
-					},{
-						title: 'SEARCH',
-						subtitle: 'BUILDS',
-						action: (event) => {
-							Actions.browser();
-						}
-					},{
-						title: 'COMPARE',
-						subtitle: 'BUILDS',
-						action: (event) => {
-							Actions.compare();
-						}
-					},{
-						title: 'TERMS',
-						subtitle: 'AND CONDITIONS',
-						action: (event) => {
-							this.browseTo('https://app.termly.io/document/terms-of-use-for-website/63873dbc-c8fa-4b79-957e-8322e72c60a8')
-						}
-					}].map((menu, index) => {
-						return (
-							<View
-								key={'menu_' + index}
-								style={sStyles.menuItem}>
-								<TouchableNativeFeedback onPress={menu.action}>
-									<View>
-										<Text style={sStyles.menuHeader}>{menu.title}</Text>
-										<Text style={sStyles.menuLabel}>{menu.subtitle}</Text>
-									</View>
-								</TouchableNativeFeedback>
-							</View>
-						);
-					})}
-				</View>
-				<View style={sStyles.sbFooter}>
-					<Text style={sStyles.versionText}>v0.0.1-alpha</Text>
-				</View>
-			</View>
-		);
+		const sideMenuButton = (drawer) => {
+			return (
+				<TouchableNativeFeedback
+					onPress={() => this.toggleMenu(!drawer)}>
+					<View style={sStyles.menuButton}>
+						{drawer ? (
+							<Icon
+								color={'#fff'}
+								name={'close'}
+								size={32} />
+						) : (
+							<Icon
+								color={'#fff'}
+								name={'menu'}
+								size={32} />
+						)}
+					</View>
+				</TouchableNativeFeedback>
+			)
+		}
 
 		return (
 			<SideMenu
-				menu={navigationView}
+				menu={navigationView(this.props.profile)}
 				isOpen={this.state.drawer}
 				onChange={this.toggleMenu}
 				openMenuOffset={width * 0.8}
 				disableGestures={true}
 				autoClosing={false}>
 				<View style={[sStyles.container, { height: height, width: width }]}>
-					<TouchableNativeFeedback
-						onPress={() => this.toggleMenu(!this.state.drawer)}>
-						<View style={sStyles.menuButton}>
-							{this.state.drawer ? (
-								<Icon
-									color={'#fff'}
-									name={'close'}
-									size={32} />
-							) : (
-								<Icon
-									color={'#fff'}
-									name={'menu'}
-									size={32} />
-							)}
-						</View>
-					</TouchableNativeFeedback>
 					{
 						(this.props.builds.size > 0 && ARCHETYPE) && (
 							<View style={sStyles.headerContainer}>
@@ -205,28 +130,30 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 					}
 					{
 						(this.props.builds.size > 0) && (
-							<Carousel
-								initialPage={0}
-								animate={false}
-								width={width}
-								height={(height - 140)}
-								delay={2000}
-								indicatorAtBottom={true}
-								indicatorSize={20}
-								indicatorColor='#BF1725'>
-								<View style={[sStyles.summaryContainer, { height: height }]}>
-									<Overview height={height - 160} width={width} {...this.props} />
-								</View>
-								<View style={[sStyles.summaryContainer, { height: height }]}>
-									<Badges {...this.props} />
-								</View>
-								<View style={[sStyles.summaryContainer, { height: height }]}>
-									<Caps {...this.props} />
-								</View>
-								{/*<View style={[sStyles.summaryContainer, { height: height }]}>
-									<Attributes {...this.props} />
-								</View>*/}
-							</Carousel>
+							<View style={{ flex: 1, height: height - 115, width: width }}>
+								<Carousel
+									initialPage={0}
+									animate={false}
+									width={width}
+									height={(height - 115)}
+									delay={2000}
+									indicatorAtBottom={true}
+									indicatorSize={20}
+									indicatorColor='#BF1725'>
+									<View style={[sStyles.summaryContainer, { alignSelf: 'flex-end', height: height }]}>
+										<Overview height={height - 115} width={width} {...this.props} comparator={false} />
+									</View>
+									<View style={[sStyles.summaryContainer, { alignSelf: 'flex-end', height: height }]}>
+										<Badges r{...this.props} />
+									</View>
+									<View style={[sStyles.summaryContainer, { alignSelf: 'flex-end', height: height }]}>
+										<Caps {...this.props} />
+									</View>
+									{/*<View style={[sStyles.summaryContainer, { height: height }]}>
+										<Attributes {...this.props} />
+									</View>*/}
+								</Carousel>
+							</View>
 						)
 					}
 					{
@@ -237,6 +164,7 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 							</View>
 						)
 					}
+					{ sideMenuButton(this.state.drawer) }
 				</View>
 			</SideMenu>
 		);

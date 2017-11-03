@@ -9,6 +9,7 @@ import modals from './../components/modal/reducers/modal-reducers';
 import routes from './../components/route/reducers/routes-reducers';
 import session from './../components/session/reducers/session-reducers';
 import builder from './../components/builder/reducers/builder-reducers';
+import admob from './../components/admob/reducers/admob-reducers';
 
 export default function reducer(state: Object = appInitialState, action: Object): Object {
 	return {
@@ -19,5 +20,6 @@ export default function reducer(state: Object = appInitialState, action: Object)
 		scene: routes(state.scene, action),
 		session: session(state.session, action),
 		builder: builder(state.builder, action),
+		admob: admob(state.admob, action),
 	};
 }

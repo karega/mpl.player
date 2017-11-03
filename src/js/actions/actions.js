@@ -20,5 +20,9 @@ export const SET_CURRENT = "set_current";
 export const ADD_BUILD = "add_build";
 export const REMOVE_BUILD = "remove_build";
 
+/** Browser Actions **/
+export const DROP_BUILD = "drop_build";
+
 /** Admob Actions **/
 export const SET_REWARDS = "set_rewards";
+export const UPDATE_AD_UNITS = "update_ad_units";

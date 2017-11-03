@@ -37,78 +37,77 @@ class Overview extends React.PureComponent<any, OverviewPropTypes, OverviewState
 	render() {
 		const BIO = Object.assign({ }, (this.props.current && this.props.current.skills) ? this.props.current.skills : null, (this.props.current && this.props.current.bio) ? this.props.current.bio : null)
 		const SKILLS = (this.props.current && this.props.badges[0]) ? this.props.badges[0] : null;
-		const COMPARE = !this.props.comparator;
+		const COMPARE = this.props.comparator;
 
 		const buildAvatar = require('./../../../assets/mplb-avatar.png');
-		const adjHeight = height - 160;
-		const pbcHeight = COMPARE ? adjHeight : this.props.height;
+		const pbcHeight = this.props.height;
 		const pbcWidth = this.props.width;
-		const badgeWidth = { width: pbcWidth / 4, height: 64, maxWidth: pbcWidth, maxHeight: 64 };
+		const badgeWidth = { width: pbcWidth / 8, height: 64, maxWidth: pbcWidth / 8, maxHeight: 64 };
 
 		return (
-			<View style={[sStyles.playerBuildContainer, { maxWidth: pbcWidth, maxHeight: pbcHeight , flexDirection: !COMPARE ? 'column' : 'row' }]}>
+			<View style={[sStyles.playerBuildContainer, { maxWidth: pbcWidth, maxHeight: pbcHeight , flexDirection: COMPARE ? 'column' : 'row' }]}>
 				{ BIO && (
-					<View style={[sStyles.skillContainer, { maxWidth: pbcWidth }]}>
+					<View style={[sStyles.skillContainer, { width: COMPARE ? pbcWidth : pbcWidth / 4, maxWidth: COMPARE ? pbcWidth : pbcWidth / 4 }]}>
 						<View style={[sStyles.skillItem]}>
-							{ COMPARE && <Text style={sStyles.itemHeader}>POSITION</Text> }
+							{ !COMPARE && <Text style={sStyles.itemHeader}>POSITION</Text> }
 							<Text style={sStyles.positionText}>{BIO['position'].toUpperCase()}</Text>
 						</View>
 						<View style={[sStyles.skillItem]}>
-							{ COMPARE && <Text style={sStyles.itemHeader}>PRIMARY</Text> }
-							<Image key={'summary_skill_primary'} source={badgeImages.skillMap[BIO['primary']]} style={[sStyles.skillImage, { width: 39, height: 64, maxWidth: 39, maxHeight: 64, opacity: 1 }]}/>
+							{ !COMPARE && <Text style={sStyles.itemHeader}>PRIMARY</Text> }
+							<Image key={'summary_skill_primary'} source={badgeImages.skillMap[BIO['primary']]} style={[sStyles.skillImage, { width: 45, height: 74, maxWidth: 45, maxHeight: 74  , opacity: 1 }]}/>
 							<Text style={[sStyles.skillText, { paddingLeft: 4, paddingRight: 4 }]}>{BIO['primary']}</Text>
 						</View>
 						<View style={[sStyles.skillItem]}>
-							{ COMPARE && <Text style={sStyles.itemHeader}>SECONDARY</Text> }
-							<Image key={'summary_skill_secondary'} source={badgeImages.skillMap[BIO['secondary']]} style={[sStyles.skillImage, { width: 39, height: 64, maxWidth: 39, maxHeight: 64, opacity: 1 }]}/>
+							{ !COMPARE && <Text style={sStyles.itemHeader}>SECONDARY</Text> }
+							<Image key={'summary_skill_secondary'} source={badgeImages.skillMap[BIO['secondary']]} style={[sStyles.skillImage, { width: 45, height: 74, maxWidth: 45, maxHeight: 74  , opacity: 1 }]}/>
 							<Text style={[sStyles.skillText, { paddingLeft: 4, paddingRight: 4 }]}>{BIO['secondary']}</Text>
 						</View>
 					</View>
 				)}
-				{ COMPARE && BIO && (
-					<View style={[sStyles.playerContainer, { maxWidth: (pbcWidth / 2), height: pbcHeight }]}>
-						<Image key={'summary_pbc'} source={buildAvatar} style={[sStyles.buildAvatar, { maxWidth: pbcWidth / 2, maxHeight: pbcHeight - 60 }]}/>
+				{ !COMPARE && BIO && (
+					<View style={[sStyles.playerContainer, { width: (pbcWidth / 2), maxWidth: (pbcWidth / 2), height: pbcHeight, maxHeight: pbcHeight }]}>
+						<Image key={'summary_pbc'} source={buildAvatar} style={[sStyles.buildAvatar, { width: (pbcWidth / 2), maxWidth: (pbcWidth / 2), height: (pbcWidth / 2) * 2, maxHeight: (pbcWidth / 2) * 2 }]}/>
 						<Image key={'summary_pbc_primary'} source={badgeImages.primarySkillMap[BIO['primary']]} style={[sStyles.buildAvatar, { maxWidth: pbcWidth / 3.75, maxHeight: (pbcHeight) / 2.75, position: 'absolute', left: (pbcWidth / 2) * 0.5, top: 50, opacity: 0.5, marginLeft: -(((pbcWidth / 3.75) * 0.5) - 5) }]}/>
 						<Image key={'summary_pbc_secondary'} source={badgeImages.secondarySkillMap[BIO['secondary']]} style={[sStyles.buildAvatar, { maxWidth: pbcWidth / 3.75, maxHeight: (pbcHeight) / 2.75, position: 'absolute', left: (pbcWidth / 2) * 0.5, top: 50, opacity: 0.5, marginLeft: -(((pbcWidth / 3.75) * 0.5) - 5) }]}/>
 					</View>
 				)}
 				{ SKILLS && (
-					<View style={[sStyles.badgeContainer, { maxWidth: pbcWidth / 4 }]}>
-						<View style={[sStyles.badgePanel, { height: adjHeight }]}>
-							{ COMPARE && (
+					<View style={[sStyles.badgeContainer, { width: COMPARE ? pbcWidth : pbcWidth / 4, maxWidth: COMPARE ? pbcWidth : pbcWidth / 4 }]}>
+						<View style={[sStyles.badgePanel, { height: pbcHeight }]}>
+							{ !COMPARE && (
 								<View style={[sStyles.badgeItem, { marginBottom: 10, height: 80 }]}>
 									<Text style={sStyles.itemHeader}>TOTAL{'\n'}BADGES</Text>
 									<Text style={[sStyles.badgeText, { paddingTop: 0 }]}>{((+SKILLS['H']) + (+SKILLS['G']) + (+SKILLS['S']) + (SKILLS['B']))}</Text>
 								</View>
 							)}
-							{ COMPARE && (
+							{ !COMPARE && (
 								<View style={[{ marginBottom: 10 }]}>
 									<Text style={sStyles.itemHeader}>KEY{'\n'}BADGES</Text>
 								</View>
 							)}
 							<View style={sStyles.badgeItem}>
 								<View style={sStyles.badgeImageContainer}>
-									<Image key={'overview_badge_h'} source={badgeImages.badgeMap['hof']} style={[sStyles.badgeImage, badgeWidth]} />
+									<Image key={'overview_badge_h'} source={badgeImages.badgeMap['hof']} style={{ width: 45, height: 74, maxWidth: 45, maxHeight: 74 }} />
 								</View>
-								<Text style={[sStyles.badgeText, badgeWidth]}>{SKILLS['H']}</Text>
+								<Text style={[sStyles.badgeText]}>{SKILLS['H']}</Text>
 							</View>
 							<View style={sStyles.badgeItem}>
 								<View style={sStyles.badgeImageContainer}>
-									<Image key={'overview_badge_g'} source={badgeImages.badgeMap['gold']} style={[sStyles.badgeImage, badgeWidth]} />
+									<Image key={'overview_badge_g'} source={badgeImages.badgeMap['gold']} style={{ width: 45, height: 74, maxWidth: 45, maxHeight: 74 }} />
 								</View>
-								<Text style={[sStyles.badgeText, badgeWidth]}>{SKILLS['G']}</Text>
+								<Text style={[sStyles.badgeText]}>{SKILLS['G']}</Text>
 							</View>
 							<View style={sStyles.badgeItem}>
 								<View style={sStyles.badgeImageContainer}>
-									<Image key={'overview_badge_s'} source={badgeImages.badgeMap['silver']} style={[sStyles.badgeImage, badgeWidth]} />
+									<Image key={'overview_badge_s'} source={badgeImages.badgeMap['silver']} style={{ width: 45, height: 74, maxWidth: 45, maxHeight: 74 }} />
 								</View>
-								<Text style={[sStyles.badgeText, badgeWidth]}>{SKILLS['S']}</Text>
+								<Text style={[sStyles.badgeText]}>{SKILLS['S']}</Text>
 							</View>
 							<View style={sStyles.badgeItem}>
 								<View style={sStyles.badgeImageContainer}>
-									<Image key={'overview_badge_b'} source={badgeImages.badgeMap['bronze']} style={[sStyles.badgeImage, badgeWidth]} />
+									<Image key={'overview_badge_b'} source={badgeImages.badgeMap['bronze']} style={{ width: 45, height: 74, maxWidth: 45, maxHeight: 74 }} />
 								</View>
-								<Text style={[sStyles.badgeText, badgeWidth]}>{SKILLS['B']}</Text>
+								<Text style={[sStyles.badgeText]}>{SKILLS['B']}</Text>
 							</View>
 						</View>
 					</View>

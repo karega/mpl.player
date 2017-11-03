@@ -10,6 +10,9 @@ import maxed from './../../../app-state/builds-maxed';
 /** Internal Module Dependencies **/
 import Browser from './../elements/browser';
 import {
+	browserDeleteBuild,
+} from './../actions/browser-actions'
+import {
 	chooseBuild,
 } from './../../summary/actions/summary-actions'
 import {
@@ -46,6 +49,9 @@ const mapDispatchToProps = (dispatch) => {
 		compareAddBuild: (build) => {
 			dispatch(compareAddBuild(build));
 		},
+		browserDeleteBuild: (index) => {
+			dispatch(browserDeleteBuild(index));
+		}
 	};
 };
 

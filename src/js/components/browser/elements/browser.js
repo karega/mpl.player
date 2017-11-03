@@ -4,6 +4,7 @@
 import Immutable from 'immutable';
 import React, {PropTypes} from 'react';
 import {
+	Alert,
 	Dimensions,
 	Image,
 	RefreshControl,
@@ -17,16 +18,12 @@ import {
 	View
 } from 'react-native';
 import SideMenu from 'react-native-side-menu';
-import {
-	CustomTabs,
-	ANIMATIONS_FADE,
-	ANIMATIONS_SLIDE
-} from 'react-native-custom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Actions} from 'react-native-router-flux';
 
 /** Global Module Dependencies **/
 import * as badgeImages from './../../../config/constants';
+import {navigationView} from './../../../config/constants';
 
 /** Internal Module Dependencies **/
 import bStyles from './../styles/browser-styles';
@@ -55,24 +52,7 @@ class Browser extends React.PureComponent <any, BrowserPropTypes, BrowserStateTy
 			drawer: !(props.builds) && !(props.builds && props.builds.length > 0)
 		}
 
-		this.browseTo = this.browseTo.bind(this);
 		this.toggleMenu = this.toggleMenu.bind(this);
-	}
-
-	browseTo(url) {
-		var option = {
-			toolbarColor: '#3e355c',
-			enableUrlBarHiding: true,
-			showPageTitle: false,
-			enableDefaultShare: true,
-			animations: ANIMATIONS_FADE
-		}
-
-		CustomTabs.openURL(url, option).then((launched: boolean) => {
-			console.log(`Launched custom tabs: ${launched}`);
-		}).catch(err => {
-			console.error(err)
-		});
 	}
 
 	toggleMenu(menuState) {
@@ -82,70 +62,12 @@ class Browser extends React.PureComponent <any, BrowserPropTypes, BrowserStateTy
 	}
 
 	render(): React.Element {
-		var navigationView = (
-			<View style={[bStyles.sidebar]}>
-				{
-					this.props.profile && (
-						<View style={bStyles.sbProfileName}>
-							<Avatar size={48} image={
-								<Image
-									key={'browser_sbProfileImage'}
-									style={bStyles.sbProfileImage}
-									source={{ uri: this.props.profile.picture.data.url }}/> }/>
-							<Text style={bStyles.sbProfileText}>{this.props.profile.name}</Text>
-						</View>
-					)
-				}
-				<View style={bStyles.menuItems}>
-					{[{
-						title: 'START',
-						subtitle: 'NEW BUILD',
-						action: (event) => {
-							Actions.builder();
-						}
-					},{
-						title: 'SEARCH',
-						subtitle: 'BUILDS',
-						action: (event) => { }
-					},{
-						title: 'COMPARE',
-						subtitle: 'BUILDS',
-						action: (event) => {
-							Actions.compare();
-						}
-					},{
-						title: 'TERMS',
-						subtitle: 'AND CONDITIONS',
-						action: (event) => {
-							this.browseTo('https://app.termly.io/document/terms-of-use-for-website/63873dbc-c8fa-4b79-957e-8322e72c60a8')
-						}
-					}].map((menu, index) => {
-						return (
-							<View
-								key={'menu_' + index}
-								style={bStyles.menuItem}>
-								<TouchableNativeFeedback onPress={menu.action}>
-									<View>
-										<Text style={bStyles.menuHeader}>{menu.title}</Text>
-										<Text style={bStyles.menuLabel}>{menu.subtitle}</Text>
-									</View>
-								</TouchableNativeFeedback>
-							</View>
-						);
-					})}
-				</View>
-				<View style={bStyles.sbFooter}>
-					<Text style={bStyles.versionText}>v0.0.1-alpha</Text>
-				</View>
-			</View>
-		);
-
 		const buildIcon = require('./../../../assets/mplplayer.png');
 
 		var builds = [];
 
 		this.props.builds.map((build, index) => {
-			let buildItemWidth = ((index % 2 === 0) ? ((width / 2) - 1) : (width / 2));
+			let buildItemWidth = ((index % 2 === 0) ? (((width - 10) / 2) - 1) : ((width - 10) / 2));
 
 			builds.push(
 				<TouchableNativeFeedback
@@ -157,42 +79,55 @@ class Browser extends React.PureComponent <any, BrowserPropTypes, BrowserStateTy
 						else {
 							this.props.chooseBuild(build);
 						}
+					}}
+					onLongPress={() => {
+						if (!this.props.comparator) {
+							Alert.alert(
+								'Remove Build',
+								'Are you sure?',
+								[
+									{text: 'Cancel', style: 'cancel'},
+									{text: 'Yes', onPress: () => this.props.browserDeleteBuild(index)},
+								],
+								{ cancelable: false }
+							)
+						}
 					}}>
-					<View style={[bStyles.buildItem, { width: buildItemWidth, maxWidth: buildItemWidth, height: 190 }]}>
-							<View style={bStyles.buildPanel}>
-								<View style={bStyles.buildType}>
-									<View style={bStyles.buildPosition}>
-										<Text style={bStyles.badgeText}>{build.bio['position'].toUpperCase()}</Text>
-									</View>
-									<View style={bStyles.buildImage}>
+					<View style={[bStyles.buildItem, { width: buildItemWidth, maxWidth: buildItemWidth, minWidth: buildItemWidth, height: 190 }]}>
+						<View style={[bStyles.buildPanel, { width: buildItemWidth - 20, maxWidth: buildItemWidth - 20, minWidth: buildItemWidth - 20, height: 190 }]}>
+							<View style={bStyles.buildType}>
+								<View style={bStyles.buildPosition}>
+									<Text style={bStyles.badgeText}>{build.bio['position'].toUpperCase()}</Text>
+								</View>
+								<View style={bStyles.buildImage}>
 									<Image key={'browser_skill_primary_' + index} source={badgeImages.primarySkillMap[build.skills['primary']]} style={[bStyles.buildAvatar, { width: 48, height: 78, position: 'absolute', left: 0, top: 0, opacity: 1 }]}/>
 									<Image key={'browser_skill_secondary_' + index} source={badgeImages.secondarySkillMap[build.skills['secondary']]} style={[bStyles.buildAvatar, { width: 48, height: 78, position: 'absolute', left: 0, top: 0, opacity: 1 }]}/>
-									</View>
 								</View>
-								<View style={bStyles.buildInfo}>
-									<Text style={bStyles.buildText}>
-										{build.archetype[0]}{'\n'}{build.archetype[1]}
-									</Text>
-									<View style={bStyles.buildBadges}>
-										<View style={bStyles.badgeItem}>
-											<Image key={'browser_badges_h_' + index} source={badgeImages.badgeMap['hof']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
-											<Text style={bStyles.badgeText}>{build.badges['H']}</Text>
-										</View>
-										<View style={bStyles.badgeItem}>
-											<Image key={'browser_badges_g_' + index} source={badgeImages.badgeMap['gold']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
-											<Text style={bStyles.badgeText}>{build.badges['G']}</Text>
-										</View>
-										<View style={bStyles.badgeItem}>
-											<Image key={'browser_badges_s_' + index} source={badgeImages.badgeMap['silver']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
-											<Text style={bStyles.badgeText}>{build.badges['S']}</Text>
-										</View>
-										<View style={bStyles.badgeItem}>
-											<Image key={'browser_badges_b_' + index} source={badgeImages.badgeMap['bronze']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
-											<Text style={bStyles.badgeText}>{build.badges['B']}</Text>
-										</View>
+							</View>
+							<View style={bStyles.buildInfo}>
+								<Text style={bStyles.buildText}>
+									{build.archetype[0]}{'\n'}{build.archetype[1]}
+								</Text>
+								<View style={bStyles.buildBadges}>
+									<View style={bStyles.badgeItem}>
+										<Image key={'browser_badges_h_' + index} source={badgeImages.badgeMap['hof']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
+										<Text style={bStyles.badgeText}>{build.badges['H']}</Text>
+									</View>
+									<View style={bStyles.badgeItem}>
+										<Image key={'browser_badges_g_' + index} source={badgeImages.badgeMap['gold']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
+										<Text style={bStyles.badgeText}>{build.badges['G']}</Text>
+									</View>
+									<View style={bStyles.badgeItem}>
+										<Image key={'browser_badges_s_' + index} source={badgeImages.badgeMap['silver']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
+										<Text style={bStyles.badgeText}>{build.badges['S']}</Text>
+									</View>
+									<View style={bStyles.badgeItem}>
+										<Image key={'browser_badges_b_' + index} source={badgeImages.badgeMap['bronze']} style={[bStyles.badgeImage, { position: 'absolute', width: 29, height: 48}]} />
+										<Text style={bStyles.badgeText}>{build.badges['B']}</Text>
 									</View>
 								</View>
 							</View>
+						</View>
 						{/*	<View style={[bStyles.buildRule, { width: (width * 0.8) }]} />*/}
 					</View>
 				</TouchableNativeFeedback>
@@ -205,13 +140,13 @@ class Browser extends React.PureComponent <any, BrowserPropTypes, BrowserStateTy
 
 		return (
 			<SideMenu
-				menu={navigationView}
+				menu={navigationView(this.props.profile)}
 				isOpen={this.state.drawer}
 				onChange={this.toggleMenu}
 				openMenuOffset={width * 0.8}
 				disableGestures={true}
 				autoClosing={false}>
-				<View style={[bStyles.container, { height: height }]}>
+				<View style={[bStyles.container, { height: height, width: width }]}>
 					<TouchableNativeFeedback
 						onPress={() => {
 							if (this.props.comparator) {
@@ -245,11 +180,8 @@ class Browser extends React.PureComponent <any, BrowserPropTypes, BrowserStateTy
 					{this.props.builds.size < 1 && (
 						<Text style={bStyles.browserLocalResults}>No builds found on device.</Text>
 					)}
-					<ScrollView
-						contentContainerStyle={bStyles.scrollContainer}>
-						<View style={bStyles.browserContainer}>
-							{builds}
-						</View>
+					<ScrollView contentContainerStyle={bStyles.scrollContainer}>
+						{builds}
 					</ScrollView>
 				</View>
 			</SideMenu>

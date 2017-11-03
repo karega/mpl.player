@@ -70,25 +70,23 @@ class ChoosePrimary extends React.PureComponent<any, ChoosePrimaryPropTypes, Cho
 				<ScrollView
 					contentContainerStyle={bStyles.scrollContainer}
 					refreshControl={refreshControl}>
-					<View style={[bStyles.contentContainer, bStyles.skillContainer, { width: width, paddingBottom: 20 }]}>
+					<View style={[bStyles.skillContainer, { height: height - 160, width: width, paddingBottom: 20 }]}>
 						{this.props.position && (
 							Object.keys(this.props.position).map((key, index) => {
-								const position = (
+								return (
 									<TouchableNativeFeedback
 										key={'mpl_pos_' + index}
 										onPress={() => {
 											this.props.choosePrimary(key)
 										}}>
-										<View style={[bStyles.skillPanel, { maxWidth: (width / 2), width: (width / 2), height: ((height - 160) / 3) }]}>
-											<Image key={'cyp_' + index} source={skillMap[key]} style={[bStyles.cypImage, { width: (width / 4), height: ((height - 160) / 4) }]}/>
+										<View style={[bStyles.skillPanel, { width: 90, height: 162, maxWidth: 90, maxHeight: 162, alignItems: 'center', padding: 5 }]}>
+											<Image key={'cyp_' + index} source={skillMap[key]} style={[bStyles.cypImage, { width: 80, height: 131, maxWidth: 80, maxHeight: 131 }]} />
 											<Text style={bStyles.skillText}>
 												{key}
 											</Text>
 										</View>
 									</TouchableNativeFeedback>
 								)
-
-								return (position)
 							})
 						)}
 					</View>

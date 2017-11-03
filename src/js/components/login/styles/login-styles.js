@@ -8,7 +8,7 @@ const loginStyles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'flex-start',
-        backgroundColor: '#000',
+        backgroundColor: '#fff',
     },
     connectContainer: {
         alignItems: 'center',
@@ -28,18 +28,20 @@ const loginStyles = StyleSheet.create({
         alignItems: 'stretch',
         alignSelf: 'center',
         padding: 20,
+		paddingTop: 0,
     },
     loginLogo: {
         flexDirection: 'column',
         flexWrap: 'nowrap',
         alignSelf: 'center',
     },
-	mplplayerLogo: {
+	mplPlayerLogo: {
 		alignItems: 'flex-start',
 		resizeMode: Image.resizeMode.contain,
 		justifyContent: 'flex-start',
 		alignSelf: 'center',
-		height: 280,
+		width: 400,
+		height: 400,
 	},
 	logoText: {
         color: '#ffffff',

@@ -33,7 +33,7 @@ class Login extends React.PureComponent<any, LoginPropTypes, LoginStateTypes> {
 	constructor(props: LoginPropTypes): void {
 		super(props);
 
-		this.mplPlayerLogo = require('./../../../assets/mplplayer.png');
+		this.mplPlayerLogo = require('./../../../assets/mplplayer-splash.png');
 
 		this.state = {
 			idCorrect: false,
@@ -71,7 +71,6 @@ class Login extends React.PureComponent<any, LoginPropTypes, LoginStateTypes> {
 				<View style={ lStyles.loginSplashBackground }>
 					<View style={ lStyles.loginLogo }>
 						<Image key={'mplPlayerLogo'} source={this.mplPlayerLogo} style={lStyles.mplPlayerLogo}  />
-						<Text style={ lStyles.logoText }>Player Builder</Text>
 					</View>
 					{ this.props.session.get('authorized') && this.state.verified &&
 						<View style={lStyles.facebookLoginButton}>
@@ -131,3 +130,5 @@ Login.propTypes = {
 };
 
 export default Login;
+
+// https://mypark-legends-player-lab.firebaseapp.com/__/auth/handler

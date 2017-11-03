@@ -82,10 +82,18 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
+apply plugin: 'com.android.application'
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.1"
 
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/services/com.fasterxml.jackson.core.JsonFactory'
+    }
     defaultConfig {
         applicationId "com.mplplayer"
         minSdkVersion 19
@@ -137,7 +145,8 @@ android {
 dependencies {
     compile fileTree( dir: "libs" , include: ["*.jar"] )
     compile "com.android.support:appcompat-v7:25.0.1"
-    compile "com.facebook.react:react-native:0.38.0"
+    compile "com.facebook.react:react-native:0.39.0"
+    compile "com.google.firebase:firebase-auth:11.4.2"
     compile project(':react-native-admob')
     compile project(':react-native-vector-icons')
     compile project(':react-native-send-intent')
@@ -151,6 +160,8 @@ task copyDownloadableDepsToLibs(type: Copy) {
   from configurations.compile
   into 'libs'
 }
+
+apply plugin: 'com.google.gms.google-services'
 
 // needed to re-compile react-native...
 /*

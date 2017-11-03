@@ -66,7 +66,7 @@ class Badges extends React.PureComponent<any, BadgesPropTypes, BadgesStateTypes>
 
 	render() {
 		return (
-			<View style={[sStyles.badgesContainer, { width: width, height: height - 160 }]}>
+			<View style={[sStyles.badgesContainer, { width: width, height: height - 115 }]}>
 				<ScrollView
 					contentContainerStyle={sStyles.scrollContainer}>
 					{
@@ -80,8 +80,8 @@ class Badges extends React.PureComponent<any, BadgesPropTypes, BadgesStateTypes>
 
 									badge = badge_icons[badgeName] && (
 										<View key={index} style={[sStyles.badgeItem, { width: (width * 0.25), height: 128, alignItems: 'flex-end' }]}>
-											<Image key={'badge_icon_h' + buildKey} source={badgeImages.badgeMap['hof']} style={[sStyles.badgeImage, { width: (width * 0.25), height: 64 }]} />
-											<Image key={'badge_cat_h' + buildKey} source={this.getBadgeIcon(badgeName)} style={[sStyles.badgeImage, { position: 'absolute', top: 10, width: (width * 0.25), height: 64 }]} />
+											<Image key={'badge_icon_h' + buildKey} source={badgeImages.badgeMap['hof']} style={[sStyles.badgeImage, { width: 50, height: 82, maxWidth: 50, maxHeight: 82 }]} />
+											<Image key={'badge_cat_h' + buildKey} source={this.getBadgeIcon(badgeName)} style={[sStyles.badgeImage, { position: 'absolute', left: 20, top: 5, width: 50, height: 82, maxWidth: 50, maxHeight: 82 }]} />
 											<Text style={[sStyles.skillText, sStyles.badgeName]}>{badgeName}</Text>
 										</View>
 									)
@@ -92,8 +92,8 @@ class Badges extends React.PureComponent<any, BadgesPropTypes, BadgesStateTypes>
 
 									badge = badge_icons[badgeName] && (
 										<View key={index} style={[sStyles.badgeItem, { width: (width * 0.25), height: 128, alignItems: 'flex-end' }]}>
-											<Image key={'badge_icon_g' + buildKey} source={badgeImages.badgeMap['gold']} style={[sStyles.badgeImage, { width: (width * 0.25), height: 64 }]} />
-											<Image key={'badge_cat_g' + buildKey} source={this.getBadgeIcon(badgeName)} style={[sStyles.badgeImage, { position: 'absolute', top: 10, width: (width * 0.25), height: 64 }]} />
+											<Image key={'badge_icon_g' + buildKey} source={badgeImages.badgeMap['gold']} style={[sStyles.badgeImage, { width: 50, height: 82, maxWidth: 50, maxHeight: 82 }]} />
+											<Image key={'badge_cat_g' + buildKey} source={this.getBadgeIcon(badgeName)} style={[sStyles.badgeImage, { position: 'absolute', left: 20, top: 5, width: 50, height: 82, maxWidth: 50, maxHeight: 82 }]} />
 											<Text style={[sStyles.skillText, sStyles.badgeName]}>{badgeName}</Text>
 										</View>
 									)
@@ -104,8 +104,8 @@ class Badges extends React.PureComponent<any, BadgesPropTypes, BadgesStateTypes>
 
 									badge = badge_icons[badgeName] && (
 										<View key={index} style={[sStyles.badgeItem, { width: (width * 0.25), height: 128, alignItems: 'flex-end' }]}>
-											<Image key={'badge_icon_s' + buildKey} source={badgeImages.badgeMap['silver']} style={[sStyles.badgeImage, { width: (width * 0.25), height: 64 }]} />
-											<Image key={'badge_cat_s' + buildKey} source={this.getBadgeIcon(badgeName)} style={[sStyles.badgeImage, { position: 'absolute', top: 10, width: (width * 0.25), height: 64 }]} />
+											<Image key={'badge_icon_s' + buildKey} source={badgeImages.badgeMap['silver']} style={[sStyles.badgeImage, { width: 50, height: 82, maxWidth: 50, maxHeight: 82 }]} />
+											<Image key={'badge_cat_s' + buildKey} source={this.getBadgeIcon(badgeName)} style={[sStyles.badgeImage, { position: 'absolute', left: 20, top: 5, width: 50, height: 82, maxWidth: 50, maxHeight: 82 }]} />
 											<Text style={[sStyles.skillText, sStyles.badgeName]}>{badgeName}</Text>
 										</View>
 									)
@@ -116,8 +116,8 @@ class Badges extends React.PureComponent<any, BadgesPropTypes, BadgesStateTypes>
 
 									badge = badge_icons[badgeName] && (
 										<View key={index} style={[sStyles.badgeItem, { width: (width * 0.25), height: 128, alignItems: 'flex-end' }]}>
-											<Image key={'badge_icon_b' + buildKey} source={badgeImages.badgeMap['bronze']} style={[sStyles.badgeImage, { width: (width * 0.25), height: 64 }]} />
-											<Image key={'badge_cat_b' + buildKey} source={this.getBadgeIcon(badgeName)} style={[sStyles.badgeImage, { position: 'absolute', top: 10, width: (width * 0.25), height: 64 }]} />
+											<Image key={'badge_icon_b' + buildKey} source={badgeImages.badgeMap['bronze']} style={[sStyles.badgeImage, { width: 50, height: 82, maxWidth: 50, maxHeight: 82 }]} />
+											<Image key={'badge_cat_b' + buildKey} source={this.getBadgeIcon(badgeName)} style={[sStyles.badgeImage, { position: 'absolute', left: 20, top: 5, width: 50, height: 82, maxWidth: 50, maxHeight: 82 }]} />
 											<Text style={[sStyles.skillText, sStyles.badgeName]}>{badgeName}</Text>
 										</View>
 									)

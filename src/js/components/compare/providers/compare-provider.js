@@ -16,7 +16,9 @@ import {
 
 const mapStateToProps = (state) => {
 	let builds = state.compare.get('builds');
-	let current = state.compare.get('current') ? state.compare.get('current') : builds.last();
+	let current = state.compare.get('current');
+
+	console.log('builds', builds)
 
 	let badges = maxed.filter((build, index) => {
 		return (
@@ -41,7 +43,6 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch(compareAddBuild(build));
 		},
 		compareRemoveBuild: (index) => {
-			console.log('compareRemoveBuild')
 			dispatch(compareRemoveBuild(index));
 		},
 	};

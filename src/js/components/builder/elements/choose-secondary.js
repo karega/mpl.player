@@ -69,7 +69,7 @@ class ChooseSecondary extends React.PureComponent<any, ChooseSecondaryPropTypes,
 				<ScrollView
 					contentContainerStyle={bStyles.scrollContainer}
 					refreshControl={refreshControl}>
-					<View style={[bStyles.contentContainer, bStyles.skillContainer, { width: width, paddingBottom: 20 }]}>
+					<View style={[bStyles.skillContainer, { height: height - 160, width: width, paddingBottom: 20 }]}>
 						{this.props.primary && (
 							this.props.primary.map((key, index) => {
 								return (
@@ -78,8 +78,8 @@ class ChooseSecondary extends React.PureComponent<any, ChooseSecondaryPropTypes,
 										onPress={() => {
 											this.props.chooseSecondary(key)
 										}}>
-										<View style={[bStyles.skillPanel, { maxWidth: (width / 2), width: (width / 2), height: ((height - 160) / 3) }]}>
-											<Image key={'cs_secondary_' + index} source={skillMap[key['Secondary Skill']]} style={[bStyles.cypImage, { width: (width / 4), height: ((height - 160) / 4) }]}/>
+										<View style={[bStyles.skillPanel, { width: 90, height: 162, maxWidth: 90, maxHeight: 162, alignItems: 'center', padding: 5 }]}>
+											<Image key={'cs_secondary_' + index} source={skillMap[key['Secondary Skill']]} style={[bStyles.cypImage, { width: 80, height: 131, maxWidth: 80, maxHeight: 131 }]} />
 											<Text style={bStyles.skillText}>
 												{key['Secondary Skill']}
 											</Text>

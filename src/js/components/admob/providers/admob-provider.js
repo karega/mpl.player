@@ -9,6 +9,7 @@ import Admob from './../elements/admob';
 const mapStateToProps = (state) => {
 	return {
 		session: state.session,
+		admob: state.admob,
 	};
 };
 

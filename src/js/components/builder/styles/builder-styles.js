@@ -23,7 +23,7 @@ const builderStyles = StyleSheet.create({
 		flex: 1,
 		flexWrap: 'wrap',
 		flexDirection: 'row',
-		alignItems: 'center',
+		alignItems: 'stretch',
 		justifyContent: 'flex-start',
 	},
 	primaryText: {
@@ -64,7 +64,6 @@ const builderStyles = StyleSheet.create({
 	},
 	cypImage: {
 		alignItems: 'flex-start',
-		resizeMode: Image.resizeMode.contain,
 		justifyContent: 'flex-start',
 		alignSelf: 'center',
 		flex: 1,
@@ -80,12 +79,10 @@ const builderStyles = StyleSheet.create({
 		zIndex: 100,
 	},
 	skillPanel: {
-		flex: 0.5,
-		flexDirection: 'column',
-		flexWrap: 'wrap',
-		justifyContent: 'center',
 	},
 	skillText: {
+		height: 31,
+		maxHeight: 31,
 		color: '#fff',
 		fontSize: 12,
 		fontWeight: '100',
