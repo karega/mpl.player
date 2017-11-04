@@ -33,7 +33,7 @@ const AppInitialState = {
 	}),
 	scene: null,
 	session: Immutable.fromJS({
-		legendary: 0,
+		legendary: 100,
 	}),
 	summary: Immutable.fromJS({
 		builds: [],

@@ -12,6 +12,7 @@ const session = function (session: Immutable.Map<string, any>, action: Object): 
 	switch (action.type) {
 		case REQUEST_LOGIN:
 			return session;
+
 		case REGISTER_LOGIN:
 			var _session = session;
 
@@ -31,7 +32,8 @@ const session = function (session: Immutable.Map<string, any>, action: Object): 
 				console.log('error', 'Bad data.');
 			}
 
-			return _session
+			return _session;
+
 		case REQUEST_LOGOUT:
 			var _session = Immutable.fromJS({ });
 
@@ -41,12 +43,26 @@ const session = function (session: Immutable.Map<string, any>, action: Object): 
 			var _session = session;
 
 			if (action.amount) {
-				const	_amount = +(_session.get('legendary'));
+				var	_amount = _session.getIn(['legendary']) ? _session.getIn(['legendary']) : 0;
 
-				_session = _session.set('legendary', action.amount + _amount);
-				_session = _session.setIn(['profile', 'legendary'], action.amount + _amount);
+				_amount = + _amount + action.amount;
 
-				const _profile = _session.get('profile');
+				_session = _session.setIn(['legendary'], _amount);
+
+				var	_profile = _session.getIn(['profile']);
+
+				_profile['legendary'] = _amount;
+				_session = _session.set('profile', _profile);
+
+				/*// Get a key for a new Post.
+				var updateKey = middleware.database().ref().child('users').push().key;
+
+				// Write the new post's data simultaneously in the posts list and the user's post list.
+				var updates = {};
+				updates['/users/' + updateKey] = _profile;
+				updates['/users/' + _profile.id + '/' + updateKey] = _profile;
+
+				middleware.database().ref().update(updates);*/
 
 				middleware.database().ref('users/' + _profile.id).set(_profile);
 			}
@@ -54,7 +70,8 @@ const session = function (session: Immutable.Map<string, any>, action: Object): 
 				console.log('error', 'Bad data.');
 			}
 
-			return _session
+			return _session;
+
 		default:
 			return session;
 	}

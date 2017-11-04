@@ -5,6 +5,12 @@ import { connect } from 'react-redux';
 
 /** Internal Module Dependencies **/
 import Admob from './../elements/admob';
+import {
+	addRewards,
+} from './../actions/admob-actions';
+import {
+	saveCurrentBuild,
+} from './../../builder/actions/builder-actions';
 
 const mapStateToProps = (state) => {
 	return {
@@ -14,7 +20,14 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-	return { };
+	return {
+		saveCurrentBuild: () => {
+			dispatch(saveCurrentBuild());
+		},
+		addRewards: (amount) => {
+			dispatch(addRewards(amount));
+		}
+	};
 };
 
 const AdmobProvider = connect(

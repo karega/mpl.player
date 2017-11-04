@@ -37,27 +37,46 @@ class Admob extends React.PureComponent<any, AdmobPropTypes, AdmobStateTypes> {
 		// AdMobRewarded.setTestDeviceID('EMULATOR');
 		AdMobRewarded.setAdUnitID(this.props.admob.getIn([this.props.admob.get('current'), 'unit', 'builder']));
 
-		AdMobRewarded.addEventListener('rewardedVideoDidRewardUser', () => {
+		AdMobRewarded.addEventListener('rewardedVideoDidRewardUser', (reward) => {
+			console.log('rewardedVideoDidRewardUser', reward);
+
+			this.props.addRewards(reward.amount);
+			this.props.saveCurrentBuild();
+
+			AdMobRewarded.removeAllListeners();
+
 			this.setState({ loaded: false });
 		});
 
 		AdMobRewarded.addEventListener('rewardedVideoDidLoad', () => {
+			console.log('rewardedVideoDidLoad');
+
 			this.setState({ loaded: true }, () => console.log('rewardedVideoDidLoad'));
 		});
 
 		AdMobRewarded.addEventListener('rewardedVideoDidFailToLoad', (error) => {
 			console.log('rewardedVideoDidFailToLoad', error);
 
+			AdMobRewarded.removeAllListeners();
+
 			Actions.summary();
 		});
 
-		AdMobRewarded.addEventListener('rewardedVideoDidOpen', () => console.log('rewardedVideoDidOpen'));
+		AdMobRewarded.addEventListener('rewardedVideoDidOpen', () => {
+			console.log('rewardedVideoDidOpen');
+		});
 
 		AdMobRewarded.addEventListener('rewardedVideoDidClose', () => {
+			console.log('rewardedVideoDidClose');
+
+			AdMobRewarded.removeAllListeners();
+
 			Actions.summary();
 		});
 
-		AdMobRewarded.addEventListener('rewardedVideoWillLeaveApplication', () => console.log('rewardedVideoWillLeaveApplication'));
+		AdMobRewarded.addEventListener('rewardedVideoWillLeaveApplication', () => {
+			console.log('rewardedVideoWillLeaveApplication');
+		});
 
 		AdMobRewarded.requestAd((error) => error && console.log(error));
 	}

@@ -20,31 +20,30 @@ export function startBuilder(index): Object {
 
 export function choosePage(page): Object {
 	return function (dispatch) {
-		dispatch(setStep(page))
+		dispatch(setStep(page));
 	}
 }
 
 export function choosePosition(position): Object {
 	return function (dispatch) {
-		dispatch(setPosition(position))
+		dispatch(setPosition(position));
 	}
 }
 
 export function choosePrimary(primary): Object {
 	return function (dispatch) {
-		dispatch(setPrimary(primary))
+		dispatch(setPrimary(primary));
 	}
 }
 
 export function chooseSecondary(secondary): Object {
 	return function (dispatch) {
-		dispatch(setSecondary(secondary))
+		dispatch(setSecondary(secondary));
 	}
 }
 
 export function saveCurrentBuild(): Object {
-	// Actions.summary();
-	Actions.admob();
+	Actions.summary();
 
 	return function (dispatch, getState) {
 		var	_build = (getState()).builder.get('current');
@@ -65,7 +64,7 @@ export function saveCurrentBuild(): Object {
 		
 		_build.attributes = attributes(getState());
 
-		dispatch(setBuild(_build))
+		dispatch(setBuild(_build));
 	}
 }
 

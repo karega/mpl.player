@@ -165,7 +165,7 @@ const sStyles = {
 
 const _shareText = () => {
 	Share.share({
-		message: 'To Be The Best Build The Best | http://lab.myparklegends.com',
+		message: 'Take your game to the next level.  Download the MyPark Legends: Player Lab app! | http://lab.myparklegends.com',
 		url: 'http://lab.myparklegends.com',
 		title: 'MyPark Legends - Player Lab',
 	}, {

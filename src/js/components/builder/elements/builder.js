@@ -16,6 +16,7 @@ import {
 	TouchableOpacity,
 	View
 } from 'react-native';
+import {Actions} from 'react-native-router-flux';
 
 /** Internal Module Dependencies **/
 import ChoosePosition from './choose-position';
@@ -46,7 +47,7 @@ class Builder extends React.PureComponent <any, BuilderPropTypes, BuilderStateTy
 
 	componentDidUpdate(prevProps) {
 		if (this.props.step === 4) {
-			this.props.saveCurrentBuild();
+			Actions.admob();
 		}
 	}
 

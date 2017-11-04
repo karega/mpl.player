@@ -1,7 +1,7 @@
 /* admob-actions.js */
 
-/** External Module Dependencies **/
-import {Actions} from 'react-native-router-flux';
+/** Global Module Dependencies **/
+import { SET_REWARDS } from './../../../actions/actions';
 
 export function admob(): Object {
 	return function (dispatch) {
@@ -9,10 +9,9 @@ export function admob(): Object {
 	};
 }
 
-
 export function addRewards(amount): Object {
-	return function (dispatch, getState) {
-		dispatch(setBuild(_build))
+	return function (dispatch) {
+		dispatch(setRewards(amount))
 	}
 }
 
@@ -24,7 +23,7 @@ export function requestAdmob(): Object {
 
 export function setRewards(amount): Object {
 	return {
-		type: 'SET_REWARDS',
+		type: SET_REWARDS,
 		amount,
 	};
 }

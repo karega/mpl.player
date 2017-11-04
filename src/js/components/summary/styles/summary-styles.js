@@ -268,11 +268,16 @@ const summaryStyles = StyleSheet.create({
 		textShadowOffset: { width: 0.5, height: 0.5 },
 		textShadowRadius: 1,
 	},
-	badgeImage: {
+	badgeType: {
+		position: 'absolute',
+		top: 0,
+		left: 0,
+		right: 0,
+		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'center',
-		alignSelf: 'center',
-		flex: 1,
+	},
+	badgeImage: {
 	},
 	summaryContainer: {
 		flex: 1,

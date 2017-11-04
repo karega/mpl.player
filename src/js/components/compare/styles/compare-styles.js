@@ -11,6 +11,7 @@ const compareStyles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'column',
 		padding: 20,
+		paddingTop: 0,
 		paddingBottom: 0,
 	},
 	scrollContainer: {
