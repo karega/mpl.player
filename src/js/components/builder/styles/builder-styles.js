@@ -69,8 +69,10 @@ const builderStyles = StyleSheet.create({
 		flex: 1,
 	},
 	scrollContainer: {
-		flex: 1,
-		flexDirection: 'column',
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		alignItems: 'center',
+		justifyContent: 'space-around',
 	},
 	menuButton: {
 		position: 'absolute',

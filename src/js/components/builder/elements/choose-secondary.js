@@ -67,28 +67,26 @@ class ChooseSecondary extends React.PureComponent<any, ChooseSecondaryPropTypes,
 					<Text style={bStyles.secondaryText}>SECONDARY</Text>
 				</View>
 				<ScrollView
-					contentContainerStyle={bStyles.scrollContainer}
+					contentContainerStyle={[bStyles.scrollContainer, { width: width, paddingBottom: 20 }]}
 					refreshControl={refreshControl}>
-					<View style={[bStyles.skillContainer, { height: height - 160, width: width, paddingBottom: 20 }]}>
-						{this.props.primary && (
-							this.props.primary.map((key, index) => {
-								return (
-									<TouchableNativeFeedback
-										key={'mpl_pos_' + index}
-										onPress={() => {
-											this.props.chooseSecondary(key)
-										}}>
-										<View style={[bStyles.skillPanel, { width: 90, height: 162, maxWidth: 90, maxHeight: 162, alignItems: 'center', padding: 5 }]}>
-											<Image key={'cs_secondary_' + index} source={skillMap[key['Secondary Skill']]} style={[bStyles.cypImage, { width: 80, height: 131, maxWidth: 80, maxHeight: 131 }]} />
-											<Text style={bStyles.skillText}>
-												{key['Secondary Skill']}
-											</Text>
-										</View>
-									</TouchableNativeFeedback>
-								)
-							})
-						)}
-					</View>
+					{this.props.primary && (
+						this.props.primary.map((key, index) => {
+							return (
+								<TouchableNativeFeedback
+									key={'mpl_pos_' + index}
+									onPress={() => {
+										this.props.chooseSecondary(key)
+									}}>
+									<View style={[bStyles.skillPanel, { width: 140, height: 190, maxWidth: 140, maxHeight: 190, alignItems: 'center', paddingLeft: 10, paddingRight: 10 }]}>
+										<Image key={'cs_secondary_' + index} source={skillMap[key['Secondary Skill']]} style={[bStyles.cypImage, { width: 104, height: 171, maxWidth: 104, maxHeight: 171 }]} />
+										<Text style={bStyles.skillText}>
+											{key['Secondary Skill']}
+										</Text>
+									</View>
+								</TouchableNativeFeedback>
+							)
+						})
+					)}
 				</ScrollView>
 			</View>
 		)

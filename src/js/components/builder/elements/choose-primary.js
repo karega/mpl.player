@@ -68,28 +68,26 @@ class ChoosePrimary extends React.PureComponent<any, ChoosePrimaryPropTypes, Cho
 					<Text style={bStyles.secondaryText}>PRIMARY SKILL</Text>
 				</View>
 				<ScrollView
-					contentContainerStyle={bStyles.scrollContainer}
+					contentContainerStyle={[bStyles.scrollContainer, { width: width, paddingBottom: 20 }]}
 					refreshControl={refreshControl}>
-					<View style={[bStyles.skillContainer, { height: height - 160, width: width, paddingBottom: 20 }]}>
-						{this.props.position && (
-							Object.keys(this.props.position).map((key, index) => {
-								return (
-									<TouchableNativeFeedback
-										key={'mpl_pos_' + index}
-										onPress={() => {
-											this.props.choosePrimary(key)
-										}}>
-										<View style={[bStyles.skillPanel, { width: 90, height: 162, maxWidth: 90, maxHeight: 162, alignItems: 'center', padding: 5 }]}>
-											<Image key={'cyp_' + index} source={skillMap[key]} style={[bStyles.cypImage, { width: 80, height: 131, maxWidth: 80, maxHeight: 131 }]} />
-											<Text style={bStyles.skillText}>
-												{key}
-											</Text>
-										</View>
-									</TouchableNativeFeedback>
-								)
-							})
-						)}
-					</View>
+					{this.props.position && (
+						Object.keys(this.props.position).map((key, index) => {
+							return (
+								<TouchableNativeFeedback
+									key={'mpl_pos_' + index}
+									onPress={() => {
+										this.props.choosePrimary(key)
+									}}>
+									<View style={[bStyles.skillPanel, { width: 140, height: 190, maxWidth: 140, maxHeight: 190, alignItems: 'center', paddingLeft: 10, paddingRight: 10 }]}>
+										<Image key={'cyp_' + index} source={skillMap[key]} style={[bStyles.cypImage, { width: 104, height: 171, maxWidth: 104, maxHeight: 171 }]} />
+										<Text style={bStyles.skillText}>
+											{key}
+										</Text>
+									</View>
+								</TouchableNativeFeedback>
+							)
+						})
+					)}
 				</ScrollView>
 			</View>
 		)
