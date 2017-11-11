@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="com.mplplayer"
-          android:versionCode="10"
-          android:versionName="1.1">
+          android:versionCode="11"
+          android:versionName="1.11">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
@@ -39,8 +39,7 @@
         <activity android:name="com.facebook.react.devsupport.DevSettingsActivity"/>
 
         <!--add FacebookActivity-->
-        <activity tools:replace="android:theme"
-                  android:name="com.facebook.FacebookActivity"
+        <activity android:name="com.facebook.FacebookActivity"
                   android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
                   android:label="@string/app_name"
                   android:theme="@android:style/Theme.Translucent.NoTitleBar"/>

@@ -3,8 +3,6 @@
 package com.mplplayer;
 
 import com.facebook.react.ReactActivity;
-import com.oblador.vectoricons.VectorIconsPackage;
-import com.burnweb.rnsendintent.RNSendIntentPackage;
 
 public class MainActivity extends ReactActivity {
 

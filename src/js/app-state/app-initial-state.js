@@ -35,6 +35,9 @@ const AppInitialState = {
 	session: Immutable.fromJS({
 		legendary: 100,
 	}),
+	settings: Immutable.fromJS({
+		sync: false,
+	}),
 	summary: Immutable.fromJS({
 		builds: [],
 		current: { },

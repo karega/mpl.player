@@ -1,33 +1,57 @@
 /* settings.js */
 
-/** External Module Dependencies **/
+import Immutable from 'immutable';
 import React, {PropTypes} from 'react';
-import {Image, Text, TextInput, TouchableWithoutFeedback, View} from 'react-native';
+import {
+	RefreshControl,
+	ScrollView,
+	View,
+} from 'react-native';
 
-/** Internal Component Dependencies **/
 import sStyles from './../styles/settings-styles';
 
-type SettingsPropTypes = { };
+type SettingsListPropTypes = {};
 
-type SettingsStateTypes = { };
+class SettingsList extends React.PureComponent <any, SettingsListPropTypes, void> {
+	props: SettingsListPropTypes;
+	animating: boolean;
 
-class Settings extends React.PureComponent<any, SettingsPropTypes, SettingsStateTypes> {
-	props: SettingsPropTypes;
-	state: SettingsStateTypes;
-
-	constructor(props: SettingsPropTypes): void {
+	constructor(props: SettingsListPropTypes): void {
 		super(props);
 	}
 
 	render(): React.Element {
-		return (
-			<View style={ sStyles.container }>
+		[].map((setting, index) => {
+			settings.push(
+				<View
+					key={'menu_' + index}
+					style={sStyles.menuItem}>
+					<TouchableNativeFeedback
+						onPress={setting.onClick}
+						disabled={setting.disabled}>
+						<View style={sStyles.menuButton}>
+							<Text style={[sStyles.menuHeader, { color: setting.disabled ? '#9d9d9d' : '#262426' }]}>{setting.title}</Text>
+							<Text style={[sStyles.menuLabel, { color: setting.disabled ? '#9d9d9d' : '#262426' }]}>{setting.subtitle}</Text>
+						</View>
+					</TouchableNativeFeedback>
+				</View>
+			);
+		});
 
+		return (
+			<View style={sStyles.container}>
+				<ScrollView contentContainerStyle={sStyles.scrollContainer} refreshControl={null}>
+					{settings}
+				</ScrollView>
 			</View>
 		);
 	}
 }
 
-Settings.propTypes = { };
+SettingsList.propTypes = {
+	settings: PropTypes.object.isRequired,
+	onRefresh: PropTypes.func.isRequired,
+	onSettingPress: PropTypes.func.isRequired,
+};
 
-export default Settings;
+export default SettingsList;

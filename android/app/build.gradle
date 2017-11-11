@@ -27,8 +27,8 @@ import com.android.build.OutputFile
  *   // whether to bundle JS and assets in another build variant (if configured).
  *   // See http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Build-Variants
  *   // The configuration property can be in the following formats
- *   //         'bundleIn${productFlavor}${buildType}'
- *   //         'bundleIn${buildType}'
+ *   //         "bundleIn${productFlavor}${buildType}"
+ *   //         "bundleIn${buildType}"
  *   // bundleInFreeDebug: true,
  *   // bundleInPaidRelease: true,
  *   // bundleInBeta: true,
@@ -43,15 +43,15 @@ import com.android.build.OutputFile
  *   jsBundleDirRelease: "$buildDir/intermediates/assets/release",
  *
  *   // where to put drawable resources / React Native assets, e.g. the ones you use via
- *   // require('./image.png')), in debug mode
+ *   // require("./image.png")), in debug mode
  *   resourcesDirDebug: "$buildDir/intermediates/res/merged/debug",
  *
  *   // where to put drawable resources / React Native assets, e.g. the ones you use via
- *   // require('./image.png')), in release mode
+ *   // require("./image.png")), in release mode
  *   resourcesDirRelease: "$buildDir/intermediates/res/merged/release",
  *
  *   // by default the gradle tasks are skipped if none of the JS files or assets change; this means
- *   // that we don't look at files in android/ or ios/ to determine whether the tasks are up to
+ *   // that we don"t look at files in android/ or ios/ to determine whether the tasks are up to
  *   // date; if you have any other folders that you want to ignore for performance reasons (gradle
  *   // indexes the entire tree), add them here. Alternatively, if you have JS files in android/
  *   // for example, you might want to remove it from here.
@@ -82,24 +82,22 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
-apply plugin: 'com.android.application'
-
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.1"
 
     packagingOptions {
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/services/com.fasterxml.jackson.core.JsonFactory'
+        exclude "META-INF/DEPENDENCIES"
+        exclude "META-INF/NOTICE"
+        exclude "META-INF/LICENSE"
+        exclude "META-INF/services/com.fasterxml.jackson.core.JsonFactory"
     }
     defaultConfig {
         applicationId "com.mplplayer"
         minSdkVersion 19
         targetSdkVersion 22
-        versionCode 10
-        versionName "1.1"
+        versionCode 11
+        versionName "1.11"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -145,27 +143,28 @@ android {
 dependencies {
     compile fileTree( dir: "libs" , include: ["*.jar"] )
     compile "com.android.support:appcompat-v7:25.0.1"
-    compile "com.facebook.react:react-native:0.39.0"
+    compile "com.facebook.react:react-native:0.40.0"
     compile "com.google.firebase:firebase-auth:11.4.2"
-    compile project(':react-native-admob')
-    compile project(':react-native-vector-icons')
-    compile project(':react-native-send-intent')
-    compile project(':react-native-custom-tabs')
-    compile project(':react-native-facebook-login')
+    compile project(":react-native-admob")
+    compile project(":react-native-vector-icons")
+    compile project(":react-native-send-intent")
+    compile project(":react-native-custom-tabs")
+    compile project(":react-native-facebook-login")
 }
+
+apply plugin: "com.google.gms.google-services"
 
 // Run this once to be able to run the application with BUCK
 // puts all compile dependencies into folder libs for BUCK to use
+/*
 task copyDownloadableDepsToLibs(type: Copy) {
   from configurations.compile
-  into 'libs'
+  into "libs"
 }
+*/
 
-apply plugin: 'com.google.gms.google-services'
-
-// needed to re-compile react-native...
 /*
 configurations.all {
-    exclude group: 'com.facebook.react', module: 'react-native'
+    exclude group: "com.google.android.gms", module: "play-services-ads"
 }
 */

@@ -105,14 +105,39 @@ const sStyles = {
 		flexDirection: 'row',
 		justifyContent: 'flex-start',
 		padding: 8,
-		paddingTop: 16,
-		paddingBottom: 16,
+		paddingTop: 10,
+		paddingBottom: 10,
+		flexWrap: 'wrap',
+	},
+	sbProfileImage: {
+		width: 48,
+		height: 48,
+		maxWidth: 48
+	},
+	sbProfilePanel: {
+		height: 50,
+		backgroundColor: '#262426',
+		flexDirection: 'column',
+		justifyContent: 'flex-start',
 	},
 	sbProfileText: {
 		color: '#dbd8da',
-		fontSize: 18,
-		fontWeight: '100',
+		fontSize: 16,
+		fontWeight: '900',
 		marginLeft: 8,
+		marginBottom: 4,
+		flex: 1,
+	},
+	sbCurrencyPanel: {
+		flexDirection: 'row',
+		justifyContent: 'flex-start',
+	},
+	sbCurrencyText: {
+		color: '#dbd8da',
+		fontSize: 16,
+		fontWeight: '900',
+		marginLeft: 4,
+		justifyContent: 'flex-end',
 	},
 	menuItems: {
 		flex: 6,
@@ -205,20 +230,24 @@ const browseTo = (url) => {
 }
 
 export const navigationView = (profile) => {
+	var	legendaryIcon = require('./../assets/legendary.png');
+
 	return (
 		<View style={[sStyles.sidebar]}>
 			{
 				profile && (
 					<View style={sStyles.sbProfileName}>
-						<Avatar
-							size={48}
-							image={
-								<Image
-									key={'summary_sbProfileImage'}
-									style={sStyles.sbProfileImage}
-									source={{ uri: profile.picture.data.url }}/>
-							}/>
-						<Text style={sStyles.sbProfileText}>{profile.name}</Text>
+						<Image
+							key={'summary_sbProfileImage'}
+							style={sStyles.sbProfileImage}
+							source={{ uri: profile.picture.data.url }}/>
+						<View style={sStyles.sbProfilePanel}>
+							<Text style={sStyles.sbProfileText}>{profile.name}</Text>
+							<View style={sStyles.sbCurrencyPanel}>
+								<Image key={'summary_sbLegendary'} style={{ maxWidth: 32, width: 32, maxHeight: 24, height: 24, marginLeft: 8, }} source={legendaryIcon}/>
+								<Text style={sStyles.sbCurrencyText}>{profile.legendary ? profile.legendary : 0.00}</Text>
+							</View>
+						</View>
 					</View>
 				)
 			}
@@ -281,13 +310,25 @@ export const navigationView = (profile) => {
 					</View>
 				</TouchableNativeFeedback>
 				<TouchableNativeFeedback
+					onPress={() => Actions.settings() }>
+					<View style={{ alignSelf: 'flex-start' }}>
+						<FontAwesome
+							color={'#262426'}
+							backgroundColor={'#3B5998'}
+							borderRadius={0}
+							name={'cog'}
+							size={32}
+							style={sStyles.loginIcon} />
+					</View>
+				</TouchableNativeFeedback>
+				<TouchableNativeFeedback
 					onPress={() => browseTo('https://www.facebook.com/MyParkLegends/')}>
 					<View style={{ alignSelf: 'flex-start' }}>
 						<FontAwesome
-							color={"#262426"}
-							backgroundColor={"#3B5998"}
+							color={'#262426'}
+							backgroundColor={'#3B5998'}
 							borderRadius={0}
-							name={"facebook"}
+							name={'facebook'}
 							size={32}
 							style={sStyles.loginIcon} />
 					</View>
@@ -296,10 +337,10 @@ export const navigationView = (profile) => {
 					onPress={() => browseTo('https://twitter.com/myparklegends')}>
 					<View style={{ alignSelf: 'flex-start' }}>
 						<FontAwesome
-							color={"#262426"}
-							backgroundColor={"#3B5998"}
+							color={'#262426'}
+							backgroundColor={'#3B5998'}
 							borderRadius={0}
-							name={"twitter"}
+							name={'twitter'}
 							size={32}
 							style={sStyles.loginIcon} />
 					</View>
