@@ -46,28 +46,15 @@ const session = function (session: Immutable.Map<string, any>, action: Object): 
 
 		case SET_REWARDS:
 			var _session = session;
+			var	_profile = _session.getIn(['profile']);
 
-			if (action.amount) {
+			if (action.amount && _profile) {
 				var	_amount = _session.getIn(['legendary']) ? _session.getIn(['legendary']) : 0;
 
 				_amount = + _amount + action.amount;
-
 				_session = _session.setIn(['legendary'], _amount);
-
-				var	_profile = _session.getIn(['profile']);
-
 				_profile['legendary'] = _amount;
 				_session = _session.set('profile', _profile);
-
-				/*// Get a key for a new Post.
-				var updateKey = middleware.database().ref().child('users').push().key;
-
-				// Write the new post's data simultaneously in the posts list and the user's post list.
-				var updates = {};
-				updates['/users/' + updateKey] = _profile;
-				updates['/users/' + _profile.id + '/' + updateKey] = _profile;
-
-				middleware.database().ref().update(updates);*/
 
 				middleware.database().ref('users/' + _profile.id).set(_profile);
 			}
