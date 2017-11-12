@@ -93,6 +93,8 @@ class Login extends React.PureComponent<any, LoginPropTypes, LoginStateTypes> {
 							loginBehavior={FBLoginManager.LoginBehaviors.Web}
 							onLogin={(data) => {
 								console.log('debug', 'Logged in successful.');
+
+								this.verify();
 								this.register(data);
 							}}
 							onLogout={() => {
@@ -101,7 +103,12 @@ class Login extends React.PureComponent<any, LoginPropTypes, LoginStateTypes> {
 							}}
 							onLoginFound={(data) => {
 								console.log('debug', 'Login found.', data);
-								setTimeout(() => { this.verify(); }, 500);
+
+								this.verify();
+
+								if (!this.props.synching) {
+									this.fbLogin.logout();
+								}
 							}}
 							onLoginNotFound={() => {
 								console.log('debug', 'No user logged in.');

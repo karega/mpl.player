@@ -14,7 +14,7 @@ const loginStyles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
-        backgroundColor: '#3B5998',
+        backgroundColor: '#3b5998',
         height: 66,
     },
 	continueContainer: {

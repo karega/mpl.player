@@ -18,8 +18,6 @@ const mapStateToProps = (state) => {
 	let builds = state.compare.get('builds');
 	let current = state.compare.get('current');
 
-	console.log('builds', builds)
-
 	let badges = maxed.filter((build, index) => {
 		return (
 			build['Position'].toLowerCase() === pathOr('', ['bio', 'position'])(current).toLowerCase() &&

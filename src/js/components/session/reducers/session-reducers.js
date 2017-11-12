@@ -15,27 +15,32 @@ const session = function (session: Immutable.Map<string, any>, action: Object): 
 
 		case REGISTER_LOGIN:
 			var _session = session;
+			
+			const _profile = action.profile;
 
-			if (action.fb.profile.first_name && action.fb.profile.id) {
-				console.log('logging', 'Creating session');
+			if (_profile.first_name && _profile.id) {
+				console.log('logging', 'Creating session...');
 
 				_session = _session.set('authorized', true);
-				_session = _session.set('id', action.fb.profile.id);
-				_session = _session.set('username', action.fb.profile.first_name);
-				_session = _session.set('profile', action.fb.profile);
+				_session = _session.set('id', _profile.id);
+				_session = _session.set('username', _profile.first_name);
+				_session = _session.set('profile', _profile);
+				_session = _session.set('legendary', _profile.legendary);
 
-				const _profile = _session.get('profile');
+				middleware.database().ref('users/' + _profile.id).set(_profile);
 
-				middleware.database().ref('users/' + action.fb.profile.id).set(_profile);
+				return _session;
 			}
 			else {
 				console.log('error', 'Bad data.');
+
+				return _session;
 			}
 
-			return _session;
-
 		case REQUEST_LOGOUT:
-			var _session = Immutable.fromJS({ });
+			var _session = Immutable.fromJS({
+				legendary: 100,
+			});
 
 			return _session;
 

@@ -66,7 +66,6 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 		const mplIcon = require('./../../../assets/mplplayer.png');
 		const _fac = ((100 / (this.props.builds.size === 4 ? 4 : this.props.builds.size === 3 ? 4 : (this.props.builds.size * 2))) / 100);
 
-		console.log('getCompare - builds', this.props.builds)
 		switch (ff) {
 			case 'large':
 				var compareSplash = require('./../../../assets/compare-splash.png');

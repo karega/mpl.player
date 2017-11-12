@@ -1,13 +1,39 @@
 /* settings-styles.js */
 
-import {StyleSheet} from 'react-native';
+import {Dimensions, Image, StyleSheet} from 'react-native';
+
+const { width, height } = Dimensions.get('window');
 
 const settingsListStyles = StyleSheet.create({
 	container: {
 		flex: 1,
-		flexDirection: "column",
-		justifyContent: "flex-start",
+		flexDirection: 'column',
+		justifyContent: 'flex-start',
+		alignItems: 'flex-start',
 		paddingTop: 8,
+	},
+	headerContainer: {
+		width: width,
+		height: 90,
+		maxHeight: 90,
+		flex: 1,
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
+		paddingTop: 10,
+		paddingBottom: 10,
+	},
+	closeButton: {
+		position: 'absolute',
+		top: 10,
+		left: 10,
+		zIndex: 100,
+	},
+	primaryText: {
+		color: '#262426',
+		fontSize: 40,
+		fontWeight: '700',
+		textAlign: 'center',
 	},
 	scrollContainer: {},
 	menuItems: {
@@ -15,13 +41,21 @@ const settingsListStyles = StyleSheet.create({
 		flexDirection: 'column',
 	},
 	menuItem: {
-		width: 284,
+		width: width,
 		alignSelf: 'stretch',
 		padding: 4,
+		borderBottomWidth: 1,
+		borderBottomColor: '#dbd8da',
 	},
 	menuButton: {
 		padding: 4,
 		paddingLeft: 12,
+		justifyContent: 'space-between',
+		flexDirection: 'row'
+	},
+	menuIcon: {
+		alignSelf: 'center',
+		marginRight: 8,
 	},
 	menuHeader: {
 		color: '#262426',
@@ -32,6 +66,15 @@ const settingsListStyles = StyleSheet.create({
 		color: '#262426',
 		fontSize: 18,
 		fontWeight: '100',
+	},
+	menuTitle: {
+		width: ((width - 16) * 0.70),
+		flex: 0.70,
+
+	},
+	menuSwitch: {
+		width: ((width - 16) * 0.20),
+		flex: 0.20,
 	},
 });
 

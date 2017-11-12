@@ -1,7 +1,7 @@
 /* admob-actions.js */
 
 /** Global Module Dependencies **/
-import { SET_REWARDS } from './../../../actions/actions';
+import { SET_REWARDS, UPDATE_AD_UNITS } from './../../../actions/actions';
 
 export function admob(): Object {
 	return function (dispatch) {
@@ -11,13 +11,14 @@ export function admob(): Object {
 
 export function addRewards(amount): Object {
 	return function (dispatch) {
-		dispatch(setRewards(amount))
+		dispatch(updateAdUnits())
+		dispatch(setRewards(amount));
 	}
 }
 
 export function requestAdmob(): Object {
 	return {
-		type: 'REQUEST_ADMOB'
+		type: REQUEST_ADMOB
 	};
 }
 
@@ -25,5 +26,11 @@ export function setRewards(amount): Object {
 	return {
 		type: SET_REWARDS,
 		amount,
+	};
+}
+
+export function updateAdUnits(): Object {
+	return {
+		type: UPDATE_AD_UNITS,
 	};
 }

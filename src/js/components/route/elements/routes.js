@@ -20,9 +20,9 @@ const scenes = Actions.create(
 		<Scene key={ 'browser' } component={ BrowserProvider } title={ 'Browser' } />
 		<Scene key={ 'builder' } component={ BuilderProvider } title={ 'Builder' } />
 		<Scene key={ 'compare' } component={ CompareProvider } title={ 'Compare' } />
-		<Scene key={ 'login' } component={ LoginProvider } title={ 'Login' } initial={ true }  />
+		<Scene key={ 'login' } component={ LoginProvider } title={ 'Login' } />
 		<Scene key={ 'settings' } component={ SettingsProvider } title={ 'Settings' } />
-		<Scene key={ 'summary' } component={ SummaryProvider } title={ 'Summary' } />
+		<Scene key={ 'summary' } component={ SummaryProvider } title={ 'Summary' } initial={ true } />
 	</Scene>
 );
 

@@ -47,8 +47,8 @@ class Builder extends React.PureComponent <any, BuilderPropTypes, BuilderStateTy
 
 	componentDidUpdate(prevProps) {
 		if (this.props.step === 4) {
-			// Actions.admob();
-			this.props.saveCurrentBuild();
+			Actions.admob();
+			// this.props.saveCurrentBuild();
 		}
 	}
 

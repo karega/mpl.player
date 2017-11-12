@@ -10,6 +10,7 @@ import Login from './../elements/login';
 const mapStateToProps = (state) => {
 	return {
 		session: state.session,
+		synching: state.settings.get('synching'),
 	};
 };
 

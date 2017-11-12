@@ -24,5 +24,6 @@ export const REMOVE_BUILD = "remove_build";
 export const DROP_BUILD = "drop_build";
 
 /** Admob Actions **/
+export const REQUEST_ADMOB = "request_admob";
 export const SET_REWARDS = "set_rewards";
 export const UPDATE_AD_UNITS = "update_ad_units";

@@ -57,6 +57,8 @@ class Admob extends React.PureComponent<any, AdmobPropTypes, AdmobStateTypes> {
 		AdMobRewarded.addEventListener('rewardedVideoDidFailToLoad', (error) => {
 			console.log('rewardedVideoDidFailToLoad', error);
 
+			this.props.saveCurrentBuild();
+
 			AdMobRewarded.removeAllListeners();
 
 			Actions.summary();
@@ -78,7 +80,7 @@ class Admob extends React.PureComponent<any, AdmobPropTypes, AdmobStateTypes> {
 			console.log('rewardedVideoWillLeaveApplication');
 		});
 
-		AdMobRewarded.requestAd((error) => error && console.log(error));
+		AdMobRewarded.requestAd((error) => error && console.log('error', error));
 	}
 
 	componentDidUpdate(prevProps) {
