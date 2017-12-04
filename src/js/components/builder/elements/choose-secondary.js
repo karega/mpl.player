@@ -9,7 +9,7 @@ import {
 	ScrollView,
 	StyleSheet,
 	Text,
-	TouchableNativeFeedback,
+	TouchableWithoutFeedback,
 	View
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -51,7 +51,7 @@ class ChooseSecondary extends React.PureComponent<any, ChooseSecondaryPropTypes,
 
 		return (
 			<View style={[bStyles.container, { height: height - 48 }]}>
-				<TouchableNativeFeedback
+				<TouchableWithoutFeedback
 					onPress={() => {
 						this.props.choosePage(2);
 					}}>
@@ -61,7 +61,7 @@ class ChooseSecondary extends React.PureComponent<any, ChooseSecondaryPropTypes,
 							name={'arrow-back'}
 							size={32}/>
 					</View>
-				</TouchableNativeFeedback>
+				</TouchableWithoutFeedback>
 				<View style={bStyles.headerContainer}>
 					<Text style={bStyles.primaryText}>CHOOSE</Text>
 					<Text style={bStyles.secondaryText}>SECONDARY</Text>
@@ -72,7 +72,7 @@ class ChooseSecondary extends React.PureComponent<any, ChooseSecondaryPropTypes,
 					{this.props.primary && (
 						this.props.primary.map((key, index) => {
 							return (
-								<TouchableNativeFeedback
+								<TouchableWithoutFeedback
 									key={'mpl_pos_' + index}
 									onPress={() => {
 										this.props.chooseSecondary(key)
@@ -83,7 +83,7 @@ class ChooseSecondary extends React.PureComponent<any, ChooseSecondaryPropTypes,
 											{key['Secondary Skill']}
 										</Text>
 									</View>
-								</TouchableNativeFeedback>
+								</TouchableWithoutFeedback>
 							)
 						})
 					)}

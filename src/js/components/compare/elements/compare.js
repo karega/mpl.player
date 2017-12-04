@@ -12,8 +12,7 @@ import {
 	Text,
 	TextInput,
 	ToolbarAndroid,
-	TouchableHighlight,
-	TouchableNativeFeedback,
+	TouchableWithoutFeedback,
 	TouchableOpacity,
 	View
 } from 'react-native';
@@ -76,7 +75,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 							<Image key={'lrg_compareSplash'} source={compareSplash} style={[cStyles.compareSplash, { marginTop: 25, width: adjWidth, height: adjWidth }]} />
 						</View>
 						<View style={cStyles.contentContainer}>
-							<TouchableNativeFeedback
+							<TouchableWithoutFeedback
 								onPress={() => {
 									Actions.browser({ comparator: true });
 								}}>
@@ -87,7 +86,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 										{'ADD ARCHETYPE'}
 									</Text>
 								</View>
-							</TouchableNativeFeedback>
+							</TouchableWithoutFeedback>
 						</View>
 					</View>
 				);
@@ -112,7 +111,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 											<View
 												key={'compare_build_' + index}
 												style={[cStyles.removeBuildButton]}>
-												<TouchableHighlight
+												<TouchableWithoutFeedback
 													onLongPress={() => {
 														Alert.alert(
 															'Remove Build',
@@ -136,7 +135,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 															badges={[build.badges]}
 															current={build} />
 													</View>
-												</TouchableHighlight>
+												</TouchableWithoutFeedback>
 											</View>
 										)
 									})
@@ -149,7 +148,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 									<Image key={'med_ovr_compareSplash'} source={compareSplash} style={[cStyles.compareSplash, { marginTop:50, width: 160, height: 284 }]} />
 								</View>
 								<View style={cStyles.contentContainer}>
-									<TouchableNativeFeedback
+									<TouchableWithoutFeedback
 										onPress={() => {
 											Actions.browser({ comparator: true });
 										}}>
@@ -160,7 +159,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 												{'ADD'}
 											</Text>
 										</View>
-									</TouchableNativeFeedback>
+									</TouchableWithoutFeedback>
 								</View>
 							</View>
 						</View>
@@ -172,7 +171,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 											<View
 												key={'compare_build_' + index}
 												style={cStyles.removeBuildButton}>
-												<TouchableHighlight
+												<TouchableWithoutFeedback
 													onLongPress={() => {
 														Alert.alert(
 															'Remove Build',
@@ -198,7 +197,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 															width={adjWidth * 0.5}
 															current={build} />
 													</View>
-												</TouchableHighlight>
+												</TouchableWithoutFeedback>
 											</View>
 										)
 									})
@@ -213,7 +212,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 											<Image key={'med_cap_compareSplash'} source={compareSplash} style={[cStyles.compareSplash, { marginTop:50, width: 160, height: 284 }]} />
 										</View>
 										<View style={cStyles.contentContainer}>
-											<TouchableNativeFeedback
+											<TouchableWithoutFeedback
 												onPress={() => {
 													Actions.browser({ comparator: true });
 												}}>
@@ -224,7 +223,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 														{'ADD'}
 													</Text>
 												</View>
-											</TouchableNativeFeedback>
+											</TouchableWithoutFeedback>
 										</View>
 									</View>
 								)
@@ -254,7 +253,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 											<View
 												key={'compare_build_' + index}
 												style={cStyles.removeBuildButton}>
-												<TouchableHighlight
+												<TouchableWithoutFeedback
 													onLongPress={() => {
 														Alert.alert(
 															'Remove Build',
@@ -279,7 +278,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 															badges={[build.badges]}
 															current={build} />
 													</View>
-												</TouchableHighlight>
+												</TouchableWithoutFeedback>
 											</View>
 										)
 									})
@@ -296,14 +295,14 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 											{ this.props.builds.size != 2 && <Image key={'sm_ovr_compareSplash'} source={compareSplash} style={[cStyles.compareSplash, { height: (adjWidth * _fac) * 1.77, width: (adjWidth * _fac) }]} /> }
 										</View>
 										<View style={cStyles.contentContainer}>
-											<TouchableNativeFeedback
+											<TouchableWithoutFeedback
 												onPress={() => {
 													Actions.browser({ comparator: true });
 												}}>
 												<View style={cStyles.addArchetype}>
 													<Image key={'sm_ovr_mplIcon'} source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36 }]}/>
 												</View>
-											</TouchableNativeFeedback>
+											</TouchableWithoutFeedback>
 										</View>
 									</View>
 								)
@@ -317,7 +316,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 											<View
 												key={'compare_build_' + index}
 												style={cStyles.removeBuildButton}>
-												<TouchableHighlight
+												<TouchableWithoutFeedback
 													onLongPress={() => {
 														Alert.alert(
 															'Remove Build',
@@ -344,7 +343,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 															width={adjWidth * _fac}
 															current={build} />
 													</View>
-												</TouchableHighlight>
+												</TouchableWithoutFeedback>
 											</View>
 										)
 									})
@@ -361,14 +360,14 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 											{ this.props.builds.size != 2 && <Image key={'sm_ovr_compareSplash'} source={compareSplash} style={[cStyles.compareSplash, { height: (adjWidth * _fac) * 1.77, width: (adjWidth * _fac) }]} /> }
 										</View>
 										<View style={cStyles.contentContainer}>
-											<TouchableNativeFeedback
+											<TouchableWithoutFeedback
 												onPress={() => {
 													Actions.browser({ comparator: true });
 												}}>
 												<View style={cStyles.addArchetype}>
 													<Image key={'sm_cap_mplIcon'} source={mplIcon} style={[cStyles.addArchetypeIcon, { height: 36, width: 36 }]}/>
 												</View>
-											</TouchableNativeFeedback>
+											</TouchableWithoutFeedback>
 										</View>
 									</View>
 								)
@@ -397,7 +396,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 				disableGestures={true}
 				autoClosing={false}>
 				<View style={[cStyles.container, { height: height }]}>
-					<TouchableNativeFeedback
+					<TouchableWithoutFeedback
 						onPress={() => this.toggleMenu(!this.state.drawer)}>
 						<View style={cStyles.menuButton}>
 							{this.state.drawer ? (
@@ -412,7 +411,7 @@ class Compare extends React.PureComponent <any, ComparePropTypes, CompareStateTy
 									size={32}/>
 							)}
 						</View>
-					</TouchableNativeFeedback>
+					</TouchableWithoutFeedback>
 					<View style={cStyles.headerContainer}>
 						<Text style={cStyles.primaryText}>{'COMPARE'}</Text>
 						<Text style={cStyles.secondaryText}>{'BUILDS'}</Text>

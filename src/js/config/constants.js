@@ -4,7 +4,7 @@ import {
 	Image,
 	Share,
 	Text,
-	TouchableNativeFeedback,
+	TouchableWithoutFeedback,
 	View
 } from 'react-native';
 import {
@@ -286,20 +286,20 @@ export const navigationView = (profile) => {
 						<View
 							key={'menu_' + index}
 							style={sStyles.menuItem}>
-							<TouchableNativeFeedback
+							<TouchableWithoutFeedback
 								onPress={menu.action}
 								disabled={menu.disabled}>
 								<View style={sStyles.menuButton}>
 									<Text style={[sStyles.menuHeader, { color: menu.disabled ? '#9d9d9d' : '#262426' }]}>{menu.title}</Text>
 									<Text style={[sStyles.menuLabel, { color: menu.disabled ? '#9d9d9d' : '#262426' }]}>{menu.subtitle}</Text>
 								</View>
-							</TouchableNativeFeedback>
+							</TouchableWithoutFeedback>
 						</View>
 					);
 				})}
 			</View>
 			<View style={sStyles.sbFooter}>
-				<TouchableNativeFeedback
+				<TouchableWithoutFeedback
 					onPress={() => _shareText()}>
 					<View style={{ alignSelf: 'flex-start' }}>
 						<Icon
@@ -308,8 +308,8 @@ export const navigationView = (profile) => {
 							size={32}
 							style={sStyles.loginIcon} />
 					</View>
-				</TouchableNativeFeedback>
-				<TouchableNativeFeedback
+				</TouchableWithoutFeedback>
+				<TouchableWithoutFeedback
 					onPress={() => Actions.settings() }>
 					<View style={{ alignSelf: 'flex-start' }}>
 						<FontAwesome
@@ -320,8 +320,8 @@ export const navigationView = (profile) => {
 							size={32}
 							style={sStyles.loginIcon} />
 					</View>
-				</TouchableNativeFeedback>
-				<TouchableNativeFeedback
+				</TouchableWithoutFeedback>
+				<TouchableWithoutFeedback
 					onPress={() => browseTo('https://www.facebook.com/MyParkLegends/')}>
 					<View style={{ alignSelf: 'flex-start' }}>
 						<FontAwesome
@@ -332,8 +332,8 @@ export const navigationView = (profile) => {
 							size={32}
 							style={sStyles.loginIcon} />
 					</View>
-				</TouchableNativeFeedback>
-				<TouchableNativeFeedback
+				</TouchableWithoutFeedback>
+				<TouchableWithoutFeedback
 					onPress={() => browseTo('https://twitter.com/myparklegends')}>
 					<View style={{ alignSelf: 'flex-start' }}>
 						<FontAwesome
@@ -344,7 +344,7 @@ export const navigationView = (profile) => {
 							size={32}
 							style={sStyles.loginIcon} />
 					</View>
-				</TouchableNativeFeedback>
+				</TouchableWithoutFeedback>
 				<Text style={sStyles.versionText}>v0.1-beta</Text>
 			</View>
 		</View>

@@ -11,8 +11,7 @@ import {
 	Text,
 	TextInput,
 	ToolbarAndroid,
-	TouchableHighlight,
-	TouchableNativeFeedback,
+	TouchableWithoutFeedback,
 	TouchableOpacity,
 	View
 } from 'react-native';
@@ -92,7 +91,7 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 		const ARCHETYPE = (this.props.current && this.props.current.archetype) ? this.props.current.archetype : null;
 		const sideMenuButton = (drawer) => {
 			return (
-				<TouchableNativeFeedback
+				<TouchableWithoutFeedback
 					onPress={() => this.toggleMenu(!drawer)}>
 					<View style={sStyles.menuButton}>
 						{drawer ? (
@@ -107,7 +106,7 @@ class Summary extends React.PureComponent <any, SummaryPropTypes, SummaryStateTy
 								size={32} />
 						)}
 					</View>
-				</TouchableNativeFeedback>
+				</TouchableWithoutFeedback>
 			)
 		}
 

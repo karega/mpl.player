@@ -3,7 +3,7 @@
 /** External Module Dependencies **/
 import Immutable from 'immutable';
 import React, {PropTypes} from 'react';
-import {Image, Text, TextInput, TouchableHighlight, View} from 'react-native';
+import {Image, Text, TextInput, TouchableWithoutFeedback, View} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { AdMobRewarded } from 'react-native-admob';
 

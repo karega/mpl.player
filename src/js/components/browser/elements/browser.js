@@ -12,8 +12,7 @@ import {
 	Text,
 	TextInput,
 	ToolbarAndroid,
-	TouchableHighlight,
-	TouchableNativeFeedback,
+	TouchableWithoutFeedback,
 	TouchableOpacity,
 	View
 } from 'react-native';
@@ -70,7 +69,7 @@ class Browser extends React.PureComponent <any, BrowserPropTypes, BrowserStateTy
 			let buildItemWidth = ((index % 2 === 0) ? (((width - 10) / 2) - 1) : ((width - 10) / 2));
 
 			builds.push(
-				<TouchableNativeFeedback
+				<TouchableWithoutFeedback
 					key={'build_' + index}
 					onPress={() => {
 						if (this.props.comparator) {
@@ -130,7 +129,7 @@ class Browser extends React.PureComponent <any, BrowserPropTypes, BrowserStateTy
 						</View>
 						{/*	<View style={[bStyles.buildRule, { width: (width * 0.8) }]} />*/}
 					</View>
-				</TouchableNativeFeedback>
+				</TouchableWithoutFeedback>
 			)
 
 			if (index % 2 === 0) {
@@ -147,7 +146,7 @@ class Browser extends React.PureComponent <any, BrowserPropTypes, BrowserStateTy
 				disableGestures={true}
 				autoClosing={false}>
 				<View style={[bStyles.container, { height: height, width: width }]}>
-					<TouchableNativeFeedback
+					<TouchableWithoutFeedback
 						onPress={() => {
 							if (this.props.comparator) {
 								Actions.compare();
@@ -169,7 +168,7 @@ class Browser extends React.PureComponent <any, BrowserPropTypes, BrowserStateTy
 									size={32}/>
 							)}
 						</View>
-					</TouchableNativeFeedback>
+					</TouchableWithoutFeedback>
 					<View style={bStyles.headerContainer}>
 						<Text style={bStyles.primaryText}>SEARCH</Text>
 						<Text style={bStyles.secondaryText}>BUILDS</Text>

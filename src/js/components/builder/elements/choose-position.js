@@ -7,7 +7,7 @@ import {
 	Image,
 	StyleSheet,
 	Text,
-	TouchableNativeFeedback,
+	TouchableWithoutFeedback,
 	View
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
@@ -47,7 +47,7 @@ class ChoosePosition extends React.PureComponent<any, ChoosePositionPropTypes, C
 
 		return (
 			<View style={[bStyles.container, { height: height - 48 }]}>
-				<TouchableNativeFeedback
+				<TouchableWithoutFeedback
 					onPress={() => {
 						Actions.summary();
 					}}>
@@ -57,7 +57,7 @@ class ChoosePosition extends React.PureComponent<any, ChoosePositionPropTypes, C
 							name={'arrow-back'}
 							size={32}/>
 					</View>
-				</TouchableNativeFeedback>
+				</TouchableWithoutFeedback>
 				<View style={bStyles.headerContainer}>
 					<Text style={bStyles.primaryText}>CHOOSE</Text>
 					<Text style={bStyles.secondaryText}>POSITION</Text>
@@ -73,7 +73,7 @@ class ChoosePosition extends React.PureComponent<any, ChoosePositionPropTypes, C
 						indicatorSize={20}
 						indicatorColor='#BF1725'>
 						<View style={bStyles.cypContainer}>
-							<TouchableNativeFeedback
+							<TouchableWithoutFeedback
 								onPress={() => { this.props.choosePosition('pg') }}>
 								<View style={[{ width: posW, maxWidth: posW, height: posH, maxHeight: posH }]}>
 									<Text
@@ -83,10 +83,10 @@ class ChoosePosition extends React.PureComponent<any, ChoosePositionPropTypes, C
 										style={[bStyles.positionText, { width: posW }]}>POINT GUARD</Text>
 									<Image key={'cyp_pg'} source={this.cypPG} style={[bStyles.cypImage, { width: imgW, maxWidth: imgW, height: imgH, maxHeight: imgH }]} />
 								</View>
-							</TouchableNativeFeedback>
+							</TouchableWithoutFeedback>
 						</View>
 						<View style={bStyles.cypContainer}>
-							<TouchableNativeFeedback
+							<TouchableWithoutFeedback
 								onPress={() => { this.props.choosePosition('sg') }}>
 								<View style={[{ width: posW, maxWidth: posW, height: posH, maxHeight: posH }]}>
 									<Text
@@ -96,10 +96,10 @@ class ChoosePosition extends React.PureComponent<any, ChoosePositionPropTypes, C
 										style={[bStyles.positionText, { width: posW }]}>SHOOTING GUARD</Text>
 									<Image key={'cyp_sg'} source={this.cypSG} style={[bStyles.cypImage, { width: imgW, maxWidth: imgW, height: imgH, maxHeight: imgH }]} />
 								</View>
-							</TouchableNativeFeedback>
+							</TouchableWithoutFeedback>
 						</View>
 						<View style={bStyles.cypContainer}>
-							<TouchableNativeFeedback
+							<TouchableWithoutFeedback
 								onPress={() => { this.props.choosePosition('sf') }}>
 								<View style={[{ width: posW, maxWidth: posW, height: posH, maxHeight: posH }]}>
 									<Text
@@ -109,10 +109,10 @@ class ChoosePosition extends React.PureComponent<any, ChoosePositionPropTypes, C
 										style={[bStyles.positionText, { width: posW }]}>SMALL FORWARD</Text>
 									<Image key={'cyp_sf'} source={this.cypSF} style={[bStyles.cypImage, { width: imgW, maxWidth: imgW, height: imgH, maxHeight: imgH }]} />
 								</View>
-							</TouchableNativeFeedback>
+							</TouchableWithoutFeedback>
 						</View>
 						<View style={bStyles.cypContainer}>
-							<TouchableNativeFeedback
+							<TouchableWithoutFeedback
 								onPress={() => { this.props.choosePosition('pf') }}>
 								<View style={[{ width: posW, maxWidth: posW, height: posH, maxHeight: posH }]}>
 									<Text
@@ -122,10 +122,10 @@ class ChoosePosition extends React.PureComponent<any, ChoosePositionPropTypes, C
 										style={[bStyles.positionText, { width: posW }]}>POWER FORWARD</Text>
 									<Image key={'cyp_pf'} source={this.cypPF} style={[bStyles.cypImage, { width: imgW, maxWidth: imgW, height: imgH, maxHeight: imgH }]} />
 								</View>
-							</TouchableNativeFeedback>
+							</TouchableWithoutFeedback>
 						</View>
 						<View style={bStyles.cypContainer}>
-							<TouchableNativeFeedback
+							<TouchableWithoutFeedback
 								onPress={() => { this.props.choosePosition('c') }}>
 								<View style={[{ width: posW, maxWidth: posW, height: posH, maxHeight: posH }]}>
 									<Text
@@ -135,7 +135,7 @@ class ChoosePosition extends React.PureComponent<any, ChoosePositionPropTypes, C
 										style={[bStyles.positionText, { width: posW }]}>CENTER</Text>
 									<Image key={'cyp_c'} source={this.cypC} style={[bStyles.cypImage, { width: imgW, maxWidth: imgW, height: imgH, maxHeight: imgH }]} />
 								</View>
-							</TouchableNativeFeedback>
+							</TouchableWithoutFeedback>
 						</View>
 					</Carousel>
 				</View>

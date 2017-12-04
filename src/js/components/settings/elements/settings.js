@@ -6,7 +6,7 @@ import {
 	ScrollView,
 	Switch,
 	Text,
-	TouchableNativeFeedback,
+	TouchableWithoutFeedback,
 	View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -44,7 +44,7 @@ class SettingsList extends React.PureComponent <any, SettingsListPropTypes, void
 				<View
 					key={'menu_' + index}
 					style={sStyles.menuItem}>
-					<TouchableNativeFeedback
+					<TouchableWithoutFeedback
 						onPress={setting.type === 'button' ? setting.action : null}
 						disabled={setting.disabled}>
 						<View style={sStyles.menuButton}>
@@ -68,14 +68,14 @@ class SettingsList extends React.PureComponent <any, SettingsListPropTypes, void
 								</View>
 							)}
 						</View>
-					</TouchableNativeFeedback>
+					</TouchableWithoutFeedback>
 				</View>
 			);
 		});
 
 		return (
 			<View style={sStyles.container}>
-				<TouchableNativeFeedback
+				<TouchableWithoutFeedback
 					onPress={() => {
 						Actions.pop();
 					}}>
@@ -85,7 +85,7 @@ class SettingsList extends React.PureComponent <any, SettingsListPropTypes, void
 							name={'close'}
 							size={32}/>
 					</View>
-				</TouchableNativeFeedback>
+				</TouchableWithoutFeedback>
 				<View style={sStyles.headerContainer}>
 					<Text style={sStyles.primaryText}>SETTINGS</Text>
 				</View>

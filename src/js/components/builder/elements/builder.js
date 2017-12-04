@@ -11,8 +11,7 @@ import {
 	Text,
 	TextInput,
 	ToolbarAndroid,
-	TouchableHighlight,
-	TouchableNativeFeedback,
+	TouchableWithoutFeedback,
 	TouchableOpacity,
 	View
 } from 'react-native';

@@ -106,6 +106,8 @@ const summaryStyles = StyleSheet.create({
 		position: 'absolute',
 		top: 10,
 		left: 10,
+		width: 32,
+		height: 32,
 	},
 	menuItems: {
 		flex: 6,

@@ -2,7 +2,7 @@
 
 /** External Module Dependencies **/
 import React, {PropTypes} from "react";
-import {Text, TouchableNativeFeedback, View} from "react-native";
+import {Text, TouchableWithoutFeedback, View} from "react-native";
 
 /** Internal Module Dependencies **/
 import bStyles from './../styles/button-styles';
@@ -68,16 +68,16 @@ class Button extends React.Component<ButtonDefaultPropTypes, ButtonPropTypes, Bu
 		const textStyle = [bStyles[theme + 'Theme'][type + 'Text']];
 
 		return (
-			<TouchableNativeFeedback
+			<TouchableWithoutFeedback
 				onPress={onPress}
 				onLongPress={onLongPress ? onLongPress : null}
 				onPressIn={raised ? this.setElevation : null}
 				onPressOut={raised ? this.removeElevation : null}
-				background={TouchableNativeFeedback.SelectableBackground()}>
+				background={TouchableWithoutFeedback.SelectableBackground()}>
 				<View style={btnStyle}>
 					<Text style={textStyle}>{text}</Text>
 				</View>
-			</TouchableNativeFeedback>
+			</TouchableWithoutFeedback>
 		);
 	};
 }

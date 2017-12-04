@@ -2,7 +2,7 @@
 
 /** External Module Dependencies **/
 import React, {PropTypes} from 'react';
-import {Dimensions, Image, ScrollView, StyleSheet, Text, TouchableNativeFeedback, View} from 'react-native';
+import {Dimensions, Image, ScrollView, StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 var Spinner = require('./rn-spinner');

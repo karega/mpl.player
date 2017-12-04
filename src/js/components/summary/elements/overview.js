@@ -8,7 +8,7 @@ import {
 	ScrollView,
 	StyleSheet,
 	Text,
-	TouchableNativeFeedback,
+	TouchableWithoutFeedback,
 	View
 } from 'react-native';
 

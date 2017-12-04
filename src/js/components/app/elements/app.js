@@ -2,7 +2,7 @@
 
 /** External Module Dependencies **/
 import React from 'react';
-import { Text, TouchableHighlight, View } from 'react-native';
+import { Text, TouchableWithoutFeedback, View } from 'react-native';
 import { Router } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
