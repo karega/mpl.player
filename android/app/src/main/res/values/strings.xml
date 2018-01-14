@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">Player Lab</string>
     <string name="facebook_app_id">123816295019743</string>
     <string name="fb_login_protocol_scheme">fb{ 123816295019743 }</string>

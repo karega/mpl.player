@@ -22,7 +22,13 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		2C5415D520087926007A01FD /* libRNAdMobManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9602BF2007448200B5E6C6 /* libRNAdMobManager.a */; };
+		2C5415D9200880C5007A01FD /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C96028420073F4100B5E6C6 /* GoogleMobileAds.framework */; };
+		2C96028020073F1D00B5E6C6 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C96026320073F1C00B5E6C6 /* FBSDKShareKit.framework */; };
+		2C96028120073F1D00B5E6C6 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C96027E20073F1C00B5E6C6 /* FBSDKLoginKit.framework */; };
+		2C96028220073F1D00B5E6C6 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C96027F20073F1C00B5E6C6 /* FBSDKCoreKit.framework */; };
 		357A57AED1524F6AA5CD2648 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0ADFC5D12A14BF28DE9EF20 /* EvilIcons.ttf */; };
+		38AA818F350A48E4ABA4EC9C /* libRCTFBLogin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 524EF43A65014649B1916D51 /* libRCTFBLogin.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8FDA7569E927417AAF4A0684 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 829D07E4FEA341C2BA0DE66A /* Zocial.ttf */; };
 		A1650CD524E14DAA9B6DCE6A /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F065F3C3B695476D91785CEE /* Octicons.ttf */; };
@@ -187,26 +193,12 @@
 			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
 			remoteInfo = "jschelpers-tvOS";
 		};
-		2C6ECDF31FC95447009659EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 79F3A9B751FF49CAB59CDF5F /* RCTFBLogin.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4F3A6B5B1ACFBCC500CA65F7;
-			remoteInfo = RCTFBLogin;
-		};
 		2C6ECDF61FC95447009659EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E48662A8659141E594C6B79D /* ReactNativeCustomTabs.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = DA7118681CC9158A0087DF95;
 			remoteInfo = DBCustomTabs;
-		};
-		2C6ECDF91FC95447009659EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1108AF53E1FD4722943AFC47 /* RNAdMobManager.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A96DA7741C146D7200FC639B;
-			remoteInfo = RNAdMobManager;
 		};
 		2C6ECDFC1FC95447009659EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -221,6 +213,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 83CBBA2D1A601D0E00E9B192;
 			remoteInfo = React;
+		};
+		2C9602BE2007448200B5E6C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA9FF0561DA740E6AAAE4F74 /* RNAdMobManager.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A96DA7741C146D7200FC639B;
+			remoteInfo = RNAdMobManager;
+		};
+		2CCB4C64200717F8002D3B83 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF9F6F791B324261804CE1B0 /* RCTFBLogin.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4F3A6B5B1ACFBCC500CA65F7;
+			remoteInfo = RCTFBLogin;
 		};
 		78C398B81ACF4ADC00677621 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -249,7 +255,6 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* mplplayerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mplplayerTests.m; sourceTree = "<group>"; };
 		0EBB84F7FA0044F8B6F0382C /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
-		1108AF53E1FD4722943AFC47 /* RNAdMobManager.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAdMobManager.xcodeproj; path = "../node_modules/react-native-admob/ios/RNAdMobManager.xcodeproj"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* mplplayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mplplayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -261,15 +266,22 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		1AFCAD963DB34BBDA15970EE /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		238258A66CDE49A4A1253FEF /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
-		2C11C1B81FD34A9E0032041E /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		2C96026320073F1C00B5E6C6 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../node_modules/react-native-facebook-login/FacebookSDK/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		2C96027E20073F1C00B5E6C6 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../node_modules/react-native-facebook-login/FacebookSDK/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		2C96027F20073F1C00B5E6C6 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../node_modules/react-native-facebook-login/FacebookSDK/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		2C96028320073F4000B5E6C6 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		2C96028420073F4100B5E6C6 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		50F1F72E8A6947FC8E486BFD /* libRNAdMobManager.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAdMobManager.a; sourceTree = "<group>"; };
+		524EF43A65014649B1916D51 /* libRCTFBLogin.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTFBLogin.a; sourceTree = "<group>"; };
 		65EBEFFF36B442A2AA014F83 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		67919A92B30D45A380149E82 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
-		79F3A9B751FF49CAB59CDF5F /* RCTFBLogin.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTFBLogin.xcodeproj; path = "../node_modules/react-native-facebook-login/RCTFBLogin.xcodeproj"; sourceTree = "<group>"; };
 		829D07E4FEA341C2BA0DE66A /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8CF2D27F364F4AF3B4BE3CC2 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		A0ADFC5D12A14BF28DE9EF20 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		AA9FF0561DA740E6AAAE4F74 /* RNAdMobManager.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAdMobManager.xcodeproj; path = "../node_modules/react-native-admob/ios/RNAdMobManager.xcodeproj"; sourceTree = "<group>"; };
+		AF9F6F791B324261804CE1B0 /* RCTFBLogin.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTFBLogin.xcodeproj; path = "../node_modules/react-native-facebook-login/RCTFBLogin.xcodeproj"; sourceTree = "<group>"; };
 		E48662A8659141E594C6B79D /* ReactNativeCustomTabs.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeCustomTabs.xcodeproj; path = "../node_modules/react-native-custom-tabs/ios/ReactNativeCustomTabs.xcodeproj"; sourceTree = "<group>"; };
 		F065F3C3B695476D91785CEE /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -287,6 +299,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C5415D9200880C5007A01FD /* GoogleMobileAds.framework in Frameworks */,
+				2C5415D520087926007A01FD /* libRNAdMobManager.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -297,6 +311,10 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
+				2C96028120073F1D00B5E6C6 /* FBSDKLoginKit.framework in Frameworks */,
+				2C96028220073F1D00B5E6C6 /* FBSDKCoreKit.framework in Frameworks */,
+				2C96028020073F1D00B5E6C6 /* FBSDKShareKit.framework in Frameworks */,
+				38AA818F350A48E4ABA4EC9C /* libRCTFBLogin.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,22 +426,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2C11C1B71FD34A930032041E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				2C11C1B81FD34A9E0032041E /* GoogleMobileAds.framework */,
-			);
-			path = Frameworks;
-			sourceTree = "<group>";
-		};
-		2C6ECDEA1FC95447009659EB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2C6ECDF41FC95447009659EB /* libRCTFBLogin.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		2C6ECDEC1FC95447009659EB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -440,10 +442,39 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2C6ECDF01FC95447009659EB /* Products */ = {
+		2C96025420073E7F00B5E6C6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2C6ECDFA1FC95447009659EB /* libRNAdMobManager.a */,
+				2C96028320073F4000B5E6C6 /* Bolts.framework */,
+				2C96028420073F4100B5E6C6 /* GoogleMobileAds.framework */,
+				2C96027F20073F1C00B5E6C6 /* FBSDKCoreKit.framework */,
+				2C96027E20073F1C00B5E6C6 /* FBSDKLoginKit.framework */,
+				2C96026320073F1C00B5E6C6 /* FBSDKShareKit.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		2C9602BB2007448200B5E6C6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2C9602BF2007448200B5E6C6 /* libRNAdMobManager.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2CCB4C47200717F7002D3B83 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				524EF43A65014649B1916D51 /* libRCTFBLogin.a */,
+				50F1F72E8A6947FC8E486BFD /* libRNAdMobManager.a */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		2CCB4C61200717F7002D3B83 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2CCB4C65200717F8002D3B83 /* libRCTFBLogin.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -471,9 +502,9 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				E48662A8659141E594C6B79D /* ReactNativeCustomTabs.xcodeproj */,
-				79F3A9B751FF49CAB59CDF5F /* RCTFBLogin.xcodeproj */,
 				238258A66CDE49A4A1253FEF /* RNVectorIcons.xcodeproj */,
-				1108AF53E1FD4722943AFC47 /* RNAdMobManager.xcodeproj */,
+				AF9F6F791B324261804CE1B0 /* RCTFBLogin.xcodeproj */,
+				AA9FF0561DA740E6AAAE4F74 /* RNAdMobManager.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -490,12 +521,13 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				2C11C1B71FD34A930032041E /* Frameworks */,
+				2C96025420073E7F00B5E6C6 /* Frameworks */,
 				13B07FAE1A68108700A75B9A /* mplplayer */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* mplplayerTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				D539E4BA76AC418E80F0BEE2 /* Resources */,
+				2CCB4C47200717F7002D3B83 /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -571,12 +603,15 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 610;
+				LastUpgradeCheck = 910;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = VH4WA7J22E;
 					};
 				};
 			};
@@ -597,8 +632,8 @@
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
 				},
 				{
-					ProductGroup = 2C6ECDEA1FC95447009659EB /* Products */;
-					ProjectRef = 79F3A9B751FF49CAB59CDF5F /* RCTFBLogin.xcodeproj */;
+					ProductGroup = 2CCB4C61200717F7002D3B83 /* Products */;
+					ProjectRef = AF9F6F791B324261804CE1B0 /* RCTFBLogin.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
@@ -641,8 +676,8 @@
 					ProjectRef = E48662A8659141E594C6B79D /* ReactNativeCustomTabs.xcodeproj */;
 				},
 				{
-					ProductGroup = 2C6ECDF01FC95447009659EB /* Products */;
-					ProjectRef = 1108AF53E1FD4722943AFC47 /* RNAdMobManager.xcodeproj */;
+					ProductGroup = 2C9602BB2007448200B5E6C6 /* Products */;
+					ProjectRef = AA9FF0561DA740E6AAAE4F74 /* RNAdMobManager.xcodeproj */;
 				},
 				{
 					ProductGroup = 2C6ECDEC1FC95447009659EB /* Products */;
@@ -805,13 +840,6 @@
 			remoteRef = 2C6ECDE81FC95447009659EB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		2C6ECDF41FC95447009659EB /* libRCTFBLogin.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTFBLogin.a;
-			remoteRef = 2C6ECDF31FC95447009659EB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		2C6ECDF71FC95447009659EB /* libDBCustomTabs.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -819,18 +847,25 @@
 			remoteRef = 2C6ECDF61FC95447009659EB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		2C6ECDFA1FC95447009659EB /* libRNAdMobManager.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNAdMobManager.a;
-			remoteRef = 2C6ECDF91FC95447009659EB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		2C6ECDFD1FC95447009659EB /* libRNVectorIcons.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRNVectorIcons.a;
 			remoteRef = 2C6ECDFC1FC95447009659EB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2C9602BF2007448200B5E6C6 /* libRNAdMobManager.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNAdMobManager.a;
+			remoteRef = 2C9602BE2007448200B5E6C6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2CCB4C65200717F8002D3B83 /* libRCTFBLogin.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTFBLogin.a;
+			remoteRef = 2CCB4C64200717F8002D3B83 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		78C398B91ACF4ADC00677621 /* libRCTLinking.a */ = {
@@ -940,12 +975,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mplplayer.app/mplplayer";
 			};
@@ -962,12 +993,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mplplayer.app/mplplayer";
 			};
@@ -979,24 +1006,37 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = VH4WA7J22E;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+					"$(SRCROOT)/../node_modules/react-native-facebook-login/FacebookSDK",
+					"$(SRCROOT)/Frameworks",
+				);
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
-					"$(SRCROOT)..\node_modules\neact-native-splash-screenios",
+					"$(SRCROOT)..",
+					node_modules,
+					"react-native-splash-screenios",
 					"$(SRCROOT)/../node_modules/react-native-custom-tabs/ios/ReactNativeCustomTabs",
 					"$(SRCROOT)/../node_modules/react-native-facebook-login/RCTFBLogin/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-speech-to-text/ios/speechToText",
-					"$(SRCROOT)/../node_modules/react-native-admob/ios",
+					"$(SRCROOT)/../node_modules/react-native-facebook-login/RCTFBLogin/**",
+					"$(SRCROOT)/../node_modules/react-native-admob/ios/**",
 				);
 				INFOPLIST_FILE = mplplayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-admob/ios";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = mplplayer;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1007,24 +1047,37 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VH4WA7J22E;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+					"$(SRCROOT)/../node_modules/react-native-facebook-login/FacebookSDK",
+					"$(SRCROOT)/Frameworks",
+				);
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
-					"$(SRCROOT)..\node_modules\neact-native-splash-screenios",
+					"$(SRCROOT)..",
+					node_modules,
+					"react-native-splash-screenios",
 					"$(SRCROOT)/../node_modules/react-native-custom-tabs/ios/ReactNativeCustomTabs",
 					"$(SRCROOT)/../node_modules/react-native-facebook-login/RCTFBLogin/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-speech-to-text/ios/speechToText",
-					"$(SRCROOT)/../node_modules/react-native-admob/ios",
+					"$(SRCROOT)/../node_modules/react-native-facebook-login/RCTFBLogin/**",
+					"$(SRCROOT)/../node_modules/react-native-admob/ios/**",
 				);
 				INFOPLIST_FILE = mplplayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-admob/ios";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = mplplayer;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1038,20 +1091,30 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1073,6 +1136,7 @@
 					"$(SRCROOT)/../node_modules/react-native-facebook-login/RCTFBLogin/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-speech-to-text/ios/speechToText",
+					"$(SRCROOT)/../node_modules/react-native-facebook-login/RCTFBLogin/**",
 					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1090,13 +1154,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1104,6 +1176,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1119,6 +1192,7 @@
 					"$(SRCROOT)/../node_modules/react-native-facebook-login/RCTFBLogin/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-speech-to-text/ios/speechToText",
+					"$(SRCROOT)/../node_modules/react-native-facebook-login/RCTFBLogin/**",
 					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

@@ -3,6 +3,8 @@
 package com.mplplayer;
 
 import com.facebook.react.ReactActivity;
+import com.sbugert.rnadmob.RNAdMobPackage;
+import com.magus.fblogin.FacebookLoginPackage;
 
 public class MainActivity extends ReactActivity {
 
