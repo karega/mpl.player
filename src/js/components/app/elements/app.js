@@ -62,6 +62,7 @@ class App extends React.Component {
 				currentState = nextState;
 				onChange(currentState);
 			}
+
 			if (currentState === undefined) {
 				currentState = nextState;
 			}

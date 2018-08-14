@@ -17,7 +17,7 @@ class mplplayer extends Component {
     render() {
         return (
             <Provider store={ store } persistor={ persistor }>
-              <App />
+                <App />
             </Provider>
         );
     }
